@@ -1,0 +1,166 @@
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.button{
+  background-color: #F85A47;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+
+}
+
+.header{
+  padding: 20px;
+}
+
+.card{
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.stripCard{
+  display: flex;
+  border: 1px solid #3434344d;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.settingsNavItem{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.active{
+  font-weight: bold;
+}
+
+.ellipse{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #343434;
+  position: relative;
+}
+
+input{
+  background-color:#ECECEC;
+}
+
+.paymentCard{
+  background-color: white;
+  border: 1px dashed grey;
+  padding: 20px 40px;
+  padding-left: 20px;
+  display: flex;
+  border-radius: 5px;
+  margin-right: 20px;
+  /* width: 150px !important; */
+}
+
+.headerUnderlineActive{
+/* background-color: #343434; */
+padding: 10px;
+border-bottom: 1px solid #343434;
+
+}
+
+
+.flexStrip{
+  display: flex;
+  justify-content: normal;
+}
+
+.ellipseAttribute{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: white}
+
+.strip{
+  display: flex;
+  justify-content: space-between;
+}
+
+.TableImg{
+  background-color: #343434;
+  border-radius: 50%;
+  /* width: 10;
+  height: 10; */
+}
+
+.role-admin{
+  color: red;
+  background-color: red;
+  border: none;
+  padding: 10px;
+}
+
+
+
+.sideNav{
+  background-color: #343434 ;
+  height: 100vh;
+}
+
+.navItem{
+  /* background-color:red ; */
+  padding: 20px;
+  color: white;
+  display: flex;
+margin: auto;
+  /* justify-content: center; */
+}
+
+.tableUnderline{
+  border-bottom: #343434;
+  padding: 10;
+}
+
+.fixedBottom{
+  position: fixed;
+  bottom: 5vh;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
