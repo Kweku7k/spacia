@@ -15,6 +15,11 @@ import Switch from "react-switch";
 
 
 const Notifications = (props) => {
+    const switchItem = {
+        marginLeft: 10,
+        margin:'auto 0', 
+        marginRight:50
+    }
     return (
         <>
             <div className="strip">
@@ -22,24 +27,25 @@ const Notifications = (props) => {
             </div>
 
       <div className="strip" style={{justifyContent:'normal', margin:'auto'}}>
-        <h6 style={{margin:'auto 0', marginRight:10}}>Recieve email notifications</h6>
+        <h6 style={switchItem}>Recieve email notifications</h6>
         <Switch/>
       </div>
       <br />
 
       <div className="strip" style={{justifyContent:'normal', margin:'auto'}}>
-        <h6 style={{margin:'auto 0', marginRight:10}}>Recieve SMS notifications</h6>
+        <h6 style={switchItem}>Recieve SMS notifications</h6>
         <Switch/>
       </div>
       <br />
       <div className="strip" style={{justifyContent:'normal', margin:'auto'}}>
-        <h6 style={{margin:'auto 0', marginRight:10}}>Recieve portal notifications</h6>
+        <h6 style={switchItem}>Recieve portal notifications</h6>
         <Switch/>
       </div>
 
 
-
-            <button className="button">Save</button>
+<br/>
+<br/>
+            <button className="button" style={{paddingLeft:50, paddingRight:50}} >Save</button>
         </>
     )
 }

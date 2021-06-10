@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Table, Toast, Button, Modal } from 'react-bootstrap'
+import { Container, Table, Toast, Button, Modal, DropdownButton, Dropdown } from 'react-bootstrap'
 import { FaCaretDown, FaEllipsisH } from 'react-icons/fa'
 import PaymentTableRow from '../components/PaymentTableRow'
 import Search from '../components/Search'
@@ -19,16 +19,44 @@ const UserManagement = () => {
         <div>
             <div>
                 {/* Header */}
-            <div className="header">
-                <div style={{display:'flex', justifyContent:'space-between'}}>
-                    <h4>Payment History</h4>
-{/* 
+                <div className="header">
+                {/* <div>
+                </div> */}
+                <div style={{display:'flex', justifyContent:'space-between'}} >
+                    <div>
+
+                <h4>Properties</h4>
+                    </div>
+
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                    {/* <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
+                    </form>
 
-                    </form> */}
+                    <div class="dropdown" style={{margin:'auto 30px'}}>
+                        {/* <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div> */}
+                                                    <Dropdown>
+                            <Dropdown.Toggle style={{backgroundColor:'#ECECEC', border:'none', color:'#848484'}} variant="success" id="dropdown-basic">
+                               Filter
+                                {/* <FaCaretDown /> */}
+                            </Dropdown.Toggle>
 
-                    <button class="button" onClick={handleShow}>Invite New User </button>
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                            </Dropdown.Menu>
+                            </Dropdown>
+                    </div>
+
+
 
                 </div>
             </div>
@@ -111,7 +139,7 @@ const UserManagement = () => {
                 </Container>
 
             </div>
-        </div>
+            </div>
     )
 }
 

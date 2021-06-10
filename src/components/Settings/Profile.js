@@ -12,6 +12,7 @@ const Profile = () => {
                                 <FaCamera className="ellipseAttribute" color="blue"/>
                             </div>
                             <form>
+                              <br/>
                             <Row>
 
 
