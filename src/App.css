@@ -30,13 +30,23 @@
   color: #61dafb;
 }
 
+.form-group input{
+  background-color: #ECECEC;
+}
+
 .button{
   background-color: #F85A47;
   border-radius: 5px;
   padding: 10px 20px;
   border: none;
   color: white;
-
+}
+.button-calm{
+  background-color: #F7F7F7;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  color: black;
 }
 
 .header{

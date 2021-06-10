@@ -1,7 +1,7 @@
 import React from 'react'
-import {Table} from 'react-bootstrap'
+import {Table, Dropdown, DropdownButton} from 'react-bootstrap'
 import {FaEllipsisH, FaCaretDown} from 'react-icons/fa'
-const UserTableRow = ({profile, name, email, status, role, style, statusStyle}) => {
+const UserTableRow = ({profile, name, email, status, role, style, statusStyle, onDelete, onEdit}) => {
     
 const admin = {
     backgroundColor:'#F3D5D1', 
@@ -28,6 +28,11 @@ const approver = {
     paddingRight:20
 }
 
+const edit={
+    border: 'none',
+    backgroundColor: 'transparent'
+}
+
 
 const active ={
     color: 'green',
@@ -46,7 +51,20 @@ const active ={
             <td>
                 <a href="#">Edit</a>
             </td>
-            <td><FaEllipsisH/></td>
+            <td>
+            <Dropdown>
+  <Dropdown.Toggle variant="success" style={edit} id="dropdown-basic">
+        <FaEllipsisH color="black"/>
+  </Dropdown.Toggle>
+
+  <Dropdown.Menu>
+    <Dropdown.Item onClick = {onEdit} href="#/action-1">Edit</Dropdown.Item>
+    <Dropdown.Item onClick = {onDelete} href="#/action-2">Delete</Dropdown.Item>
+    <Dropdown.Item href="#/action-3">Disable</Dropdown.Item>
+    <Dropdown.Item href="#/action-3">Reset Password</Dropdown.Item>
+  </Dropdown.Menu>
+</Dropdown>
+            </td>
         </tr>
         </>
     )

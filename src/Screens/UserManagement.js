@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Container, Table, Toast, Button, Modal } from 'react-bootstrap'
-import { FaCaretDown, FaEllipsisH } from 'react-icons/fa'
+import { Container, Table, Toast, Button, Row, Modal } from 'react-bootstrap'
+import { FaCaretDown, FaEllipsisH, FaImage } from 'react-icons/fa'
 import Search from '../components/Search'
 import UserTableRow from '../components/UserTableRow'
 import img from '../img/Web/Spacia/Ellipse.png'
 import peter from '../img/Web/Spacia/Peter.png'
-
+import LoadingPage from '../components/LoadingPage'
+import NoData from '../components/NoData'
 
 const UserManagement = () => {
 
@@ -54,10 +55,19 @@ const UserManagement = () => {
     }
 
     const [show, setShow] = useState(false);
+    const [deleteshow, setdeleteShow] = useState(false);
+    const [editShow, setEditShow] = useState(false);
+    // const [loaded, setLoaded] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleDeleteClose = () => setdeleteShow(false);
+    const handleDeleteShow = () => setdeleteShow(true);
+    const handleEditClose = () => setEditShow(false);
+    const handleEditShow = () => setEditShow(true);
+    const loaded = true
   
+
 
     return (
         <div>
@@ -81,85 +91,153 @@ const UserManagement = () => {
             </div>
             {/* End Header */}
 
-
-            <Container>
+            { loaded ? (
+ <Container>
                 
-                <Toast style={{width:'100%', padding:20, marginBottom:50}}>
-                <Table>
-                    <tr className="tableUnderline">
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Role</th>
-                        <th>Action</th>
-                    </tr>
-                    
-                    <UserTableRow profile={img} name="Nana Kweku Adumatta" email="mr.adumatta@gmail.com" status="Active" statusStyle={active} role="ADMIN" style={admin}/>
-                    <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/>
-                </Table>
-                </Toast>
+ <Toast style={{width:'100%', padding:20, marginBottom:50}}>
+ <Table>
+     <tr className="tableUnderline">
+         <th>Name</th>
+         <th>Email</th>
+         <th>Status</th>
+         <th>Role</th>
+         <th>Action</th>
+     </tr>
+     
+     <UserTableRow profile={img} name="Nana Kweku Adumatta" email="mr.adumatta@gmail.com" status="Active" statusStyle={active} role="ADMIN" style={admin}/>
+     <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/>
+ </Table>
+ </Toast>
 
-                <Toast style={{width:'100%', padding:20}}>
-                <div style={{display:'flex', justifyContent:'space-between'}}>
-                    <Search />
-                    <div style={{display:'flex'}}>
-                        <h6 className="text-muted" style={{fontSize:'smaller', marginRight:10}}>Sort by:</h6>
-                        <h6 style={{fontWeight:'bold', fontSize:'smaller'}}>Status-invited</h6>
-                        <FaCaretDown />
-                    </div>
-                </div>
-                <Table className="w3-striped">
-                    <tr className="tableUnderline">
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Role</th>
-                        <th>Action</th>
-                    </tr>
-                    <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee}/>
+ <Toast style={{width:'100%', padding:20}}>
+ <div style={{display:'flex', justifyContent:'space-between'}}>
+     <Search />
+     <div style={{display:'flex'}}>
+         <h6 className="text-muted" style={{fontSize:'smaller', marginRight:10}}>Sort by:</h6>
+         <h6 style={{fontWeight:'bold', fontSize:'smaller'}}>Status-invited</h6>
+         <FaCaretDown />
+     </div>
+ </div>
+ <Table className="w3-striped">
+     <tr className="tableUnderline">
+         <th>Name</th>
+         <th>Email</th>
+         <th>Status</th>
+         <th>Role</th>
+         <th>Action</th>
+     </tr>
+     <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={handleEditShow}/>
+ </Table>
+ </Toast>
 
-                    {/* <tr>
-                        <td><div> <img src="" alt="User"/>Nana Kweku Adumatta</div></td>
-                        <td>mr.adumatta@gmail.com</td>
-                        <td>Active</td>
-                        <td><button className="role-admin">Active</button></td>
-                        <td>Edit</td>
-                        <td><FaEllipsisH/></td>
-                    </tr> */}
-                </Table>
-                </Toast>
+ <>
+{/* <Button variant="primary" onClick={handleShow}>
+Launch demo modal
+</Button> */}
 
-                <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button> */}
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Invite New Users</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            {/* <h6>Text</h6> */}
-            <div class="form-group">
-              <label for="">Email</label>
-              <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="" />
+{/* Invite User */}
+
+<Modal show={show} onHide={handleClose}>
+<Modal.Header closeButton>
+<Modal.Title>Invite New Users</Modal.Title>
+</Modal.Header>
+<Modal.Body>
+{/* <h6>Text</h6> */}
+<div class="form-group">
+<label for="">Email</label>
+<input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="" />
 <br/>
-                <label for="">Role</label>
-                <select class="form-control" name="" id="">
-                  <option>Admin</option>
-                  <option>Employee</option>
-                  <option>Approver</option>
-                </select>
-    
-              <small id="emailHelpId" class="form-text text-muted">Help text</small>
-            </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <button onClick={handleClose} className="button">Invite User</button>
-        </Modal.Footer>
-      </Modal>
-    </>
-                </Container>
+ <label for="">Role</label>
+ <select class="form-control" name="" id="">
+   <option>Admin</option>
+   <option>Employee</option>
+   <option>Approver</option>
+ </select>
+
+<small id="emailHelpId" class="form-text text-muted">Help text</small>
+</div>
+</Modal.Body>
+<Modal.Footer>
+<button onClick={handleClose} className="button">Invite User</button>
+</Modal.Footer>
+</Modal>
+
+{/* InviteUser */}
+
+
+
+{/* Delete User */}
+<Modal show={deleteshow} onHide={handleDeleteClose}>
+<Modal.Header closeButton>
+<Modal.Title>Delete</Modal.Title>
+</Modal.Header>
+<Modal.Body>
+{/* <h6>Text</h6> */}
+<h6>Are you sure you want to delete this user</h6>
+</Modal.Body>
+<Modal.Footer>
+<button onClick={handleDeleteClose} className="button-calm">Cancel</button>
+<button onClick={handleDeleteClose} className="button">Delete</button>
+</Modal.Footer>
+</Modal>
+
+{/* Delete User */}
+
+{/* Edit User */}
+
+<Modal show={editShow} onHide={handleEditClose}>
+<Modal.Header closeButton>
+<Modal.Title>Invite New Users</Modal.Title>
+</Modal.Header>
+<Modal.Body>
+{/* <h6>Text</h6> */}
+<div style={{width:50, height:50, backgroundColor:'#ECECEC', textAlign:'center'}}>
+    <FaImage />
+</div>
+<br/>
+<div class="form-group">
+{/* <label for="">Email</label> */}
+<input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Full Name" />
+<br/>
+<input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Email Address" />
+ {/* <label for="">Role</label> */}
+ <br/>
+<input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Phone Address" />
+ <br/>
+ <Row>
+
+<div className="form-group col-md-4">
+
+ <select class="form-control"  name="" id="">
+   <option>Admin</option>
+   <option>Employee</option>
+   <option>Approver</option>
+ </select>
+     </div>
+ </Row>
+
+
+<small id="emailHelpId" class="form-text text-muted">Help text</small>
+</div>
+</Modal.Body>
+<Modal.Footer>
+<button onClick={handleEditClose} className="button-calm">Cancel</button>
+<button onClick={handleEditClose} className="button">Save</button>
+</Modal.Footer>
+</Modal>
+
+{/* Delete User */}
+
+
+
+
+
+</>
+ </Container>
+            ) : <NoData/>}
+
+           
 
             </div>
         </div>
