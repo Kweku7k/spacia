@@ -20,14 +20,24 @@ const Notifications = (props) => {
             <div className="strip">
             <h4>Manage your Notifications</h4>
             </div>
+
       <div className="strip" style={{justifyContent:'normal', margin:'auto'}}>
-        <h6 style={{margin:'auto 0', marginRight:10}}>Kpo</h6>
+        <h6 style={{margin:'auto 0', marginRight:10}}>Recieve email notifications</h6>
+        <Switch/>
+      </div>
+      <br />
+
+      <div className="strip" style={{justifyContent:'normal', margin:'auto'}}>
+        <h6 style={{margin:'auto 0', marginRight:10}}>Recieve SMS notifications</h6>
+        <Switch/>
+      </div>
+      <br />
+      <div className="strip" style={{justifyContent:'normal', margin:'auto'}}>
+        <h6 style={{margin:'auto 0', marginRight:10}}>Recieve portal notifications</h6>
         <Switch/>
       </div>
 
-            <h6>Recieve email notifications</h6>
-            <h6>Recieve SMS notifications</h6>
-            <h6>Recieve portal notifications</h6>
+
 
             <button className="button">Save</button>
         </>

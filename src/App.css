@@ -79,14 +79,34 @@ input{
 }
 
 .paymentCard{
-  background-color: white;
-  border: 1px dashed grey;
+  background-color: #F0F0F0;
+  border: 1px dashed rgba(128, 128, 128, 0.63);
   padding: 20px 40px;
   padding-left: 20px;
   display: flex;
   border-radius: 5px;
   margin-right: 20px;
+  color: #787878;
   /* width: 150px !important; */
+}
+
+.paymentCard-active{
+  background-color: #f8594728;
+  border: 1px dashed #F85A47;
+  padding: 20px 40px;
+  padding-left: 20px;
+  display: flex;
+  border-radius: 5px;
+  margin-right: 20px;
+  color: #F85A47;
+}
+
+.user-admin{
+  background-color: #F85A47;
+}
+
+.link{
+  text-decoration: none;
 }
 
 .headerUnderlineActive{
@@ -108,7 +128,7 @@ border-bottom: 1px solid #343434;
   right: 0;
 }
 
-tr:nth-child(even) {background: #CCC}
+tr:nth-child(even) {background: #F7F7F7}
 tr:nth-child(odd) {background: white}
 
 .strip{

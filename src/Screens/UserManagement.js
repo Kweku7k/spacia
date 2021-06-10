@@ -4,9 +4,54 @@ import { FaCaretDown, FaEllipsisH } from 'react-icons/fa'
 import Search from '../components/Search'
 import UserTableRow from '../components/UserTableRow'
 import img from '../img/Web/Spacia/Ellipse.png'
+import peter from '../img/Web/Spacia/Peter.png'
 
 
 const UserManagement = () => {
+
+    const admin = {
+        backgroundColor:'#F3D5D1', 
+        color:'#F85A47', 
+        border:'none',
+        fontWeight:'bold', 
+        borderRadius:5, 
+        paddingTop:4, 
+        paddingBottom:4, 
+        paddingLeft:20, 
+        paddingRight:20
+    }
+    const approver = {
+        backgroundColor:'#FEE6C2', 
+        color:'#F99500', 
+        border:'none',
+        fontWeight:'bold', 
+        borderRadius:5, 
+        paddingTop:4, 
+        paddingBottom:4, 
+        paddingLeft:20, 
+        paddingRight:20
+    }
+    const employee = {
+        backgroundColor:'#D7EFD7', 
+        color:'#02BD04', 
+        border:'none',
+        fontWeight:'bold', 
+        borderRadius:5, 
+        paddingTop:4, 
+        paddingBottom:4, 
+        paddingLeft:20, 
+        paddingRight:20
+    }
+
+    const inactive = {
+        color: '#9B9B9B',
+        fontWeight:'bold'
+    }
+
+    const active = {
+        color: '#2B86FF',
+        fontWeight:'bold'
+    }
 
     const [show, setShow] = useState(false);
 
@@ -49,8 +94,8 @@ const UserManagement = () => {
                         <th>Action</th>
                     </tr>
                     
-                    <UserTableRow profile={img} name="Nana Kweku Adumatta" email="mr.adumatta@gmail.com" status="Active" role="Admin"/>
-                    <UserTableRow profile={img} name="Nana Kweku Adumatta" email="mr.adumatta@gmail.com" status="Active" role="Admin"/>
+                    <UserTableRow profile={img} name="Nana Kweku Adumatta" email="mr.adumatta@gmail.com" status="Active" statusStyle={active} role="ADMIN" style={admin}/>
+                    <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/>
                 </Table>
                 </Toast>
 
@@ -58,8 +103,8 @@ const UserManagement = () => {
                 <div style={{display:'flex', justifyContent:'space-between'}}>
                     <Search />
                     <div style={{display:'flex'}}>
-                        <h6 className="text-muted" style={{marginRight:10}}>Sort by</h6>
-                        <h6 style={{fontWeight:'bold'}}>Status-invited</h6>
+                        <h6 className="text-muted" style={{fontSize:'smaller', marginRight:10}}>Sort by:</h6>
+                        <h6 style={{fontWeight:'bold', fontSize:'smaller'}}>Status-invited</h6>
                         <FaCaretDown />
                     </div>
                 </div>
@@ -71,14 +116,16 @@ const UserManagement = () => {
                         <th>Role</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
+                    <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee}/>
+
+                    {/* <tr>
                         <td><div> <img src="" alt="User"/>Nana Kweku Adumatta</div></td>
                         <td>mr.adumatta@gmail.com</td>
                         <td>Active</td>
                         <td><button className="role-admin">Active</button></td>
                         <td>Edit</td>
                         <td><FaEllipsisH/></td>
-                    </tr>
+                    </tr> */}
                 </Table>
                 </Toast>
 

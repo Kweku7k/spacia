@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row } from 'react-bootstrap'
-import { FaMobile, FaPhone } from 'react-icons/fa'
+import { FaCreditCard, FaMobile, FaMobileAlt, FaPhone } from 'react-icons/fa'
 import CardPaymentTab from '../CardPaymentTab'
 import MomoPaymentTab from '../MomoPaymentTab'
 
@@ -13,13 +13,14 @@ const CardPayment = () => {
             </div>
             <div className='flexStrip'>
 
-            <div className="paymentCard">
-                <FaMobile />
-                <h6>Card</h6>
+            <div className="paymentCard-active">
+                <FaCreditCard style={{marginRight:10}} />
+                <h6 style={{paddingBottom:0}}>Card</h6>
             </div>
             <button className="paymentCard">
-                <FaPhone />
-                <h6>Card</h6>
+                {/* <FaPhone /> */}
+                <FaMobileAlt style={{marginRight:10}} />
+                <h6>Mobile Money</h6>
             </button>
             </div>
 

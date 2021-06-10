@@ -1,10 +1,10 @@
 import React from 'react'
 import Button from './Button'
-const Header = ({title}) => {
+const Header = ({title, button}) => {
     return (
         <div className="strip header">
             <h4>{title}</h4>
-            <Button text="Hahah"  icon="FaTimes"/>
+            <Button text={button}  icon="FaTimes"/>
         </div>
     )
 }

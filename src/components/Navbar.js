@@ -4,7 +4,7 @@ import { NavbarBrand } from 'react-bootstrap'
 const Navbar = () => {
     return (
         <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light" style={{backgroundColor:'#F3F3F3'}}>
     
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
