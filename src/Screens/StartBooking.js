@@ -9,6 +9,8 @@ import {FaCaretDown, FaCircle, FaEllipsisV, FaEllipsisH, FaPlus, FaMinus} from '
 import {Link} from 'react-router-dom' 
 import bookingbg from '../img/Web/Spacia/settings/payment/bookingbg.png'
 
+import '../App.css';
+
 const StartBooking = () => {
     const edit ={
         backgroundColor:"transparent"
@@ -38,11 +40,7 @@ const StartBooking = () => {
 
     const bar ={
         backgroundColor:'white',
-        width:'100%',
-        position:'absolute',
-        top:0,
-        right:0,
-        padding:20
+        padding: '1em'
     }
 
     const showBooking = false
@@ -64,7 +62,7 @@ const StartBooking = () => {
             <Container >
 
             {/* backgroundImage:`url(${bookingbg})` */}
-            <div style={{width:'100%', backgroundColor:'red', height:'100%', position:'relative'}}>
+            <div className = 'bg'>
             <div style={bar}>
                 <Row>
                     <div class="col-md-2">

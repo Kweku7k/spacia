@@ -1,205 +1,212 @@
-
+.bg {
+	background-image: url("./img/Web/Spacia/settings/payment/bookingbg.png");
+	height: 70vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+	height: 40vmin;
+	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
-.form-group input{
-  background-color: #ECECEC;
+.form-group input {
+	background-color: #ececec;
 }
 
-.bgImage{
-  width:'100vw';
-  height:'100vh';
-  background-color: 'green';
-  position:'relative'
+.bgImage {
+	width: "100vw";
+	height: "100vh";
+	background-color: "green";
+	position: "relative";
 }
 
-
-
-.button{
-  background-color: #F85A47;
-  border-radius: 5px;
-  padding: 10px 20px;
-  border: none;
-  color: white;
+.button {
+	background-color: #f85a47;
+	border-radius: 5px;
+	padding: 10px 20px;
+	border: none;
+	color: white;
 }
-.button-calm{
-  background-color: #F7F7F7;
-  border-radius: 5px;
-  padding: 10px 20px;
-  border: none;
-  color: black;
+.button-calm {
+	background-color: #f7f7f7;
+	border-radius: 5px;
+	padding: 10px 20px;
+	border: none;
+	color: black;
 }
 
-.header{
-  padding: 20px;
+.header {
+	padding: 20px;
 }
 
-.card{
-  margin-right: 10px;
-  margin-bottom: 10px;
+.card {
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
-.stripCard{
-  display: flex;
-  border: 1px solid #3434344d;
-  border-radius: 5px;
-  margin-right: 10px;
-  margin-bottom: 20px;
+.stripCard {
+	display: flex;
+	border: 1px solid #3434344d;
+	border-radius: 5px;
+	margin-right: 10px;
+	margin-bottom: 20px;
 }
 
-.settingsNavItem{
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
+.settingsNavItem {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
 }
 
-.active{
-  font-weight: bold;
+.active {
+	font-weight: bold;
 }
 
-.ellipse{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #343434;
-  position: relative;
+.ellipse {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #343434;
+	position: relative;
 }
 
-input{
-  background-color:#ECECEC;
+input {
+	background-color: #ececec;
 }
 
-.paymentCard{
-  background-color: #F0F0F0;
-  border: 1px dashed rgba(128, 128, 128, 0.63);
-  padding: 20px 40px;
-  padding-left: 20px;
-  display: flex;
-  border-radius: 5px;
-  margin-right: 20px;
-  color: #787878;
-  /* width: 150px !important; */
+.paymentCard {
+	background-color: #f0f0f0;
+	border: 1px dashed rgba(128, 128, 128, 0.63);
+	padding: 20px 40px;
+	padding-left: 20px;
+	display: flex;
+	border-radius: 5px;
+	margin-right: 20px;
+	color: #787878;
+	/* width: 150px !important; */
 }
 
-.paymentCard-active{
-  background-color: #f8594728;
-  border: 1px dashed #F85A47;
-  padding: 20px 40px;
-  padding-left: 20px;
-  display: flex;
-  border-radius: 5px;
-  margin-right: 20px;
-  color: #F85A47;
+.paymentCard-active {
+	background-color: #f8594728;
+	border: 1px dashed #f85a47;
+	padding: 20px 40px;
+	padding-left: 20px;
+	display: flex;
+	border-radius: 5px;
+	margin-right: 20px;
+	color: #f85a47;
 }
 
-.user-admin{
-  background-color: #F85A47;
+.user-admin {
+	background-color: #f85a47;
 }
 
-.link{
-  text-decoration: none;
+.link {
+	text-decoration: none;
 }
 
-.headerUnderlineActive{
-/* background-color: #343434; */
-padding: 10px;
-border-bottom: 1px solid #343434;
-
+.headerUnderlineActive {
+	/* background-color: #343434; */
+	padding: 10px;
+	border-bottom: 1px solid #343434;
 }
 
-
-.flexStrip{
-  display: flex;
-  justify-content: normal;
+.flexStrip {
+	display: flex;
+	justify-content: normal;
 }
 
-.ellipseAttribute{
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.ellipseAttribute {
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
-tr:nth-child(even) {background: #F7F7F7}
-tr:nth-child(odd) {background: white}
-
-.strip{
-  display: flex;
-  justify-content: space-between;
+tr:nth-child(even) {
+	background: #f7f7f7;
+}
+tr:nth-child(odd) {
+	background: white;
 }
 
-.TableImg{
-  background-color: #343434;
-  border-radius: 50%;
-  /* width: 10;
+.strip {
+	display: flex;
+	justify-content: space-between;
+}
+
+.TableImg {
+	background-color: #343434;
+	border-radius: 50%;
+	/* width: 10;
   height: 10; */
 }
 
-.role-admin{
-  color: red;
-  background-color: red;
-  border: none;
-  padding: 10px;
+.role-admin {
+	color: red;
+	background-color: red;
+	border: none;
+	padding: 10px;
 }
 
-
-
-.sideNav{
-  background-color: #343434 ;
-  height: 100vh;
+.sideNav {
+	background-color: #343434;
+	height: 100vh;
 }
 
-.navItem{
-  /* background-color:red ; */
-  padding: 20px;
-  color: white;
-  display: flex;
-margin: auto;
-  /* justify-content: center; */
+.navItem {
+	/* background-color:red ; */
+	padding: 20px;
+	color: white;
+	display: flex;
+	margin: auto;
+	/* justify-content: center; */
 }
 
-.tableUnderline{
-  border-bottom: #343434;
-  padding: 10;
+.tableUnderline {
+	border-bottom: #343434;
+	padding: 10;
 }
 
-.fixedBottom{
-  position: fixed;
-  bottom: 5vh;
+.fixedBottom {
+	position: fixed;
+	bottom: 5vh;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }

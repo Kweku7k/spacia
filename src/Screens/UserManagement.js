@@ -8,6 +8,8 @@ import peter from '../img/Web/Spacia/Peter.png'
 import LoadingPage from '../components/LoadingPage'
 import NoData from '../components/NoData'
 
+import NewModal from "../components/NewModal";
+
 const UserManagement = () => {
 
     const admin = {
@@ -194,6 +196,15 @@ Launch demo modal
 <button onClick={confirmOpen} className="button">Delete</button>
 </Modal.Footer>
 </Modal>
+
+
+
+
+<NewModal title="New Modal" isOpen={deleteshow}/>
+
+
+
+
 
 {/* Delete User Successful */}
 <Modal show={confirmDelete} onHide={handleDeleteClose}>
