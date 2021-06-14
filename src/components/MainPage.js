@@ -17,6 +17,7 @@ import Billing from '../Screens/Billing'
 import Booking from '../Screens/Booking'
 import EditBooking from '../Screens/EditBooking'
 import StartBooking from '../Screens/StartBooking'
+import AddedProperties from '../Screens/AddedProperties'
 
 const MainPage = (props) => {
     return (
@@ -49,6 +50,9 @@ const MainPage = (props) => {
                     </Route>
                     <Route path="/startbooking">
                         <StartBooking />
+                    </Route>
+                    <Route path="/addedproperties">
+                        <AddedProperties />
                     </Route>
                 </Switch>
             </Nav>

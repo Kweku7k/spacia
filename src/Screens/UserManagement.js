@@ -7,6 +7,7 @@ import img from '../img/Web/Spacia/Ellipse.png'
 import peter from '../img/Web/Spacia/Peter.png'
 import LoadingPage from '../components/LoadingPage'
 import NoData from '../components/NoData'
+import cModal from '../components/cModal'
 
 const UserManagement = () => {
 
@@ -155,7 +156,7 @@ Launch demo modal
 
 {/* Invite User */}
 
-<Modal show={show} onHide={handleClose}>
+<Modal onshow={show} onHide={handleClose}>
 <Modal.Header closeButton>
 <Modal.Title>Invite New Users</Modal.Title>
 </Modal.Header>
@@ -181,19 +182,20 @@ Launch demo modal
 </Modal>
 
 {/* Delete User */}
-<Modal show={deleteshow} onHide={handleDeleteClose}>
+{/* <Modal show={deleteshow} onHide={handleDeleteClose}>
 <Modal.Header closeButton>
 <Modal.Title>Delete</Modal.Title>
 </Modal.Header>
 <Modal.Body>
-{/* <h6>Text</h6> */}
 <h6>Are you sure you want to delete this user</h6>
 </Modal.Body>
 <Modal.Footer>
 <button onClick={handleDeleteClose} className="button-calm">Cancel</button>
 <button onClick={confirmOpen} className="button">Delete</button>
 </Modal.Footer>
-</Modal>
+</Modal> */}
+
+<cModal onShow={handleDeleteShow} onHide={handleDeleteClose} onSubmit={confirmOpen} onDecline={handleDeleteClose} body="Goes Here" />
 
 {/* Delete User Successful */}
 <Modal show={confirmDelete} onHide={handleDeleteClose}>

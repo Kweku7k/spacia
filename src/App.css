@@ -40,8 +40,19 @@
   background-color: 'green';
   position:'relative'
 }
+/* 
+td{
+  vertical-align: top;
+  padding: 5px;
+} */
 
-
+.button-yellow{
+  background-color: #F99500;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+}
 
 .button{
   background-color: #F85A47;
