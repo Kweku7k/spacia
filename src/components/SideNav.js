@@ -23,7 +23,8 @@ const SideNav = () => {
 
     const navItem = {
         margin:'auto',
-        marginLeft:5
+        marginLeft:5,
+        marginBottom:0
     }
     return (
         <div className="sideNav col-md-2" >
@@ -39,6 +40,7 @@ const SideNav = () => {
             </div>
 
                 <h6 style={navItem}> Dashboard</h6>
+                
             </div>
             </Link>
 
@@ -52,7 +54,7 @@ const SideNav = () => {
                 </div>
             </Link>
 
-            <Link className="link" to="/settings">
+            <Link className="link" to="/booking">
             <div className="navItem">
                 {/* <FaUser style={icon}/> */}
                 <div>

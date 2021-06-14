@@ -34,6 +34,15 @@
   background-color: #ECECEC;
 }
 
+.bgImage{
+  width:'100vw';
+  height:'100vh';
+  background-color: 'green';
+  position:'relative'
+}
+
+
+
 .button{
   background-color: #F85A47;
   border-radius: 5px;

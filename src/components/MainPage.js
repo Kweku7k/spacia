@@ -14,6 +14,9 @@ import CardPaymentTab from './CardPaymentTab'
 import Notifications from './Settings/Notifications'
 import Profile from './Settings/Profile'
 import Billing from '../Screens/Billing'
+import Booking from '../Screens/Booking'
+import EditBooking from '../Screens/EditBooking'
+import StartBooking from '../Screens/StartBooking'
 
 const MainPage = (props) => {
     return (
@@ -37,6 +40,15 @@ const MainPage = (props) => {
                     </Route>
                     <Route path="/billing">
                         <Billing />
+                    </Route>
+                    <Route path="/booking">
+                        <Booking />
+                    </Route>
+                    <Route path="/editbooking">
+                        <EditBooking />
+                    </Route>
+                    <Route path="/startbooking">
+                        <StartBooking />
                     </Route>
                 </Switch>
             </Nav>

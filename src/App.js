@@ -2,6 +2,7 @@
 import MainPage from './components/MainPage'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Signup from './Screens/Signup';
 // import Properties from './Screens/Properties';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <div className="row" >
 
     <MainPage />
+    {/* <Signup /> */}
 
     </div>
   );
