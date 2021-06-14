@@ -7,7 +7,6 @@ import prop2 from '../img/Web/Spacia/prop2.png'
 import prop3 from '../img/Web/Spacia/prop3.png'
 import {FaCaretDown, FaCircle, FaEllipsisV, FaEllipsisH} from 'react-icons/fa'
 
-
 const EditBooking = () => {
 
 
