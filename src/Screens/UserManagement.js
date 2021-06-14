@@ -54,81 +54,98 @@ const UserManagement = () => {
         fontWeight:'bold'
     }
 
+    //set state to toggle invite user 
     const [show, setShow] = useState(false);
-    const [deleteshow, setdeleteShow] = useState(false);
-    const [editShow, setEditShow] = useState(false);
-    // const [loaded, setLoaded] = useState(false);
 
+    //set state to toggle edit user 
+    const [editShow, setEditShow] = useState(false);
+
+    //set state to toggle delete user 
+    const [deleteshow, setdeleteShow] = useState(false);
+
+    //set state to toggle confirn delete user 
+    const [confirmDelete, setConfirmDelete] = useState(false);
+    // const [loaded, setLoaded] = useState(false);
+    
+    
+    // Functions to toggle Invite User Modal
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    
+    // Functions to toggle Delete Modal
     const handleDeleteClose = () => setdeleteShow(false);
     const handleDeleteShow = () => setdeleteShow(true);
+    
+    // Functions to toggle Edit User Modal
     const handleEditClose = () => setEditShow(false);
     const handleEditShow = () => setEditShow(true);
-    const loaded = true
-  
-
+    
+    // Functions to toggle confirm user deletion Modal
+    const confirmClose = () => setConfirmDelete(false);
+    const confirmOpen = () => {
+        setConfirmDelete(true);
+        setdeleteShow(!deleteshow);   
+    }
+        
+    
+    const loaded = true;
 
     return (
+    <div>
         <div>
-            
-            <div>
-                {/* Header */}
-            <div className="header">
-                <div style={{display:'flex', justifyContent:'space-between'}}>
-                    <h4>User Management</h4>
+        {/* Header */}
+        <div className="header">
+            <div style={{display:'flex', justifyContent:'space-between'}}>
+                <h4>User Management</h4>
 
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                    {/* <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
-                    </form>
-
-                
-
-                    <button class="button" onClick={handleShow}>Invite New User </button>
-
-                </div>
+            {/* Search Functionality */}
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                {/* <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
+                </form>
+            <button class="button" onClick={handleShow}>Invite New User </button>
             </div>
-            {/* End Header */}
+        </div>
+        {/* End Header */}
+{ loaded ? (
+ <Container>              
+    <Toast style={{width:'100%', padding:20, marginBottom:50}}>
+        <Table>
+            <tr className="tableUnderline">
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+            
+            <UserTableRow profile={img} name="Nana Kweku Adumatta" email="mr.adumatta@gmail.com" status="Active" statusStyle={active} role="ADMIN" style={admin}/>
+            <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/>
+        </Table>
+    </Toast>
 
-            { loaded ? (
- <Container>
-                
- <Toast style={{width:'100%', padding:20, marginBottom:50}}>
- <Table>
-     <tr className="tableUnderline">
-         <th>Name</th>
-         <th>Email</th>
-         <th>Status</th>
-         <th>Role</th>
-         <th>Action</th>
-     </tr>
-     
-     <UserTableRow profile={img} name="Nana Kweku Adumatta" email="mr.adumatta@gmail.com" status="Active" statusStyle={active} role="ADMIN" style={admin}/>
-     <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/>
- </Table>
- </Toast>
+    <Toast style={{width:'100%', padding:20}}>
+        <div style={{display:'flex', justifyContent:'space-between'}}>
+            <Search />
+            <div style={{display:'flex'}}>
+                <h6 className="text-muted" style={{fontSize:'smaller', marginRight:10}}>Sort by:</h6>
+                <h6 style={{fontWeight:'bold', fontSize:'smaller'}}>Status-invited</h6>
+                <FaCaretDown />
+            </div>
+        </div>
 
- <Toast style={{width:'100%', padding:20}}>
- <div style={{display:'flex', justifyContent:'space-between'}}>
-     <Search />
-     <div style={{display:'flex'}}>
-         <h6 className="text-muted" style={{fontSize:'smaller', marginRight:10}}>Sort by:</h6>
-         <h6 style={{fontWeight:'bold', fontSize:'smaller'}}>Status-invited</h6>
-         <FaCaretDown />
-     </div>
- </div>
- <Table className="w3-striped">
-     <tr className="tableUnderline">
-         <th>Name</th>
-         <th>Email</th>
-         <th>Status</th>
-         <th>Role</th>
-         <th>Action</th>
-     </tr>
-     <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={handleEditShow}/>
- </Table>
- </Toast>
+        {/* Second Table */}
+        <Table className="w3-striped">
+            <tr className="tableUnderline">
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+            <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={handleEditShow}/>
+        </Table>
+    </Toast>
 
  <>
 {/* <Button variant="primary" onClick={handleShow}>
@@ -163,10 +180,6 @@ Launch demo modal
 </Modal.Footer>
 </Modal>
 
-{/* InviteUser */}
-
-
-
 {/* Delete User */}
 <Modal show={deleteshow} onHide={handleDeleteClose}>
 <Modal.Header closeButton>
@@ -178,11 +191,23 @@ Launch demo modal
 </Modal.Body>
 <Modal.Footer>
 <button onClick={handleDeleteClose} className="button-calm">Cancel</button>
-<button onClick={handleDeleteClose} className="button">Delete</button>
+<button onClick={confirmOpen} className="button">Delete</button>
 </Modal.Footer>
 </Modal>
 
-{/* Delete User */}
+{/* Delete User Successful */}
+<Modal show={confirmDelete} onHide={handleDeleteClose}>
+<Modal.Header closeButton>
+<Modal.Title>Deleted</Modal.Title>
+</Modal.Header>
+<Modal.Body>
+{/* <h6>Text</h6> */}
+<h6>Successfully Deleted a User</h6>
+</Modal.Body>
+<Modal.Footer>
+<button onClick={confirmClose} className="button">Okay</button>
+</Modal.Footer>
+</Modal>
 
 {/* Edit User */}
 
