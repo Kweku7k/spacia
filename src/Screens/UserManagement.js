@@ -8,7 +8,7 @@ import peter from '../img/Web/Spacia/Peter.png'
 import LoadingPage from '../components/LoadingPage'
 import NoData from '../components/NoData'
 
-import NewModal from "../components/NewModal";
+import InfoModal from "../components/informationModal";
 
 const UserManagement = () => {
 
@@ -183,24 +183,24 @@ Launch demo modal
 </Modal>
 
 {/* Delete User */}
-<Modal show={deleteshow} onHide={handleDeleteClose}>
-<Modal.Header closeButton>
-<Modal.Title>Delete</Modal.Title>
-</Modal.Header>
-<Modal.Body>
+    {/* <Modal show={deleteshow} onHide={handleDeleteClose}>
+    <Modal.Header closeButton>
+    <Modal.Title>Delete</Modal.Title>
+    </Modal.Header>
+    <Modal.Body> */}
 {/* <h6>Text</h6> */}
-<h6>Are you sure you want to delete this user</h6>
-</Modal.Body>
-<Modal.Footer>
-<button onClick={handleDeleteClose} className="button-calm">Cancel</button>
-<button onClick={confirmOpen} className="button">Delete</button>
-</Modal.Footer>
-</Modal>
+    {/* <h6>Are you sure you want to delete this user</h6>
+    </Modal.Body>
+    <Modal.Footer>
+    <button onClick={handleDeleteClose} className="button-calm">Cancel</button>
+    <button onClick={confirmOpen} className="button">Delete</button>
+    </Modal.Footer>
+    </Modal> */}
 
 
 
 
-<NewModal title="New Modal" isOpen={deleteshow}/>
+<InfoModal title="New Modal" isOpen={deleteshow} isClose={handleDeleteClose} onSubmit={confirmOpen}/>
 
 
 
