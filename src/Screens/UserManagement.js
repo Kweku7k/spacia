@@ -9,7 +9,9 @@ import LoadingPage from '../components/LoadingPage'
 import NoData from '../components/NoData'
 import cModal from '../components/cModal'
 
-import NewModal from "../components/NewModal";
+import InfoModal from "../components/informationModal";
+import FeedBackModal from "../components/feedbackModal";
+import FormModal from "../components/FormModal";
 
 const UserManagement = () => {
 
@@ -66,8 +68,11 @@ const UserManagement = () => {
     //set state to toggle delete user 
     const [deleteshow, setdeleteShow] = useState(false);
 
-    //set state to toggle confirn delete user 
+    //set state to toggle confirm delete user 
     const [confirmDelete, setConfirmDelete] = useState(false);
+    
+    //set state to toggle confirm adding user 
+    const [confirmUserAddition, setConfirmUserAddition] = useState(false);
     // const [loaded, setLoaded] = useState(false);
     
     
@@ -84,12 +89,18 @@ const UserManagement = () => {
     const handleEditShow = () => setEditShow(true);
     
     // Functions to toggle confirm user deletion Modal
-    const confirmClose = () => setConfirmDelete(false);
-    const confirmOpen = () => {
+    const confirmDeleteClose = () => setConfirmDelete(false);
+    const confirmDeleteOpen = () => {
         setConfirmDelete(true);
         setdeleteShow(!deleteshow);   
     }
-        
+     
+    // Functions to toggle confirm adding user
+    const confirmUserClose = () => setConfirmUserAddition(false);
+    const confirmUserOpen = () => {
+        setConfirmUserAddition(true);
+        setEditShow(!editShow);   
+    }
     
     const loaded = true;
 
@@ -184,62 +195,56 @@ Launch demo modal
 </Modal>
 
 {/* Delete User */}
-{/* <Modal show={deleteshow} onHide={handleDeleteClose}>
-<Modal.Header closeButton>
-<Modal.Title>Delete</Modal.Title>
-</Modal.Header>
-<Modal.Body>
-<h6>Are you sure you want to delete this user</h6>
-</Modal.Body>
-<Modal.Footer>
-<button onClick={handleDeleteClose} className="button-calm">Cancel</button>
-<button onClick={confirmOpen} className="button">Delete</button>
-</Modal.Footer>
-</Modal> */}
-
-<cModal onShow={handleDeleteShow} onHide={handleDeleteClose} onSubmit={confirmOpen} onDecline={handleDeleteClose} body="Goes Here" />
-
+    {/* <Modal show={deleteshow} onHide={handleDeleteClose}>
+    <Modal.Header closeButton>
+    <Modal.Title>Delete</Modal.Title>
+    </Modal.Header>
+    <Modal.Body> */}
+{/* <h6>Text</h6> */}
+    {/* <h6>Are you sure you want to delete this user</h6>
+    </Modal.Body>
+    <Modal.Footer>
+    <button onClick={handleDeleteClose} className="button-calm">Cancel</button>
+    <button onClick={confirmDeleteOpen} className="button">Delete</button>
+    </Modal.Footer>
+    </Modal> */}
 
 
+<FormModal title="Invite New Users" isOpen={editShow} isClose={handleEditClose} onSubmit={confirmUserOpen}/>
+<FeedBackModal title="Confirm User Addition" isOpen={confirmUserAddition} isClose={confirmUserClose}/>
 
-<NewModal title="New Modal" isOpen={deleteshow}/>
-
-
-
+<InfoModal title="Confirm Deletion" isOpen={deleteshow} isClose={handleDeleteClose} onSubmit={confirmDeleteOpen}/>
+<FeedBackModal title="Successfully Deleted" isOpen={confirmDelete} isClose={confirmDeleteClose}/>
 
 
 {/* Delete User Successful */}
-<Modal show={confirmDelete} onHide={handleDeleteClose}>
+{/* <Modal show={confirmDelete} onHide={handleDeleteClose}>
 <Modal.Header closeButton>
 <Modal.Title>Deleted</Modal.Title>
 </Modal.Header>
 <Modal.Body>
-{/* <h6>Text</h6> */}
 <h6>Successfully Deleted a User</h6>
 </Modal.Body>
 <Modal.Footer>
-<button onClick={confirmClose} className="button">Okay</button>
+<button onClick={confirmDeleteClose} className="button">Okay</button>
 </Modal.Footer>
-</Modal>
+</Modal> */}
 
 {/* Edit User */}
 
-<Modal show={editShow} onHide={handleEditClose}>
+{/* <Modal show={editShow} onHide={handleEditClose}>
 <Modal.Header closeButton>
 <Modal.Title>Invite New Users</Modal.Title>
 </Modal.Header>
 <Modal.Body>
-{/* <h6>Text</h6> */}
 <div style={{width:50, height:50, backgroundColor:'#ECECEC', textAlign:'center'}}>
     <FaImage />
 </div>
 <br/>
 <div class="form-group">
-{/* <label for="">Email</label> */}
 <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Full Name" />
 <br/>
 <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Email Address" />
- {/* <label for="">Role</label> */}
  <br/>
 <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Phone Address" />
  <br/>
@@ -263,7 +268,7 @@ Launch demo modal
 <button onClick={handleEditClose} className="button-calm">Cancel</button>
 <button onClick={handleEditClose} className="button">Save</button>
 </Modal.Footer>
-</Modal>
+</Modal> */}
 
 {/* Delete User */}
 
