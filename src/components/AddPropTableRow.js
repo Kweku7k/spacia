@@ -88,12 +88,12 @@ const AddedPropTableRow = ({image, info, added, status, price, beds, showers}) =
                     <td><div style={date}>
                             12-Jan-2020 15:00
                         </div></td>
-                    <td><b>{price}</b></td>
+                    <td><b>Ghc {price}</b></td>
                     <td>
                         {/* <div>
                             <button class="button">BOOK</button>
                         </div> */}
-                        {sumTotal}
+                        Ghc {sumTotal}
                         </td>
                 </tr>
 

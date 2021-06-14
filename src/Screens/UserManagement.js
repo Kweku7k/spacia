@@ -9,6 +9,8 @@ import LoadingPage from '../components/LoadingPage'
 import NoData from '../components/NoData'
 import cModal from '../components/cModal'
 
+import NewModal from "../components/NewModal";
+
 const UserManagement = () => {
 
     const admin = {
@@ -196,6 +198,15 @@ Launch demo modal
 </Modal> */}
 
 <cModal onShow={handleDeleteShow} onHide={handleDeleteClose} onSubmit={confirmOpen} onDecline={handleDeleteClose} body="Goes Here" />
+
+
+
+
+<NewModal title="New Modal" isOpen={deleteshow}/>
+
+
+
+
 
 {/* Delete User Successful */}
 <Modal show={confirmDelete} onHide={handleDeleteClose}>
