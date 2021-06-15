@@ -54,7 +54,7 @@ const SideNav = () => {
                 </div>
             </Link>
 
-            <Link className="link" to="/booking">
+            <Link className="link" to="/startbooking">
             <div className="navItem">
                 {/* <FaUser style={icon}/> */}
                 <div>
@@ -71,7 +71,6 @@ const SideNav = () => {
                 <img src={users} alt="users" />
             </div>
             {/* <img src={profile} width={'100%'}alt="LOGO"/> */}
-
                 <h6 style={navItem}> Users</h6>
             </div>
             </Link>

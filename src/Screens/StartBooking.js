@@ -40,7 +40,8 @@ const StartBooking = () => {
 
     const bar ={
         backgroundColor:'white',
-        padding: '1em'
+        padding: '1em',
+        borderRadius:10
     }
 
     const showBooking = false
@@ -63,6 +64,7 @@ const StartBooking = () => {
 
             {/* backgroundImage:`url(${bookingbg})` */}
             <div className = 'bg'>
+                <br/>
             <div style={bar}>
                 <Row>
                     <div class="col-md-2">
@@ -91,7 +93,10 @@ const StartBooking = () => {
                     </div>
 
                     <div class="col-md-2">
+                        <Link to='/booking'>
+
                         <button className="button">Search</button>
+                        </Link>
                     </div>
 
                   

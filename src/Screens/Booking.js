@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Table, Dropdown } from 'react-bootstrap'
+import { Container, Table, Dropdown, Toast } from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Demo.png'
 import TableRow from '../components/TableRow'
 import BookingTableRow from '../components/BookingTableRow'
@@ -13,6 +13,11 @@ const Booking = () => {
     const edit ={
         backgroundColor:"transparent",
         border:'none'
+    }
+
+    const toastStyle ={
+        width:'100%',
+        padding:20
     }
 
     const showBooking = false
@@ -51,7 +56,7 @@ const Booking = () => {
 
             {/* Table */}
 <Container>
-
+<Toast style={toastStyle}>
             <Table>
                 <tr>
                    <td>Type Of Space</td> 
@@ -89,13 +94,11 @@ const Booking = () => {
                     <td><FaEllipsisH color="black" /></td>
                 </tr>
 
-                {/* Figured Out How To Pass Images As Propssssss */}
 
-
-                {/* <hr style={{width:'100%'}}></hr> */}
 
 
             </Table>
+            </Toast>
 </Container>
 
         </div>

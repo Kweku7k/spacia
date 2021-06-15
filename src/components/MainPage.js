@@ -23,7 +23,7 @@ const MainPage = (props) => {
     return (
 
         <Router>
-        <div class="row">
+        <div class="row" style={{backgroundColor:'#F9F9F9'}}>
         <SideNav/>
             <Nav>
                 <Switch>

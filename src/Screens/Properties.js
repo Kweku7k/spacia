@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Table, Dropdown } from 'react-bootstrap'
+import { Container, Table, Dropdown, Toast } from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Demo.png'
 import TableRow from '../components/TableRow'
 import prop2 from '../img/Web/Spacia/prop2.png'
@@ -12,7 +12,7 @@ const Properties = () => {
         <div>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
                 <div>
-                    <h4>Properties</h4>
+                    <h4><b>Properties</b></h4>
                 </div>
                 <div style={{display:'flex', justifyContent:'space-between'}}>
                 <form class="form-inline my-2 my-lg-0">
@@ -62,11 +62,19 @@ const Properties = () => {
                    <td>Price</td> 
                 </tr>
 
+                {/* <div style={{boxShadow: "0px 4px 17px #F2F2F2"}}> */}
+
+
+
+
                 {/* Figured Out How To Pass Images As Propssssss */}
                 <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added='February 20th' beds="3" showers="2" status='FOR RENT' price='Ghc30/month'></TableRow>
+{/* </Toast> */}
+
                 <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added='February 20th' beds="3" showers="2" status='FOR RENT' price='Ghc30/month'></TableRow>
                 <TableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added='February 20th' beds="3" showers="2" status='FOR RENT' price='Ghc30/month'></TableRow>
                 
+                {/* </div> */}
 
 
                 {/* <hr style={{width:'100%'}}></hr> */}

@@ -113,7 +113,7 @@ const UserManagement = () => {
         {/* Header */}
         <div className="header">
             <div style={{display:'flex', justifyContent:'space-between'}}>
-                <h4>User Management</h4>
+                <h4><b>User Management</b></h4>
 
             {/* Search Functionality */}
             <form class="form-inline my-2 my-lg-0">
@@ -172,7 +172,7 @@ Launch demo modal
 
 {/* Invite User */}
 
-<Modal onshow={show} onHide={handleClose}>
+<Modal show={show} onHide={handleClose}>
 <Modal.Header closeButton>
 <Modal.Title>Invite New Users</Modal.Title>
 </Modal.Header>
