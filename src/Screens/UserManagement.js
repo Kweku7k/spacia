@@ -8,10 +8,13 @@ import peter from '../img/Web/Spacia/Peter.png'
 import LoadingPage from '../components/LoadingPage'
 import NoData from '../components/NoData'
 import cModal from '../components/cModal'
+import check from '../img/Web/Spacia/check.png'
 
-import InfoModal from "../components/informationModal";
+
+import InformationModal from "../components/informationModal";
 import FeedBackModal from "../components/feedbackModal";
 import FormModal from "../components/FormModal";
+import FeedbackModall from '../components/FeedbackModall'
 
 const UserManagement = () => {
 
@@ -210,69 +213,53 @@ Launch demo modal
     </Modal> */}
 
 
-<FormModal title="Invite New Users" isOpen={editShow} isClose={handleEditClose} onSubmit={confirmUserOpen}/>
-<FeedBackModal title="Confirm User Addition" isOpen={confirmUserAddition} isClose={confirmUserClose}/>
-
-<InfoModal title="Confirm Deletion" isOpen={deleteshow} isClose={handleDeleteClose} onSubmit={confirmDeleteOpen}/>
-<FeedBackModal title="Successfully Deleted" isOpen={confirmDelete} isClose={confirmDeleteClose}/>
-
-
-{/* Delete User Successful */}
-{/* <Modal show={confirmDelete} onHide={handleDeleteClose}>
-<Modal.Header closeButton>
-<Modal.Title>Deleted</Modal.Title>
-</Modal.Header>
-<Modal.Body>
-<h6>Successfully Deleted a User</h6>
-</Modal.Body>
-<Modal.Footer>
-<button onClick={confirmDeleteClose} className="button">Okay</button>
-</Modal.Footer>
-</Modal> */}
-
-{/* Edit User */}
-
-{/* <Modal show={editShow} onHide={handleEditClose}>
-<Modal.Header closeButton>
-<Modal.Title>Invite New Users</Modal.Title>
-</Modal.Header>
-<Modal.Body>
+<FormModal title="Invite New Users" isOpen={editShow} isClose={handleEditClose} onSubmit={confirmUserOpen} acceptButton="Update User" declineButton="Cancel">
 <div style={{width:50, height:50, backgroundColor:'#ECECEC', textAlign:'center'}}>
-    <FaImage />
-</div>
-<br/>
-<div class="form-group">
-<input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Full Name" />
-<br/>
-<input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Email Address" />
- <br/>
-<input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Phone Address" />
- <br/>
- <Row>
+            <FaImage />
+        </div>
+        <br/>
+        <div class="form-group">
+        {/* <label for="">Email</label> */}
+        <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Full Name" />
+        <br/>
+        <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Email Address" />
+         {/* <label for="">Role</label> */}
+         <br/>
+        <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Phone Address" />
+         <br/>
+         <Row>
+        
+        <div className="form-group col-md-4">
+        
+         <select class="form-control"  name="" id="">
+           <option>Admin</option>
+           <option>Employee</option>
+           <option>Approver</option>
+         </select>
+             </div>
+         </Row>
+        
 
-<div className="form-group col-md-4">
+        </div>
+</FormModal>
+<FeedbackModall title="Confirm User Addition" isOpen={confirmUserAddition} isClose={confirmUserClose} doneButton="Done">
+    <img src={check} alt="check"/>
+        <h6 style={{paddingTop:10}}>This user has been deleted</h6>
 
- <select class="form-control"  name="" id="">
-   <option>Admin</option>
-   <option>Employee</option>
-   <option>Approver</option>
- </select>
-     </div>
- </Row>
+</FeedbackModall>
+
+<InformationModal title="Confirm Deletion" isOpen={deleteshow} isClose={handleDeleteClose} onSubmit={confirmDeleteOpen} acceptButton="Delete User" declineButton="Cancel">
+    <h6>Are you sure you want to delete this User</h6>
+</InformationModal>
 
 
-<small id="emailHelpId" class="form-text text-muted">Help text</small>
-</div>
-</Modal.Body>
-<Modal.Footer>
-<button onClick={handleEditClose} className="button-calm">Cancel</button>
-<button onClick={handleEditClose} className="button">Save</button>
-</Modal.Footer>
-</Modal> */}
+<FeedbackModall isOpen={confirmDelete} isClose={confirmDeleteClose} doneButton="Okay">
+        <img src={check} alt="check"/>
+        <h6 style={{paddingTop:10}}>This user has been deleted</h6>
 
-{/* Delete User */}
+</FeedbackModall>
 
-{/* Successful */}
+
 
 
 

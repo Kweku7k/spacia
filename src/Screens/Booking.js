@@ -11,7 +11,8 @@ import {Link} from 'react-router-dom'
 
 const Booking = () => {
     const edit ={
-        backgroundColor:"transparent"
+        backgroundColor:"transparent",
+        border:'none'
     }
 
     const showBooking = false
@@ -19,7 +20,7 @@ const Booking = () => {
         <div>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
                 <div>
-                    <h4>Booking Listings</h4>
+                    <h4><b>Booking Listings</b></h4>
                 </div>
 
                 <form class="form-inline my-2 my-lg-0">
@@ -63,7 +64,7 @@ const Booking = () => {
                    <td></td> 
                 </tr>
 
-                <BookingTableRow />
+                {/* <BookingTableRow /> */}
 
                 <tr style={{borderBottom:"1px dashed black"}} >
                     <td><h6>Meeting Room</h6></td>
@@ -74,7 +75,7 @@ const Booking = () => {
                     <td>Michael Ohene</td>
                     <td>
                     <Dropdown>
-  <Dropdown.Toggle variant="success" style={edit} id="dropdown-basic">
+  <Dropdown.Toggle  style={edit} id="dropdown-basic">
         <FaEllipsisH color="black"/>
   </Dropdown.Toggle>
 

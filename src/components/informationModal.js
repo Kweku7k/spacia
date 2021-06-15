@@ -1,21 +1,26 @@
 import React from 'react'
 import { Modal } from "react-bootstrap";
+import { FaTimes } from 'react-icons/fa';
 
-function InformationModal({ title, isOpen, isClose, onSubmit }) {
+function InformationModal({ declineButton,acceptButton,body,title, isOpen, isClose, onSubmit, children }) {
 
     return (
         <Modal show={isOpen} onHide={isClose}>
-        <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-{/* <h6>Text</h6> */}
-        <h6>Are you sure you want to delete this user</h6>
-        </Modal.Body>
-        <Modal.Footer>
-        <button onClick={isClose} className="button-calm">Cancel</button>
-        <button onClick={onSubmit} className="button">Delete</button>
-        </Modal.Footer>
+       
+       <div style={{display:'flex', flexDirection:'row-reverse', padding:30}}>
+        <FaTimes />
+       </div>
+        {/* <Modal.Body> */}
+        <div style={{textAlign:'center', padding:30}}>
+            {children}
+        </div>
+        {/* </Modal.Body> */}
+        {/* <Modal.Footer> */}
+        <div style={{display:'flex', justifyContent:'space-evenly', padding:10}} >
+            <button onClick={isClose} className="button-calm">{declineButton}</button>
+            <button onClick={onSubmit} className="button">{acceptButton}</button>
+        </div>
+        {/* </Modal.Footer> */}
         </Modal>
     )
 }

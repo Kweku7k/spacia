@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Table, Dropdown } from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Demo.png'
 import TableRow from '../components/TableRow'
@@ -6,12 +6,44 @@ import BookingTableRow from '../components/BookingTableRow'
 import prop2 from '../img/Web/Spacia/prop2.png'
 import prop3 from '../img/Web/Spacia/prop3.png'
 import {FaCaretDown, FaCircle, FaEllipsisV, FaEllipsisH} from 'react-icons/fa'
-
+import InformationModal from '../components/informationModal'
+import FeedbackModall from '../components/FeedbackModall'
+import check from '../img/Web/Spacia/check.png'
 const EditBooking = () => {
 
-
-    // const [show, setShow] = useState(false);
+// Accept Changes Modal
+    const [showModal, setShowModal] = useState(false);
     
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
+
+
+    // Decline Changes Modal
+    const [showDeclineModal, setShowDeclineModal] = useState(false);
+
+    const openDeclineModal = () => setShowDeclineModal(true);
+    const closeDeclineModal = () => setShowDeclineModal(false);
+    
+
+    // Show Feedback M
+    const [showFeedbackModal, setshowFeedbackModal] = useState(false);
+
+    const openDeclineModalFeedback = () => {
+        // { state ? setShowFeedbackModal(true) : setShowFeedbackModal(false) }
+        setShowDeclineModal(false)
+        setshowFeedbackModal(true);
+    }
+    const openAcceptModalFeedback = () => {
+        setShowModal(false)
+        setshowFeedbackModal(true);
+    }
+
+
+
+    const closeFeedbackDeclineModal = () => setshowFeedbackModal(false);
+    
+    
+
     return (
         <div>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
@@ -41,8 +73,8 @@ const EditBooking = () => {
 
                     <div>
 
-                    <button style={{marginRight:10}} class="button-calm" >Decline</button>
-                    <button class="button">Accept </button>
+                    <button style={{marginRight:10}} class="button-calm"  onClick={openDeclineModal}>Decline</button>
+                    <button class="button" onClick={openModal}>Accept </button>
                     </div>
 
 
@@ -51,7 +83,6 @@ const EditBooking = () => {
 
             {/* Table */}
 <Container>
-
             <Table>
                 <tr>
                    <td>Type Of Space</td> 
@@ -128,6 +159,22 @@ const EditBooking = () => {
 </Modal> */}
 
 </Container>
+    <InformationModal body="Are you sure you want to accept these changes" title="Title" isOpen={showModal} isClose={closeModal} onSubmit={openAcceptModalFeedback} acceptButton="Accept Changes" declineButton="Cancel" >
+        <h6>Are you sure you want to accept these requests</h6>
+    </InformationModal>
+   
+   {/* Decline Changes Modal */}
+    <InformationModal body="Are you sure you want to decline these changes" title="Title" isOpen={showDeclineModal} isClose={closeDeclineModal} onSubmit={openDeclineModalFeedback} acceptButton="Decline Changes" declineButton="Cancel">
+        <h4>Are you sure you want to decline these changes</h4>
+    </InformationModal>
+
+
+    {/* Feedback Modal */}
+    <FeedbackModall body="Your Changes have been implemented" title="Done" isOpen={showFeedbackModal} isClose={closeFeedbackDeclineModal} onSubmit={closeFeedbackDeclineModal} acceptButton="Okay" doneButton="Okay" declineButton="Cancel">
+        <img src={check} alt="check"/>
+        
+        <h6 style={{paddingTop:10}}>Your Changes have been declined</h6>
+        </FeedbackModall>
 
         </div>
     )
