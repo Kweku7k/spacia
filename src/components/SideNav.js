@@ -72,7 +72,7 @@ const SideNav = () => {
                 </div>
             </Link>
 
-            <button style={{ background: 'none', border: 'none', padding: '0px' }} onClick={toggle}>
+            <button style={{ background: 'none', border: 'none', padding: '0px', width: '100%' }} onClick={toggle}>
                 <Link className="link">
                     <div className="navItem" style={{ alignItems:'flex-end' }}>
                         <div>
