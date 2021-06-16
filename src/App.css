@@ -7,9 +7,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  margin: 10;
-  padding: 20px;
-
+	flex-direction: column;
+	margin: 10;
+	padding: 20px;
 }
 
 .App {
@@ -58,20 +58,20 @@ td{
   padding: 5px;
 } */
 
-.button-yellow{
-  background-color: #F99500;
-  border-radius: 5px;
-  padding: 10px 20px;
-  border: none;
-  color: white;
+.button-yellow {
+	background-color: #f99500;
+	border-radius: 5px;
+	padding: 10px 20px;
+	border: none;
+	color: white;
 }
 
-.button{
-  background-color: #F85A47;
-  border-radius: 5px;
-  padding: 10px 20px;
-  border: none;
-  color: white;
+.button {
+	background-color: #f85a47;
+	border-radius: 5px;
+	padding: 10px 20px;
+	border: none;
+	color: white;
 }
 .button-calm {
 	background-color: #f7f7f7;
