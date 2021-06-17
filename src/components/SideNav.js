@@ -28,6 +28,10 @@ const SideNav = () => {
         setOpen(!open);
     }
 
+    const closeToggle = () => {
+        setOpen(false)
+    }
+
     const icon ={
         marginRight:10,
         color: '#F85A47',
@@ -40,11 +44,13 @@ const SideNav = () => {
         marginBottom:0,
     }
 
-    const dropItem = {
-        display:'flex',
-        flexDirection: 'column'
+    const dropdownItem = {
+        display: 'flex', 
+        flexDirection: 'column',
+        paddingLeft: '20px',
+        margin: 'auto',
     }
-
+    
     return (
         <div className="sideNav col-md-2" >
 
@@ -52,7 +58,7 @@ const SideNav = () => {
                 <img src={logo} width={100} alt="LOGO"/>
             </div>
             
-            <Link className="link" to="/dashboard">
+            <Link className="link" to="/dashboard" onClick={closeToggle}>
                 <div className="navItem">
                     <div>
                         <img src={dash} alt="dashboard"/>
@@ -62,7 +68,7 @@ const SideNav = () => {
                 </div>
             </Link>
 
-            <Link className="link" to="/properties">
+            <Link className="link" to="/properties" onClick={closeToggle}>
                 <div className="navItem">
                     {/* <FaHome style={icon} /> */}
                     <div>
@@ -91,37 +97,16 @@ const SideNav = () => {
                         )}
                     </div>
                 </Link>
-                {open && (
-                    <div style={{ display: 'flex', flexDirection: 'column', }}>
-                        <Link style={{ textDecoration: 'none', color: '#F9F9F9' }} to="/startBooking"> Find a Space</Link>
-                        <Link style={{ textDecoration: 'none', color: '#F9F9F9' }}> Orders</Link>
-                        <Link style={{ textDecoration: 'none', color: '#F9F9F9' }}> Approvals</Link>
-                    </div>
-                )}
-            </button>
+            </button >
+            {open && (
+                <div style={ dropdownItem }>
+                    <Link style={{ textDecoration: 'none', color: '#F9F9F9' }} to="/startBooking"> Find a Space</Link>
+                    <Link style={{ textDecoration: 'none', color: '#F9F9F9' }}> Orders</Link>
+                    <Link style={{ textDecoration: 'none', color: '#F9F9F9' }}> Approvals</Link>
+                </div>
+            )}
 
-            {/* <Dropdown className="navItem">
-                <Dropdown.Toggle style={{ display: 'flex', alignItems: 'center', padding: 0, color: 'white' }} variant="transparent" >
-                    <div style={{display: 'flex', padding: '0px'}}>
-                        <img src={profile} alt="dashboard"/>
-                        <h6 style={navItem}> Booking</h6>
-                    </div>
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                    <div style={dropItem}>
-                        <Link className='link' style={{color:'black'}} to="/startbooking">Find a Space</Link>
-                    </div>
-                    <div style={dropItem}>
-                        <Link className='link' style={{color:'black'}} to="#">Orders</Link>
-                    </div>
-                    <div style={dropItem}>
-                        <Link className='link' style={{color:'black'}} to="#">Approvals</Link>
-                    </div>
-                </Dropdown.Menu>
-            </Dropdown> */}
-
-            <Link className="link" to="/users">
+            <Link className="link" to="/users" onClick={closeToggle}>
                 <div className="navItem">
                     <div>
                         <img src={users} alt="users" />
@@ -131,33 +116,32 @@ const SideNav = () => {
                 </div>
             </Link>
 
-            <Link className="link" to="/billing">
-            <div className="navItem">
-                <div>
-                    <img src={bill} alt=""/>
+            <Link className="link" to="/billing" onClick={closeToggle}>
+                <div className="navItem">
+                    <div>
+                        <img src={bill} alt=""/>
+                    </div>
+                {/* <img src={property} width={'100%'}alt="LOGO"/> */}
+                    <h6 style={navItem}> Billing</h6>
                 </div>
-            {/* <img src={property} width={'100%'}alt="LOGO"/> */}
-                <h6 style={navItem}> Billing</h6>
-            </div>
             </Link>
 
-            <div className="navItem">
+            <div className="navItem" onClick={closeToggle}>
                 <div>
                     <img src={report} alt=""/>
                 </div>
             {/* <img src={property} width={'100%'}alt="LOGO"/> */}
                 <h6 style={navItem}> Reports</h6>
             </div>
-            <Link className="link" to="/settings">
 
-            <div className="navItem">
+            <Link className="link" to="/settings" onClick={closeToggle}>
+                <div className="navItem">
 
-                <div>
-                    <img src={settings} />
+                    <div>
+                        <img src={settings} />
+                    </div>
+                    <h6 style={navItem}> Settings</h6>
                 </div>
-            {/* <img src={settings} width={'100%'}alt="LOGO"/> */}
-                <h6 style={navItem}> Settings</h6>
-            </div>
             </Link>
 
             <div className="navItem fixedBottom">

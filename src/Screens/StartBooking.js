@@ -76,7 +76,7 @@ const StartBooking = () => {
 
             {/* backgroundImage:`url(${bookingbg})` */}
             <div className = 'bg'>
-                <h3 style={{ fontWeight: 'bold' }}>Book for Perfect Score</h3>
+                <h3 style={{ fontWeight: 'bold' }}>Find the Perfect Space</h3>
                 <br/>
             <div style={bar}>
                 <Row>
