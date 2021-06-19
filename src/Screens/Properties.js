@@ -1,13 +1,96 @@
-import React from 'react'
-import { Container, Table, Dropdown, Toast } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Container, Table, Dropdown, Toast, Modal, Row } from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Demo.png'
 import TableRow from '../components/TableRow'
 import prop2 from '../img/Web/Spacia/prop2.png'
 import prop3 from '../img/Web/Spacia/prop3.png'
-import {FaCaretDown} from 'react-icons/fa'
+import {FaCaretDown, FaLandmark, FaTimes} from 'react-icons/fa'
+import bed from '../img/Web/Spacia/bed.png'
+import bath from '../img/Web/Spacia/bathtub.png'
+import imgplaceholder from '../img/Web/Spacia/imgplaceholder.png'
+import holder from '../img/Web/Spacia/thumb.png'
+import FormModal from '../components/NewPropertyModal'
 
+<tr>
+<td>Photo</td> 
+<td>Property Info</td> 
+<td>Added on</td> 
+<td>Property Status</td> 
+<td>Status</td> 
+<td>Price</td> 
+</tr>
 
 const Properties = () => {
+
+    const [formModal, setformModal] = useState(false)
+    // Form Values
+    const [beds, setBeds] = useState("")
+    const [baths, setBaths] = useState("")
+
+    const [info, setInfo] = useState("")
+    const [status, setStatus] = useState("Pending")
+    const [price, setPrice] = useState('')
+
+    const openFormModal = ()  => {
+        setformModal(true)
+    }
+
+    const onAdd = (property) => {
+        console.log(property)
+        setproperties([...properties, property])
+    }
+
+    const closeFormModal = ()  => {
+        setformModal(false)
+    }
+
+    const onSubmit = (e)=> {
+        e.preventDefault()
+
+        if(!info){
+            alert('Please add a task')
+            return
+        }
+
+        setformModal(false)
+        const today = new Date()
+        const added = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        onAdd({ info, price, status, added })
+        setInfo('')
+
+
+        
+    }
+
+    const [properties, setproperties] = useState([
+        {
+            id:1,
+            photo: {demo},
+            info: "COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION",
+            added: "1st June 2021",
+            status: "active",
+            price: '30'
+        },
+        {
+            id:2,
+            photo: "{photo}",
+            info: "COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION",
+            added: "1st June 2021",
+            status: "active",
+            price: '30'
+        }
+    ])
+
+    const fit = {
+        display:'flex',
+        justifyContent: 'space-evenly',
+        padding:20
+    }
+
+    const deleteProperty = (id) =>{
+        setproperties(properties.filter((property) => property.id !== id))
+    }
+
     return (
         <div>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
@@ -17,22 +100,12 @@ const Properties = () => {
                 <div style={{display:'flex', justifyContent:'space-between'}}>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                    {/* <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
                     </form>
-
                     <div class="dropdown" style={{margin:'auto 30px'}}>
-                        {/* <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div> */}
-                                                    <Dropdown>
+                            <Dropdown>
                             <Dropdown.Toggle style={{backgroundColor:'#ECECEC', border:'none', color:'#848484'}} variant="success" id="dropdown-basic">
                                 All Properties 
-                                {/* <FaCaretDown /> */}
+
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
@@ -43,15 +116,12 @@ const Properties = () => {
                             </Dropdown>
                     </div>
 
-                    <button class="button">Add New Property </button>
+                    <button class="button" onClick={openFormModal}>Add New Property </button>
 
                 </div>
             </div>
 
-
-            {/* Table */}
 <Container>
-
             <Table>
                 <tr>
                    <td>Photo</td> 
@@ -62,27 +132,74 @@ const Properties = () => {
                    <td>Price</td> 
                 </tr>
 
-                {/* <div style={{boxShadow: "0px 4px 17px #F2F2F2"}}> */}
-
-
-
-
-                {/* Figured Out How To Pass Images As Propssssss */}
-                <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added='February 20th' beds="3" showers="2" status='FOR RENT' price='Ghc30/month'></TableRow>
-{/* </Toast> */}
-
-                <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added='February 20th' beds="3" showers="2" status='FOR RENT' price='Ghc30/month'></TableRow>
-                <TableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added='February 20th' beds="3" showers="2" status='FOR RENT' price='Ghc30/month'></TableRow>
-                
-                {/* </div> */}
-
-
-                {/* <hr style={{width:'100%'}}></hr> */}
-
-
+                {properties.map((property) => (
+                    <TableRow onDelete={() => deleteProperty(property.id)} image={property.image} info={property.info} added={property.added} beds="3" showers="2" status='FOR RENT' price='Ghc30/month'></TableRow>
+                ))}
             </Table>
 </Container>
+{/* 
+<Modal show="False" onHide="True" size="lg" >
+       <div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>
+        <FaTimes />
+       </div>
+        <div style={{textAlign:'center', padding:30}}>
+            <h6 style={{fontSize:'small'}}>COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION</h6>
+            <img src={demo} alt="img" style={{width:'60%'}}/>
+            <div style={fit}>
+                <div>
+                    <img src={holder} alt="placeholder" />
+                </div>
+                <div>
+                    <img src={imgplaceholder} alt="placeholder" />
+                </div>
+                <div>
+                    <img src={imgplaceholder} alt="placeholder" />
+                </div>
+                <div>
+                    <img src={imgplaceholder} alt="placeholder" />
+                </div>
+                <div>
+                    <img src={imgplaceholder} alt="placeholder" />
+                </div>
+                <div>
+                    <img src={imgplaceholder} alt="placeholder" />
+                </div>
+            </div>
+            <div>
+            <br/>
+                <Row>
+                    <div className="col" style={{textAlign:'left'}}>
+                        <h6 style={{color:'#066875', fontWeight:'bold'}}>FOR SALE <span style={{color:'#393939', fontWeight:'normal'}}>GHC 560,000</span></h6>
+                        <h6>Description
+                            <span style={{display:'flex'}}>
+                                <img src={bed} style={{ width:20, height:20, marginRight:10}} alt="bed"/>
+                                <h6>0</h6>
+                                <img src={bath} style={{ width:20, height:20, marginLeft:10, marginRight:10}} alt="bed"/>
+                                <h6>0</h6>
+                            </span>
+                        </h6>
+                    </div>
+                    <div className="col">
+                        <button className="button">Add To Order</button>
+                        <h6 style={{fontSize:'small', color:'#2B86FF'}}><FaLandmark /> Ashaley Botwe school junction</h6>
+                    </div>
+            <br/>
 
+                </Row>
+            </div>
+            <div className="description" style={{padding:10}}>
+
+                <h6 style={{fontSize:'small', textAlign:'left', }} className="text-muted">
+
+            Just steps away from QM2 express bus to Manhattan and local buses; only minutes from the LIRR. Walking distance to the Bay Terrace Shopping Center, Baybridge Commons Shopping Center, pool clubs, movie theaters and tennis courts. 1.5 blocks away from elementary school PS 169 and Bell Academy middle school in the award-winning District 25. Don’t miss this opportunity!
+                </h6>
+
+            </div>
+        </div>
+       
+        </Modal> */}
+
+<FormModal onSubmit={onSubmit} title="Add a new property" isOpen={formModal} isClose={closeFormModal} declineButton="Cancel" acceptButton="Change" info={info} setInfo={setInfo} status={status} setStatus={setStatus} beds={beds} setBeds={setBeds} price={price} setPrice={setPrice} baths={baths} setBaths={setBaths}/>
         </div>
     )
 }

@@ -10,17 +10,13 @@ function InformationModal({ declineButton,acceptButton,body,title, isOpen, isClo
        <div style={{display:'flex', flexDirection:'row-reverse', padding:30}}>
         <FaTimes />
        </div>
-        {/* <Modal.Body> */}
         <div style={{textAlign:'center', padding:30}}>
             {children}
         </div>
-        {/* </Modal.Body> */}
-        {/* <Modal.Footer> */}
         <div style={{display:'flex', justifyContent:'space-evenly', padding:10}} >
             <button onClick={isClose} className="button-calm">{declineButton}</button>
             <button onClick={onSubmit} className="button">{acceptButton}</button>
         </div>
-        {/* </Modal.Footer> */}
         </Modal>
     )
 }

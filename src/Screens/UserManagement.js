@@ -17,7 +17,26 @@ import FormModal from "../components/FormModal";
 import FeedbackModall from '../components/FeedbackModall'
 
 const UserManagement = () => {
+    // Functions
+    const deleteUser = (id) =>{
+        setusers(Users.filter((user) => user.id !== id))
+    }
 
+    const addUser = (user) => {
+        const id = Math.floor(Math.random() * 10000);
+        const newuser = {id, ...user}
+        setusers([...Users, newuser ])
+    }
+
+
+    const [name, setName] = useState('Nana Kweku')
+    const [email, setEmail] = useState('mr.adumatta@gmail.com')
+    const [phone, setPhone] = useState('0545977791')
+   
+
+    
+
+    // STYLES
     const admin = {
         backgroundColor:'#F3D5D1', 
         color:'#F85A47', 
@@ -62,6 +81,27 @@ const UserManagement = () => {
         fontWeight:'bold'
     }
 
+
+    const [Users, setusers] =  useState([
+        {
+            id: 1,
+            name: "Nana Kweku Adumatta",
+            email: "mr.adumatta@gmail.com",
+            status:"Active",
+            role:"Admin"
+        },
+        {
+            id: 2,
+            name: "Nana",
+            email: "mr.adumatta@gmail.com",
+            status:"Active",
+            role:"Admin"
+        }
+])
+
+
+
+
     //set state to toggle invite user 
     const [show, setShow] = useState(false);
 
@@ -85,7 +125,12 @@ const UserManagement = () => {
     
     // Functions to toggle Delete Modal
     const handleDeleteClose = () => setdeleteShow(false);
-    const handleDeleteShow = () => setdeleteShow(true);
+    const handleDeleteShow = (id) => {
+        // console.log(id)
+        console.log(id);
+        setdeleteShow(true)
+        deleteUser(id)
+        }
     
     // Functions to toggle Edit User Modal
     const handleEditClose = () => setEditShow(false);
@@ -135,9 +180,10 @@ const UserManagement = () => {
                 <th>Role</th>
                 <th>Action</th>
             </tr>
-            
-            <UserTableRow profile={img} name="Nana Kweku Adumatta" email="mr.adumatta@gmail.com" status="Active" statusStyle={active} role="ADMIN" style={admin}/>
-            <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/>
+            {Users.map((user)=>(
+                <UserTableRow profile={img} name={user.name} email={user.email} status={user.status} statusStyle={active} role="ADMIN" style={admin} onDelete={() => handleDeleteShow(user.id)} onEdit={handleEditShow} />
+            ))}
+            {/* <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/> */}
         </Table>
     </Toast>
 
@@ -160,7 +206,7 @@ const UserManagement = () => {
                 <th>Role</th>
                 <th>Action</th>
             </tr>
-            <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={handleEditShow}/>
+            <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} />
         </Table>
     </Toast>
 
@@ -213,35 +259,9 @@ Launch demo modal
     </Modal> */}
 
 
-<FormModal title="Invite New Users" isOpen={editShow} isClose={handleEditClose} onSubmit={confirmUserOpen} acceptButton="Update User" declineButton="Cancel">
-<div style={{width:50, height:50, backgroundColor:'#ECECEC', textAlign:'center'}}>
-            <FaImage />
-        </div>
-        <br/>
-        <div class="form-group">
-        {/* <label for="">Email</label> */}
-        <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Full Name" />
-        <br/>
-        <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Email Address" />
-         {/* <label for="">Role</label> */}
-         <br/>
-        <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Phone Address" />
-         <br/>
-         <Row>
-        
-        <div className="form-group col-md-4">
-        
-         <select class="form-control"  name="" id="">
-           <option>Admin</option>
-           <option>Employee</option>
-           <option>Approver</option>
-         </select>
-             </div>
-         </Row>
-        
+<FormModal title="Invite New Users" isOpen={editShow} isClose={handleEditClose} onSubmit={confirmUserOpen} acceptButton="Update User" declineButton="Cancel" name={name} phone={phone} email={email} setName={setName} />
 
-        </div>
-</FormModal>
+
 <FeedbackModall title="Confirm User Addition" isOpen={confirmUserAddition} isClose={confirmUserClose} doneButton="Done">
     <img src={check} alt="check"/>
         <h6 style={{paddingTop:10}}>This user has been deleted</h6>

@@ -1,10 +1,12 @@
 import React from 'react'
 import bed from '../img/Web/Spacia/bed.png'
 import bathtub from '../img/Web/Spacia/bathtub.png'
+import { FaEdit, FaTimes } from 'react-icons/fa'
+import {Row} from 'react-bootstrap'
 
 {/* <TableRow info="Some Text" Added='February 20th' Status='Availble' Price='Ghc30'></TableRow> */}
 
-const TableRow = ({image, info, added, status, price, beds, showers}) => {
+const TableRow = ({image, info, added, status, price, beds, showers, onDelete, onEditProperty}) => {
 
     const available = {
         backgroundColor:'#02BD04', 
@@ -36,7 +38,24 @@ const TableRow = ({image, info, added, status, price, beds, showers}) => {
                     <td>{added}</td>
                     <td><b>{status}</b></td>
                     <td><button style={available}>AVAILABLE</button></td>
-                    <td><b>{price}</b></td>
+                    <td>
+                        <div>
+                            <b>{price}</b>
+                            <br/>
+                            <div style={{display:'flex', marginTop:20}}>
+                            <div onClick={onEditProperty} style={{display:'flex', cursor:'pointer', paddingRight:10, color:'grey'}}>
+                                <br/>
+                            <FaEdit /><h6>Edit</h6>
+                            </div>
+
+                            <div onClick={onDelete} style={{display:'flex', cursor:'pointer', color:'grey'}}>
+                                <br/>
+                            <FaTimes /><h6>Delete</h6>
+                            </div>
+                            </div>
+
+                        </div>
+                    </td>
                 </tr>
 
     )

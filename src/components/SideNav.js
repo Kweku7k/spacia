@@ -1,4 +1,4 @@
-import { FaHome, FaTachometerAlt, FaTimes, FaUsers, FaUser, FaFileInvoiceDollar, FaChartBar, FaCog } from 'react-icons/fa'
+import { FaHome, FaTachometerAlt, FaTimes, FaUsers, FaUser, FaFileInvoiceDollar, FaChartBar, FaCog, FaQuestionCircle } from 'react-icons/fa'
 import logo from '../img/logo.png';
 import bill from '../img/Web/Spacia/bill.png';
 import chart from '../img/Web/Spacia/chart.png';
@@ -105,7 +105,7 @@ const SideNav = () => {
             </Link>
 
             <div className="navItem fixedBottom">
-                <FaTimes/>
+                <FaQuestionCircle/>
             </div>
         </div>
 
