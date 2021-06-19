@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container, Table, Dropdown, Row } from 'react-bootstrap'
+import React, {useState} from 'react'
+import { Container, Table, Dropdown, Row, Col } from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Demo.png'
 import TableRow from '../components/TableRow'
 import BookingTableRow from '../components/BookingTableRow'
@@ -12,6 +12,18 @@ import bookingbg from '../img/Web/Spacia/settings/payment/bookingbg.png'
 import '../App.css';
 
 const StartBooking = () => {
+    //useState handling counter
+    const [count, setCount] = useState(1);
+
+    //function to add and subtract counter
+    const add = () => {
+        setCount(count + 1);
+    }
+    const subtract = () => {
+        setCount(count - 1);
+    }
+
+
     const edit ={
         backgroundColor:"transparent"
     }
@@ -64,6 +76,7 @@ const StartBooking = () => {
 
             {/* backgroundImage:`url(${bookingbg})` */}
             <div className = 'bg'>
+                <h3 style={{ fontWeight: 'bold',color:'white' }}>Find the Perfect Space</h3>
                 <br/>
             <div style={bar}>
                 <Row>
@@ -83,19 +96,18 @@ const StartBooking = () => {
                         <div style={inline}>
                             <div style={iconLeft} >
 
-                            <FaPlus />
+                            <FaPlus onClick={add} />
                             </div>
-                            <h4 style={{paddingRight:10, paddingLeft:10, paddingTop:5, marginBottom:2 }} >1</h4>
+                            <h4 style={{paddingRight:10, paddingLeft:10, paddingTop:5, marginBottom:2 }} >{count}</h4>
                             <div style={iconRight} >
-                            <FaMinus />
+                            <FaMinus onClick={subtract} />
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-2">
                         <Link to='/booking'>
-
-                        <button className="button">Search</button>
+                            <button className="button">Search</button>
                         </Link>
                     </div>
 

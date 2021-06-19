@@ -1,4 +1,10 @@
-import { FaHome, FaTachometerAlt, FaTimes, FaUsers, FaUser, FaFileInvoiceDollar, FaChartBar, FaCog, FaQuestionCircle } from 'react-icons/fa'
+import { FaHome, FaTachometerAlt, FaTimes, FaChevronRight, FaUsers, FaUser, FaFileInvoiceDollar, FaChartBar, FaCog, FaChevronDown, FaQuestionCircle } from 'react-icons/fa'
+import {useState} from 'react'
+import {Link} from 'react-router-dom'
+import { Dropdown, DropdownButton } from 'react-bootstrap';
+
+
+//Images
 import logo from '../img/logo.png';
 import bill from '../img/Web/Spacia/bill.png';
 import chart from '../img/Web/Spacia/chart.png';
@@ -8,13 +14,24 @@ import property from '../img/Web/Spacia/property.png';
 import profile from '../img/Web/Spacia/profile.png';
 import users from '../img/Web/Spacia/users.png';
 import settings from '../img/Web/Spacia/settings.png';
-import {Link} from 'react-router-dom'
 import report from '../img/Web/Spacia/chart.png';
 
 
 // import dashboard from '../img/Web/Spacia/dashboard.png'
 
 const SideNav = () => {
+    //setStates to handle dropdown
+    const [open, setOpen] = useState(false);
+
+    //function to toggle dropdown
+    const toggle = () => {
+        setOpen(!open);
+    }
+
+    const closeToggle = () => {
+        setOpen(false)
+    }
+
     const icon ={
         marginRight:10,
         color: '#F85A47',
@@ -24,27 +41,34 @@ const SideNav = () => {
     const navItem = {
         margin:'auto',
         marginLeft:5,
-        marginBottom:0
+        marginBottom:0,
     }
+
+    const dropdownItem = {
+        display: 'flex', 
+        flexDirection: 'column',
+        paddingLeft: '20px',
+        margin: 'auto',
+    }
+    
     return (
         <div className="sideNav col-md-2" >
 
             <div className="navItem">
-            <img src={logo} width={100} alt="LOGO"/>
+                <img src={logo} width={100} alt="LOGO"/>
             </div>
             
-            <Link className="link" to="/dashboard">
-            <div className="navItem">
-            <div>
-                <img src={dash} alt="dashboard"/>
-            </div>
-
-                <h6 style={navItem}> Dashboard</h6>
-                
-            </div>
+            <Link className="link" to="/dashboard" onClick={closeToggle}>
+                <div className="navItem">
+                    <div>
+                        <img src={dash} alt="dashboard"/>
+                    </div>
+                    
+                    <h6 style={navItem}> Dashboard</h6>
+                </div>
             </Link>
 
-            <Link className="link" to="/properties">
+            <Link className="link" to="/properties" onClick={closeToggle}>
                 <div className="navItem">
                     {/* <FaHome style={icon} /> */}
                     <div>
@@ -54,54 +78,70 @@ const SideNav = () => {
                 </div>
             </Link>
 
-            <Link className="link" to="/startbooking">
-            <div className="navItem">
-                {/* <FaUser style={icon}/> */}
-                <div>
-                <img src={profile} alt="dashboard"/>
+            <button style={{ background: 'none', border: 'none', padding: '0px', width: '100%' }} onClick={toggle}>
+                <Link className="link">
+                    <div className="navItem" style={{ alignItems:'flex-end' }}>
+                        <div>
+                            <img src={profile} alt="dashboard"/>
+                        </div>
+                        <h6 style={navItem}> Booking</h6>
+                        {open && (
+                            <>
+                                <FaChevronDown style={{ marginLeft:'30px'}}/>
+                            </>
+                        )}
+                        {!open && (
+                            <>
+                                <FaChevronRight style={{ marginLeft:'30px'}}/>
+                            </>
+                        )}
+                    </div>
+                </Link>
+            </button >
+            {open && (
+                <div style={ dropdownItem }>
+                    <Link style={{ textDecoration: 'none', color: '#F9F9F9' }} to="/startBooking"> Find a Space</Link>
+                    <Link style={{ textDecoration: 'none', color: '#F9F9F9' }} to="/booking"> Orders</Link>
+                    <Link style={{ textDecoration: 'none', color: '#F9F9F9' }} to="/editbooking"> Approvals</Link>
                 </div>
+            )}
 
-                <h6 style={navItem}> Booking</h6>
-            </div>
-            </Link>
-
-            <Link className="link" to="/users">
-            <div className="navItem">
-            <div>
-                <img src={users} alt="users" />
-            </div>
-            {/* <img src={profile} width={'100%'}alt="LOGO"/> */}
-                <h6 style={navItem}> Users</h6>
-            </div>
-            </Link>
-
-            <Link className="link" to="/billing">
-            <div className="navItem">
-                <div>
-                    <img src={bill} alt=""/>
+            <Link className="link" to="/users" onClick={closeToggle}>
+                <div className="navItem">
+                    <div>
+                        <img src={users} alt="users" />
+                    </div>
+                {/* <img src={profile} width={'100%'}alt="LOGO"/> */}
+                    <h6 style={navItem}> Users</h6>
                 </div>
-            {/* <img src={property} width={'100%'}alt="LOGO"/> */}
-                <h6 style={navItem}> Billing</h6>
-            </div>
             </Link>
 
-            <div className="navItem">
+            <Link className="link" to="/billing" onClick={closeToggle}>
+                <div className="navItem">
+                    <div>
+                        <img src={bill} alt=""/>
+                    </div>
+                {/* <img src={property} width={'100%'}alt="LOGO"/> */}
+                    <h6 style={navItem}> Billing</h6>
+                </div>
+            </Link>
+
+            <div className="navItem" onClick={closeToggle}>
                 <div>
                     <img src={report} alt=""/>
                 </div>
             {/* <img src={property} width={'100%'}alt="LOGO"/> */}
                 <h6 style={navItem}> Reports</h6>
             </div>
-            <Link className="link" to="/settings">
 
-            <div className="navItem">
+            <Link className="link" to="/settings" onClick={closeToggle}>
+                <div className="navItem">
 
-                <div>
-                    <img src={settings} />
+                    <div>
+                        <img src={settings} alt="settings" />
+                    </div>
+                    <h6 style={navItem}> Settings</h6>
                 </div>
-            {/* <img src={settings} width={'100%'}alt="LOGO"/> */}
-                <h6 style={navItem}> Settings</h6>
-            </div>
             </Link>
 
             <div className="navItem fixedBottom">

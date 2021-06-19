@@ -1,8 +1,10 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import { Row } from 'react-bootstrap'
 import { FaCreditCard, FaMobile, FaMobileAlt, FaPhone } from 'react-icons/fa'
 import CardPaymentTab from '../CardPaymentTab'
 import MomoPaymentTab from '../MomoPaymentTab'
+// import Checkout from "./Checkout";
 
 const CardPayment = () => {
     return (
@@ -22,6 +24,9 @@ const CardPayment = () => {
                 <FaMobileAlt style={{marginRight:10}} />
                 <h6>Mobile Money</h6>
             </button>
+            <Link className="paymentCard" style={{ textDecoration: 'none' }} to="/checkout">
+                Checkout
+            </Link>
             </div>
 
                 <br/>
