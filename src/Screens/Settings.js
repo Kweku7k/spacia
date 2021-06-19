@@ -24,55 +24,55 @@ const Settings = () => {
             <Container >
                 {/* <Toast> */}
             <Row>
-                        <div className="col-md-4">
-                            <Link className="link" style={link} to="/settings">
-                                <div className="settingsNavItem active" style={{justifyContent:"normal"}}>
-                                    <FaCaretSquareDown style={{marginRight:10}} />
-                                    <h6>Edit Profile</h6>    
-                                </div>
-                            </Link>
-
-                            <Link className="link" style={link} to="/settings/notification">
-                                <div className="settingsNavItem" style={{justifyContent:"normal"}}>
-                                    <FaBell style={{marginRight:10}}/>
-                                    <h6>Notification</h6>    
-                                </div>
-                            </Link>
-
-                            <Link className="link" style={link} to="/settings/payment">
-                                <div className="settingsNavItem" style={{justifyContent:"normal"}}>
-                                    <FaCreditCard style={{marginRight:10}}/>
-                                    <h6>Payment</h6>    
-                                </div>
-                            </Link>
-
-                            <Link className="link" style={link} to="/settings/security">
-                                <div className="settingsNavItem" style={{justifyContent:"normal"}}>
-                                    <FaShieldAlt style={{marginRight:10}}/>
-                                    <h6>Password & Security</h6>    
-                                </div>
-                            </Link>
-    
-                        </div>    
-                        <div className="col-md-8" >
-                        
-                        {/* <Profile /> */}
-
-                        <Switch>
-                        <Route path="/settings" exact>
-                            <Profile />
-                        </Route>
-                        <Route path="/settings/notification">
-                            <Notifications />
-                        </Route>
-                        <Route path="/settings/payment">
-                            <CardPayment />
-                        </Route>
-                        <Route path="/settings/security">
-                            <Password />
-                        </Route>
-                        </Switch>
+                <div className="col-md-4">
+                    <Link className="link" style={link} to="/settings">
+                        <div className="settingsNavItem active" style={{justifyContent:"normal"}}>
+                            <FaCaretSquareDown style={{marginRight:10}} />
+                            <h6>Edit Profile</h6>    
                         </div>
+                    </Link>
+
+                    <Link className="link" style={link} to="/settings/notification">
+                        <div className="settingsNavItem" style={{justifyContent:"normal"}}>
+                            <FaBell style={{marginRight:10}}/>
+                            <h6>Notification</h6>    
+                        </div>
+                    </Link>
+
+                    <Link className="link" style={link} to="/settings/payment">
+                        <div className="settingsNavItem" style={{justifyContent:"normal"}}>
+                            <FaCreditCard style={{marginRight:10}}/>
+                            <h6>Payment</h6>    
+                        </div>
+                    </Link>
+
+                    <Link className="link" style={link} to="/settings/security">
+                        <div className="settingsNavItem" style={{justifyContent:"normal"}}>
+                            <FaShieldAlt style={{marginRight:10}}/>
+                            <h6>Password & Security</h6>    
+                        </div>
+                    </Link>
+
+                </div>    
+                <div className="col-md-8" >
+                
+                {/* <Profile /> */}
+
+                <Switch>
+                <Route path="/settings" exact>
+                    <Profile />
+                </Route>
+                <Route path="/settings/notification">
+                    <Notifications />
+                </Route>
+                <Route path="/settings/payment">
+                    <CardPayment />
+                </Route>
+                <Route path="/settings/security">
+                    <Password />
+                </Route>
+                </Switch>
+                </div>
             </Row>
             {/* </Toast> */}
             </Container> 
