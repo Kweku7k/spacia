@@ -92,18 +92,10 @@ const Checkout = () => {
 
     return (
         
-        <Container>
-            <div className="header">
-                <div style={{display:'flex', justifyContent:'space-between'}}>
-                    <h4>Checkout</h4>         
-                </div>
-            </div>
-
-            <br/>
-
+        <Container>       
             <Row>
             <Col md={2} style={{ border: '3px' }}>
-                
+                <h4>Checkout</h4>   
             </Col>
             <Col md={10} >
                 <Row>
