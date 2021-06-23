@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import bed from '../img/Web/Spacia/bed.png'
 import bathtub from '../img/Web/Spacia/bathtub.png'
 import { FaEdit, FaEye, FaTimes } from 'react-icons/fa'
