@@ -13,8 +13,10 @@ import holder from '../img/Web/Spacia/thumb.png'
 import FormModal from '../components/NewPropertyModal'
 import FeedbackModal from '../components/FeedbackModall'
 import Filter from '../components/Filter'
+import PropsRow from '../components/PropsRow'
 
 <tr>
+<td></td> 
 <td>Photo</td> 
 <td>Property Info</td> 
 <td>Added on</td> 
@@ -157,12 +159,14 @@ const Properties = () => {
 <Container>
             <Table>
                 <tr>
-                   <td>Photo</td> 
-                   <td>Property Info</td> 
-                   <td>Added on</td> 
-                   <td>Property Status</td> 
-                   <td>Status</td> 
+                   <td></td> 
+                   <td></td> 
+                   <td>Type Of Property</td> 
+                   <td>Quantity</td> 
+                   <td>From</td> 
+                   <td>To</td> 
                    <td>Price</td> 
+                   <td>SubTotal</td> 
                 </tr>
 
 
@@ -170,9 +174,8 @@ const Properties = () => {
                 {/* {properties.map((property) => (
                     <TableRow onDelete={() => deleteModal(property.id)} image={demo} info={property.info} added={property.added} beds={property.beds} showers={property.baths} status='FOR RENT' price={property.price}></TableRow>
                     ))} */}
-                    <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
-                    <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onView={showViewModal}></TableRow>
-                    <TableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
+                    <PropsRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></PropsRow>
+                    
             </Table>
 </Container>
 

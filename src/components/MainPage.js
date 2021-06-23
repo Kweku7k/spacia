@@ -19,6 +19,8 @@ import EditBooking from '../Screens/EditBooking'
 import StartBooking from '../Screens/StartBooking'
 import AddedProperties from '../Screens/AddedProperties'
 import Checkout from "../components/Settings/Checkout";
+import Cart from "../Screens/Cart"
+import FilterProperties from '../Screens/FilterProperties'
 
 const MainPage = (props) => {
     return (
@@ -57,6 +59,12 @@ const MainPage = (props) => {
                     </Route>
                     <Route path="/checkout">
                         <Checkout />
+                    </Route>
+                    <Route path="/cart">
+                        <Cart />
+                    </Route>
+                    <Route path="/filterprops">
+                        <FilterProperties />
                     </Route>
                 </Switch>
             </Nav>

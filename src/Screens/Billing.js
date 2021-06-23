@@ -25,7 +25,7 @@ const UserManagement = () => {
                 <div style={{display:'flex', justifyContent:'space-between'}} >
                     <div>
 
-                <h4>Properties</h4>
+                <h4><b>Billing</b></h4>
                     </div>
 
                 <form class="form-inline my-2 my-lg-0">

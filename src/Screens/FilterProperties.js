@@ -23,7 +23,7 @@ import Filter from '../components/Filter'
 <td>Price</td> 
 </tr>
 
-const Properties = () => {
+const FilterProperties = () => {
     const [formModal, setformModal] = useState(false)
     // Form Values
     const [beds, setBeds] = useState("")
@@ -33,15 +33,8 @@ const Properties = () => {
     const [status, setStatus] = useState("Pending")
     const [price, setPrice] = useState('')
 
-    const [viewModal, setViewModal] = useState(false)
 
-    const showViewModal = () =>{
-        setViewModal(true)
-    }
-
-    const closeViewModal = () =>{
-        setViewModal(false)
-    }
+    
 
     const openFormModal = ()  => {
         setformModal(true)  
@@ -147,11 +140,14 @@ const Properties = () => {
 
                 </div>
             </div>
+
+            {/* 
+            Filter goes here 
+            */}
+
+            <Filter />
             <div>
 
-            <Toast style={{width:'90%', padding:10, borderRadius:10, margin:'auto', marginBottom:10}}>
-                <Filter />
-            </Toast>
             </div>
 
 <Container>
@@ -171,14 +167,14 @@ const Properties = () => {
                     <TableRow onDelete={() => deleteModal(property.id)} image={demo} info={property.info} added={property.added} beds={property.beds} showers={property.baths} status='FOR RENT' price={property.price}></TableRow>
                     ))} */}
                     <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
-                    <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onView={showViewModal}></TableRow>
+                    <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
                     <TableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
             </Table>
 </Container>
-
-<Modal show={viewModal} onHide={closeViewModal} size="lg" >
+{/* 
+<Modal show="False" onHide="True" size="lg" >
        <div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>
-        <FaTimes onClick={showViewModal} />
+        <FaTimes />
        </div>
         <div style={{textAlign:'center', padding:30}}>
             <h6 style={{fontSize:'small'}}>COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION</h6>
@@ -205,7 +201,7 @@ const Properties = () => {
             </div>
             <div>
             <br/>
-                <Row style={{paddingLeft:40,paddingRight:40}}>
+                <Row>
                     <div className="col" style={{textAlign:'left'}}>
                         <h6 style={{color:'#066875', fontWeight:'bold'}}>FOR SALE <span style={{color:'#393939', fontWeight:'normal'}}>GHC 560,000</span></h6>
                         <h6>Description
@@ -217,13 +213,13 @@ const Properties = () => {
                             </span>
                         </h6>
                     </div>
-                    <div className="col" style={{textAlign:'right'}}>
+                    <div className="col">
                         <button className="button">Add To Order</button>
                         <h6 style={{fontSize:'small', color:'#2B86FF'}}><FaLandmark /> Ashaley Botwe school junction</h6>
                     </div>
             <br/>
-                </Row>
 
+                </Row>
             </div>
             <div className="description" style={{padding:10}}>
 
@@ -235,7 +231,7 @@ const Properties = () => {
             </div>
         </div>
        
-        </Modal>
+        </Modal> */}
 
 {/* doneButton={() => deleteProperty()} */}
 <FormModal onSubmit={onSubmit} title="Add a new property" isOpen={formModal} isClose={closeFormModal} declineButton="Cancel" acceptButton="Change" info={info} setInfo={setInfo} status={status} setStatus={setStatus} beds={beds} setBeds={setBeds} price={price} setPrice={setPrice} baths={baths} setBaths={setBaths}/>
@@ -247,4 +243,4 @@ const Properties = () => {
     )
 }
 
-export default Properties
+export default FilterProperties

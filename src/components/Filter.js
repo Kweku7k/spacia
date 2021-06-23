@@ -1,37 +1,10 @@
-import React, {useState} from 'react'
-import { Container, Table, Dropdown, Row, Col } from 'react-bootstrap'
-import demo from '../img/Web/Spacia/Demo.png'
-import TableRow from '../components/TableRow'
-import BookingTableRow from '../components/BookingTableRow'
-import prop2 from '../img/Web/Spacia/prop2.png'
-import prop3 from '../img/Web/Spacia/prop3.png'
-import {FaCaretDown, FaCircle, FaEllipsisV, FaEllipsisH, FaPlus, FaMinus} from 'react-icons/fa'
-import {Link} from 'react-router-dom' 
-import bookingbg from '../img/Web/Spacia/settings/payment/bookingbg.png'
-import DatePicker from "react-datepicker";
+import React ,{useState} from 'react'
+import {Row} from 'react-bootstrap'
 import Slider, { Range } from 'rc-slider';
-import Filter from '../components/Filter'
-import 'rc-slider/assets/index.css';
-import "react-datepicker/dist/react-datepicker.css";
-import '../App.css';
+import DatePicker from "react-datepicker";
+import { FaPlus, FaMinus } from 'react-icons/fa';
 
-const StartBooking = () => {
-    //useState handling counter
-    const [count, setCount] = useState(1);
-
-    // Date Picker
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-
-    //function to add and subtract counter
-    const add = () => {
-        setCount(count + 1);
-    }
-    const subtract = () => {
-        setCount(count - 1);
-    }
-
-
+const Filter = () => {
     const edit ={
         backgroundColor:"transparent"
     }
@@ -69,31 +42,25 @@ const StartBooking = () => {
         borderRadius:10
     }
 
-    const showBooking = false
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+
+
+    const [count, setCount] = useState(1);
+
+    const add = () => {
+        setCount(count + 1);
+    }
+    const subtract = () => {
+        setCount(count - 1);
+    }
+
     return (
-        <div>
-           <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
-                <div>
-                    <h4>Find a Space</h4>
-                </div>
-{/* 
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" /></form>
-                    */}
-                    <button class="button" style={{backgroundColor:'transparent'}}>Add New Property </button>
 
 
-            </div>
-            <Container >
 
-            {/* backgroundImage:`url(${bookingbg})` */}
-            <div className = 'bg'>
-                <h3 style={{ fontWeight: 'bold',color:'white' }}>Find the Perfect Space</h3>
-                <br/>
-            <div style={bar}>
-            {/* <Slider /> */}
-            
-                <Row>
+        <>
+             <Row>
                     <div class="col-md-2">
                         <input type="email" placeholder="Type of service" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
                     </div>
@@ -101,13 +68,16 @@ const StartBooking = () => {
                         <input type="email" placeholder="Location" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
                     </div>
                     <div class="col-md-2">
+                        {/* <label>OOO</label> */}
+                        {/* <input type="email" placeholder="Date" class="form-control col-md-2" name="" id="" aria-describedby="emailHelpId" /> */}
                         <DatePicker className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />
 
                     </div>
                     <div class="col-md-2">
                         <DatePicker className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
                         
-                        </div>
+                        {/* <input type="email" placeholder="Time" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" /> */}
+                    </div>
                     <div class="col-md-2">
                         <h6 style={price}>GHS1,200</h6>
                         <Range />
@@ -124,23 +94,17 @@ const StartBooking = () => {
                             </div>
                         </div>
                     </div>
+{/* 
                     <div class="col-md-2">
                         <Link to='/booking'>
                             <button className="button">Search</button>
                         </Link>
-                    </div>
+                    </div> */}
+
+                  
                 </Row>
-
-                {/* <Filter startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} count={count} setCount={setCount} add={add} subtract={subtract}/> */}
-
-            </div >
-            </div>
-            </Container>
-            
-
-
-        </div>
+        </>
     )
 }
 
-export default StartBooking
+export default Filter

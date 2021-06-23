@@ -101,8 +101,8 @@ const SideNav = () => {
             {open && (
                 <div style={ dropdownItem }>
                     <Link style={{ textDecoration: 'none', color: '#F9F9F9' }} to="/startBooking"> Find a Space</Link>
-                    <Link style={{ textDecoration: 'none', color: '#F9F9F9' }} to="/booking"> Orders</Link>
-                    <Link style={{ textDecoration: 'none', color: '#F9F9F9' }} to="/editbooking"> Approvals</Link>
+                    <Link style={{ textDecoration: 'none', color: '#F9F9F9' }} to="/booking"> Reservations</Link>
+                    <Link style={{ textDecoration: 'none', color: '#F9F9F9' }} to="/editbooking"> Pending Approvals</Link>
                 </div>
             )}
 

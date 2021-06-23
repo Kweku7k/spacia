@@ -48,7 +48,7 @@ const EditBooking = () => {
         <div>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
                 <div>
-                    <h4>Booking Listings</h4>
+                    <h4><b>Pending Approvals</b></h4>
                 </div>
 
                 <form class="form-inline my-2 my-lg-0">
