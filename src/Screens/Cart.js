@@ -124,36 +124,20 @@ const Properties = () => {
         <div>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
                 <div>
-                    <h4><b>Properties</b></h4>
+                    <h4><b>Cart</b></h4>
                 </div>
                 <div style={{display:'flex', justifyContent:'space-between'}}>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                    </form>
-                    <div class="dropdown" style={{margin:'auto 30px'}}>
-                            <Dropdown>
-                            <Dropdown.Toggle style={{backgroundColor:'#ECECEC', border:'none', color:'#848484'}} variant="success" id="dropdown-basic">
-                                All Properties 
-
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                            </Dropdown.Menu>
-                            </Dropdown>
-                    </div>
-
-                    <button class="button" onClick={openFormModal}>Add New Property </button>
+                <div style={{marginTop:'auto',marginDown:'auto'}}>
+                <h6><b>Total: GHS 1750</b></h6>
+                </div>
+                    <button class="button-yellow" style={{marginLeft:20, marginRight:20}} onClick={openFormModal}>Create Service Bundle</button>
+                    <button class="button" onClick={openFormModal}>Create Service Bundle</button>
 
                 </div>
             </div>
             <div>
 
-            <Toast style={{width:'90%', padding:10, borderRadius:10, margin:'auto', marginBottom:10}}>
-                <Filter />
-            </Toast>
+
             </div>
 
 <Container>

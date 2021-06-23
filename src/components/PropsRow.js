@@ -39,7 +39,7 @@ const PropsRow = ({image, info, added, status, price, beds, showers, onDelete, o
                       </label>
                     </div></td>
                     <td><img src={image} width={100} alt="demo"/></td>
-                    <td style={{width:200}}>
+                    <td >
                         <div>
                          <h6><b>Private Office</b></h6>
                          <br/>
@@ -51,35 +51,18 @@ const PropsRow = ({image, info, added, status, price, beds, showers, onDelete, o
                     <td style={tableCell}><QuantityCounter/></td>
                     <td style={tableCell}>
                     <DatePicker className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
+                    </td>
+                    <td style={tableCell}>
+                    <DatePicker className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
 
                     </td>
-                    <td style={tableCell}><button style={available}>AVAILABLE</button></td>
                     <td style={tableCell}>
-                        <div>
-                            <b>Ghc {price} / month</b>
-                            <br/>
-                            <div style={{display:'flex', marginTop:20}}>
-                            
-                            <div onClick={onView} style={{display:'flex', cursor:'pointer', color:'grey'}}>
-                                <br/>
-                            <FaEye /><h6>View</h6>
-
-                            </div>
-                            
-                            <div onClick={onEditProperty} style={{display:'flex', cursor:'pointer', paddingRight:10, paddingLeft:10,color:'grey'}}>
-                                <br/>
-                            <FaEdit /><h6>Edit</h6>
-                            </div>
-
-                            <div onClick={onDelete} style={{display:'flex', cursor:'pointer', color:'grey'}}>
-                                <br/>
-                            <FaTimes /><h6>Delete</h6>
-                            </div>
-
-                            
-                            </div>
-
-                        </div>
+                            <h6><b>GHS {price} / month</b></h6>
+                    </td>
+                    <td style={tableCell}>
+                            <h6>
+                                <b>GHS {price *  1}</b>
+                                </h6>
                     </td>
                 </tr>
 
