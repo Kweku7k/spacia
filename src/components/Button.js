@@ -4,7 +4,7 @@ import { FaPlus, FaTimes } from 'react-icons/fa'
 const Button = ({text, icon}) => {
     return (
         <div>
-            <button className="button"> <FaPlus /> {text}</button>
+            <button className="button"> {text}</button>
         </div>
     )
 }

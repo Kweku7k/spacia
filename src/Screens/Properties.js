@@ -10,6 +10,7 @@ import bath from '../img/Web/Spacia/bathtub.png'
 import imgplaceholder from '../img/Web/Spacia/imgplaceholder.png'
 import holder from '../img/Web/Spacia/thumb.png'
 import FormModal from '../components/NewPropertyModal'
+import FeedbackModal from '../components/FeedbackModall'
 
 <tr>
 <td>Photo</td> 
@@ -21,7 +22,6 @@ import FormModal from '../components/NewPropertyModal'
 </tr>
 
 const Properties = () => {
-
     const [formModal, setformModal] = useState(false)
     // Form Values
     const [beds, setBeds] = useState("")
@@ -32,7 +32,17 @@ const Properties = () => {
     const [price, setPrice] = useState('')
 
     const openFormModal = ()  => {
-        setformModal(true)
+        setformModal(true)  
+    }
+
+    const deleteModal = (id) => {
+        console.log(id)
+        setshowDeleteModal(true)
+        deleteProperty(id)
+    }
+
+    const closeDeleteModal =() =>{
+        setshowDeleteModal(false)
     }
 
     const onAdd = (property) => {
@@ -55,7 +65,7 @@ const Properties = () => {
         setformModal(false)
         const today = new Date()
         const added = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        onAdd({ info, price, status, added })
+        onAdd({ info, price, status, added, beds, baths })
         setInfo('')
 
 
@@ -69,15 +79,19 @@ const Properties = () => {
             info: "COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION",
             added: "1st June 2021",
             status: "active",
-            price: '30'
+            price: '30',
+            beds: '2',
+            baths: '3'
         },
         {
             id:2,
-            photo: "{photo}",
+            photo: "{demo}",
             info: "COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION",
             added: "1st June 2021",
             status: "active",
-            price: '30'
+            price: '30',
+            beds: '3',
+            baths: '3'
         }
     ])
 
@@ -87,6 +101,7 @@ const Properties = () => {
         padding:20
     }
 
+    const [showDeleteModal, setshowDeleteModal] = useState(false)
     const deleteProperty = (id) =>{
         setproperties(properties.filter((property) => property.id !== id))
     }
@@ -133,7 +148,7 @@ const Properties = () => {
                 </tr>
 
                 {properties.map((property) => (
-                    <TableRow onDelete={() => deleteProperty(property.id)} image={property.image} info={property.info} added={property.added} beds="3" showers="2" status='FOR RENT' price='Ghc30/month'></TableRow>
+                    <TableRow onDelete={() => deleteModal(property.id)} image={demo} info={property.info} added={property.added} beds={property.beds} showers={property.baths} status='FOR RENT' price={property.price}></TableRow>
                 ))}
             </Table>
 </Container>
@@ -199,8 +214,13 @@ const Properties = () => {
        
         </Modal> */}
 
+{/* doneButton={() => deleteProperty()} */}
 <FormModal onSubmit={onSubmit} title="Add a new property" isOpen={formModal} isClose={closeFormModal} declineButton="Cancel" acceptButton="Change" info={info} setInfo={setInfo} status={status} setStatus={setStatus} beds={beds} setBeds={setBeds} price={price} setPrice={setPrice} baths={baths} setBaths={setBaths}/>
+<FeedbackModal isClose={closeDeleteModal} doneButton="Okay" isOpen={showDeleteModal} declineButton={closeDeleteModal}  >
+<h6>This property has been deleted</h6>
+</FeedbackModal>
         </div>
+
     )
 }
 

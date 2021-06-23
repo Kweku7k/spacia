@@ -98,10 +98,6 @@ const UserManagement = () => {
             role:"Admin"
         }
 ])
-
-
-
-
     //set state to toggle invite user 
     const [show, setShow] = useState(false);
 

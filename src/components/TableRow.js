@@ -3,6 +3,7 @@ import bed from '../img/Web/Spacia/bed.png'
 import bathtub from '../img/Web/Spacia/bathtub.png'
 import { FaEdit, FaTimes } from 'react-icons/fa'
 import {Row} from 'react-bootstrap'
+import '../css/Table.css'
 
 {/* <TableRow info="Some Text" Added='February 20th' Status='Availble' Price='Ghc30'></TableRow> */}
 
@@ -19,6 +20,11 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
         paddingLeft:20, 
         paddingRight:20
     }
+
+    const tableCell = {
+        verticalAlign:'top',
+        paddingTop:10
+    }
     return (
             <tr style={{borderBottom:"1px dashed black"}} >
                     <td><img src={image} width={100} alt="demo"/></td>
@@ -27,11 +33,12 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
                             <h6 style={{fontSize:'small'}}>
                         {info} 
                             </h6>
-                            <div style={{display:'flex', justifyContent:'space-evenly'}}>
+                            <br/>
+                            <div style={{display:'flex'}}>
                             <img src={bed} style={{ width:20, height:20}} alt="bed"></img>
-                            <h6>{showers}</h6>
+                            <h6 style={{paddingLeft:20, paddingRight:20}}>{showers}</h6>
                             <img src={bathtub} style={{ width:20, height:20}} alt="bathtub"></img>
-                            <h6>{beds}</h6>
+                            <h6 style={{paddingLeft:20, paddingRight:20}}>{beds}</h6>
                             </div>
                         </div>
                         </td>
@@ -40,7 +47,7 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
                     <td><button style={available}>AVAILABLE</button></td>
                     <td>
                         <div>
-                            <b>{price}</b>
+                            <b>Ghc {price} / month</b>
                             <br/>
                             <div style={{display:'flex', marginTop:20}}>
                             <div onClick={onEditProperty} style={{display:'flex', cursor:'pointer', paddingRight:10, color:'grey'}}>

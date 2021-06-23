@@ -29,9 +29,14 @@ const approver = {
 
 const edit={
     border: 'none',
-    backgroundColor: 'transparent'
-}
+    backgroundColor: 'transparent',
+    display:'flex',
+    // margin:'auto',
+    paddingLeft:0,
+    color:'black',
 
+}
+const sege = "active"
 const active ={
     color: 'green',
     fontWeight:'bold'
@@ -43,10 +48,12 @@ const active ={
             <td><div> <img src={profile} style={{marginRight:10}} alt="User"/>{name}</div></td>
             <td>{email}</td>
 
-            <td style={statusStyle}>
+            <td>
+                {/* Tenary conditional statement */}
+                {/* <div className={`banner ${active ? "active" : ""}`}>{children}</div> */}
                        <Dropdown>
-                        <Dropdown.Toggle variant="success" style={edit} id="dropdown-basic">
-                                <h6 style={{color:'blue'}}>Active</h6>
+                        <Dropdown.Toggle style={edit} id="dropdown-basic">
+                                <h6 style={{color:'#02BD04', fontWeight:'bold'}}>Active</h6>
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
@@ -60,7 +67,7 @@ const active ={
             
             <td><button style={style}>{role}</button></td>
             <td>
-                <h6 style={{color:'blue', textDecoration:'underline'}} href="#" onClick={onEdit}>Edit</h6>
+                <h6 style={{color:'#2B86FF', textDecoration:'none'}} href="#" onClick={onEdit}>Edit</h6>
             </td>
             <td>
             <Dropdown>

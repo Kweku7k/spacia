@@ -1,12 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Modal, Row } from "react-bootstrap";
 import { FaTimes, FaImage } from 'react-icons/fa';
 
 function NewPropertyModal({ declineButton,acceptButton,body,status,title, isOpen, isClose, onSubmit, children, info, email, phone, setInfo, beds, setBeds, baths, setBaths }) {
+    const [picture, setPicture] = useState(null)
 
     const label = {
         textAlign:'center'
     }
+
+    const handleImage= (e) => {
+        console.log(e.target.files[0])
+        console.log(picture)
+        const pic = e.target.files[0]
+        setPicture({pic})
+        console.log(setPicture)
+        
+    }
+
+
     return (
         <Modal show={isOpen} onHide={isClose} style={{textAlign:'center'}}>
        <div style={{display:'flex', flexDirection:'row-reverse', padding:30, paddingBottom:0}}>
@@ -18,6 +30,7 @@ function NewPropertyModal({ declineButton,acceptButton,body,status,title, isOpen
 
         <div style={{width:50, height:50, backgroundColor:'#ECECEC', textAlign:'center'}}>
             <FaImage />
+            <input type="file" onChange={handleImage}/>
         </div>
         <br/>
         <div class="form-group">
