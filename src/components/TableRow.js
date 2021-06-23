@@ -42,10 +42,10 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
                             </div>
                         </div>
                         </td>
-                    <td>{added}</td>
-                    <td><b>{status}</b></td>
-                    <td><button style={available}>AVAILABLE</button></td>
-                    <td>
+                    <td style={tableCell}>{added}</td>
+                    <td style={tableCell}><b>{status}</b></td>
+                    <td style={tableCell}><button style={available}>AVAILABLE</button></td>
+                    <td style={tableCell}>
                         <div>
                             <b>Ghc {price} / month</b>
                             <br/>

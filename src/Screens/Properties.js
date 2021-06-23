@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Table, Dropdown, Toast, Modal, Row } from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Demo.png'
+import demo2 from '../img/Web/Spacia/Demo.png'
 import TableRow from '../components/TableRow'
 import prop2 from '../img/Web/Spacia/prop2.png'
 import prop3 from '../img/Web/Spacia/prop3.png'
@@ -147,9 +148,14 @@ const Properties = () => {
                    <td>Price</td> 
                 </tr>
 
-                {properties.map((property) => (
+
+                {/* From Source */}
+                {/* {properties.map((property) => (
                     <TableRow onDelete={() => deleteModal(property.id)} image={demo} info={property.info} added={property.added} beds={property.beds} showers={property.baths} status='FOR RENT' price={property.price}></TableRow>
-                ))}
+                    ))} */}
+                    <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
+                    <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
+                    <TableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
             </Table>
 </Container>
 {/* 

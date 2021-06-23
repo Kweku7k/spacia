@@ -5,6 +5,10 @@ import Search from '../components/Search'
 import UserTableRow from '../components/UserTableRow'
 import img from '../img/Web/Spacia/Ellipse.png'
 import peter from '../img/Web/Spacia/Peter.png'
+import profile from '../img/Web/Spacia/profile.png'
+import profile3 from '../img/Web/Spacia/profile3.png'
+
+
 import LoadingPage from '../components/LoadingPage'
 import NoData from '../components/NoData'
 import cModal from '../components/cModal'
@@ -176,10 +180,11 @@ const UserManagement = () => {
                 <th>Role</th>
                 <th>Action</th>
             </tr>
-            {Users.map((user)=>(
+            {/* {Users.map((user)=>(
                 <UserTableRow profile={img} name={user.name} email={user.email} status={user.status} statusStyle={active} role="ADMIN" style={admin} onDelete={() => handleDeleteShow(user.id)} onEdit={handleEditShow} />
-            ))}
-            {/* <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/> */}
+            ))} */}
+            <UserTableRow profile={img} name="Ronald Richards" email="ronaldrichards02@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/>
+            <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/>
         </Table>
     </Toast>
 
@@ -202,7 +207,11 @@ const UserManagement = () => {
                 <th>Role</th>
                 <th>Action</th>
             </tr>
-            <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} />
+
+            <UserTableRow profile={peter} name="Floyd Miles" email="petergriffin@gmail.com" status="Active" statusStyle={inactive} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} />
+          <UserTableRow profile={img} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} />
+            <UserTableRow profile={profile3} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} />
+
         </Table>
     </Toast>
 
@@ -253,7 +262,6 @@ Launch demo modal
     <button onClick={confirmDeleteOpen} className="button">Delete</button>
     </Modal.Footer>
     </Modal> */}
-
 
 <FormModal title="Invite New Users" isOpen={editShow} isClose={handleEditClose} onSubmit={confirmUserOpen} acceptButton="Update User" declineButton="Cancel" name={name} phone={phone} email={email} setName={setName} />
 
