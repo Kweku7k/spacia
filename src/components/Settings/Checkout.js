@@ -67,12 +67,40 @@ const Checkout = () => {
     //Order Summary Form function
     const orderForm = () => {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-                <div>
-                    <hr/>
-                    <h6>Total: GHS 1750</h6>
-                </div>    
-            </div>
+            <>
+                <div style={{ padding:'1em', display: 'flex', height: '0%', flexDirection: 'column' }}>
+                <h5>Order Summary:</h5>
+                    <br/>
+                    <div style={{ display: 'flex', justifyContent: 'space-between'}}>
+                        <h6>Private Office</h6>
+                        <h6>Total: GHS 500</h6>
+                    </div>
+                    <br/>
+                    <div style={{ display: 'flex', justifyContent: 'space-between'}}>
+                        <h6>Dedicated/Hot Desk</h6>
+                        <h6>Total: GHS 400</h6>
+                    </div>
+                    <br/>
+                    <div style={{ display: 'flex', justifyContent: 'space-between'}}>
+                        <h6>Meeting & Avenue</h6>
+                        <h6>Total: GHS 250</h6>
+                    </div>
+                    <br/>
+                    <div style={{ display: 'flex', justifyContent: 'space-between'}}>
+                        <h6>Meeting & Avenue</h6>
+                        <h6>Total: GHS 600</h6>
+                    </div>
+                </div>
+
+                <div style={{ padding:'2em', display:'flex', height: '100%', alignItems:'flex-end' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+                        <div>
+                            <hr/>
+                            <h6>Total: GHS 1750</h6>
+                        </div>    
+                    </div>
+                </div>
+            </>
         )
     }
 
@@ -83,7 +111,7 @@ const Checkout = () => {
 
     return (
         
-        <Container> 
+        <Container fluid> 
             <div className="header">
                 <div style={{display:'flex', justifyContent:'space-between'}}>
                     <h4>Checkout</h4>         
@@ -93,11 +121,11 @@ const Checkout = () => {
             <Row>
             </Row>      
             <Row>
-                <Col m2={2}>
-                </Col>
-            <Col md={10} >
+                {/* <Col m2={2}>
+                </Col> */}
+            <Col md={12} >
                 <Row>
-                    <Col md={5} style={{ backgroundColor: 'white', padding: '0px'  }}>
+                    <Col md={6} style={{ backgroundColor: 'white', padding: '0px'  }}>
                         <div style={{ padding:'2em', border:'solid', borderWidth: '1px', borderRadius: '5px', }}>
                             { checkoutForm() }
                         </div>
@@ -107,10 +135,10 @@ const Checkout = () => {
 
 
                     <Col md={5} style={{ backgroundColor: 'white', padding: '1em', border:'solid', borderWidth: '1px', borderRadius: '5px' }}>
-                        <h5>Order Summary:</h5>
-                        <div style={{ padding:'2em', display:'flex', height: '100%', alignItems:'flex-end' }}>
+                        {/* <h5>Order Summary:</h5> */}
+                        {/* <div style={{ padding:'2em', display:'flex', height: '100%', alignItems:'flex-end' }}> */}
                             { orderForm() }
-                        </div>
+                        {/* </div> */}
                     </Col>
                 </Row>
             </Col>
