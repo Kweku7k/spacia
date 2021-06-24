@@ -1,10 +1,24 @@
-body{
-	font-family: 'Lato', sans-serif;
+body {
+	font-family: "Lato", sans-serif;
 }
 
 .bg {
 	background-image: url("./img/Web/Spacia/settings/payment/bookingbg.png");
 	height: 70vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin: 10;
+	padding: 20px;
+}
+
+.signupBg {
+	background-image: url("./img/spacia/web/Background.png");
+	height: 90vh;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -56,7 +70,6 @@ body{
 	background-color: "green";
 	position: "relative";
 }
-
 
 .button-yellow {
 	background-color: #f99500;
@@ -168,11 +181,10 @@ input {
 	right: 0;
 }
 
-td{
-	font-family: 'Lato', sans-serif;
+td {
+	font-family: "Lato", sans-serif;
 	vertical-align: middle;
 	padding-top: 0;
-
 }
 
 tr:nth-child(even) {

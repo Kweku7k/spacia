@@ -24,9 +24,9 @@ const CardPayment = () => {
                 <FaMobileAlt style={{marginRight:10}} />
                 <h6>Mobile Money</h6>
             </button>
-            <Link className="paymentCard" style={{ textDecoration: 'none' }} to="/checkout">
+            {/* <Link className="paymentCard" style={{ textDecoration: 'none' }} to="/checkout">
                 Checkout
-            </Link>
+            </Link> */}
             </div>
 
                 <br/>
