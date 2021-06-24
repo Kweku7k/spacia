@@ -109,28 +109,21 @@ const StartBooking = () => {
                     <div class="col-md-2">
                         <DatePicker className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
                         
-                        </div>
-                    <div class="col-md-1">
+                    </div>
+
+                    <div style={{display:'flex', justifyContent:'space-between'}} class="col-md-4">
+                        <div>
                         <h6 style={price}>GHS1,200</h6>
                         <Range />
-                    </div>
-                    <div class="col-md-2">
-                        {/* <div style={inline}>
-                            <div style={iconLeft} >
-
-                            <FaPlus onClick={add} />
-                            </div>
-                            <h4 style={{paddingRight:10, paddingLeft:10, paddingTop:5, marginBottom:2 }} >{count}</h4>
-                            <div style={iconRight} >
-                            <FaMinus onClick={subtract} />
-                            </div>
-                        </div> */}
+                        </div>
+                    <div >
                         <QuantityCounter/>
                     </div>
-                    <div class="col-md-1">
+                    <div >
                         <Link to='/filterprops'>
                             <button className="button">Search</button>
                         </Link>
+                    </div>
                     </div>
                 </Row>
 

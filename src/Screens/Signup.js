@@ -29,7 +29,6 @@ const Signup = () => {
         position:'relative',
         left:'5vw',
         top:'5vh'
-
     }
 
     return (
