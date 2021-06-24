@@ -113,9 +113,9 @@ const StartBooking = () => {
                     </div>
 
                     <div style={{display:'flex', justifyContent:'space-between'}} class="col-md-4">
-                        <div>
+                        <div style={{width:100}}>
                         <h6 style={price}>GHS1,200</h6>
-                        <Slider min={0} max={20} defaultValue={3}/>
+                        <Slider min={0} max={20} defaultValue={3} />
                         </div>
                     <div >
                         <QuantityCounter/>

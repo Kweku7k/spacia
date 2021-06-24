@@ -13,7 +13,10 @@ import holder from '../img/Web/Spacia/thumb.png'
 import FormModal from '../components/NewPropertyModal'
 import FeedbackModal from '../components/FeedbackModall'
 import Filter from '../components/Filter'
-
+import DatePicker from "react-datepicker";
+import Slider, { Range } from 'rc-slider';
+import {Link} from 'react-router-dom'
+import QuantityCounter from '../components/QuantityCounter'
 <tr>
 <td>Photo</td> 
 <td>Property Info</td> 
@@ -33,6 +36,59 @@ const FilterProperties = () => {
     const [status, setStatus] = useState("Pending")
     const [price, setPrice] = useState('')
 
+    const sliderValue = (e) => {
+        console.log(e.value)
+        } 
+
+    const edit ={
+        backgroundColor:"transparent"
+    }
+
+    // const price = {
+    //     color:'grey',
+    //     fontWeight:'bold'
+    // }
+
+    const inline ={
+        display:'flex',
+        justifyContent:'space-evenly',
+        borderRadius: 5,
+        border: '1px solid #ECECEC',
+        // padding:5, 
+        verticalAlign:'middle'
+    }
+
+    const iconLeft ={
+        // padding:3
+        borderRight: '1px solid #ECECEC',
+        paddingRight: 10,
+        paddingTop: 4
+    }
+    const iconRight = {
+        // padding:3
+        borderLeft: '1px solid #ECECEC',
+        paddingLeft: 10,
+        paddingTop: 4
+    }
+
+    const bar ={
+        backgroundColor:'white',
+        padding: '1em',
+        borderRadius:10
+    }
+
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+
+
+    const [count, setCount] = useState(1);
+
+    const add = () => {
+        setCount(count + 1);
+    }
+    const subtract = () => {
+        setCount(count - 1);
+    }
 
     const [viewModal, setViewModal] = useState(false)
 
@@ -67,6 +123,11 @@ const FilterProperties = () => {
         setformModal(false)
     }
 
+    // jhdjhdkjsfkjnfkjnfsd
+
+    const Slider = require('rc-slider');
+    const createSliderWithTooltip = Slider.createSliderWithTooltip;
+    const Range = createSliderWithTooltip(Slider.Range);
     const onSubmit = (e)=> {
         e.preventDefault()
 
@@ -153,7 +214,39 @@ const FilterProperties = () => {
             Filter goes here 
             */}
             <Toast style={{width:'90%', padding:10, borderRadius:10, margin:'auto', marginBottom:10}}>
-                <Filter />
+                {/* <Filter /> */}
+                <Row>
+                    <div class="col-md-2">
+                        <input type="email" placeholder="Type of service" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="email" placeholder="Location" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
+                    </div>
+                    <div class="col-md-2">
+                        <DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />
+
+                    </div>
+                    <div class="col-md-2">
+
+                        <DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
+                        
+                    </div>
+
+                    <div style={{display:'flex', justifyContent:'space-between'}} class="col-md-4">
+                        <div>
+                        <h6 >GHS1,200</h6>
+                        <Slider min={0} max={20} defaultValue={3} value={80} onChange={(e) => (sliderValue)}/>
+                        </div>
+                    <div >
+                        <QuantityCounter/>
+                    </div>
+                    <div >
+                        <Link to='/filterprops'>
+                            <button className="button">Search</button>
+                        </Link>
+                    </div>
+                    </div>
+                </Row>
             </Toast>
             <div>
 
