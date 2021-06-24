@@ -24,14 +24,14 @@ const QuantityCounter = () => {
     const iconLeft ={
         // padding:3
         borderRight: '1px solid #ECECEC',
-        paddingRight: 10,
-        paddingTop: 4
+        padding: 10,
+        // paddingTop: 4
     }
     const iconRight = {
         // padding:3
         borderLeft: '1px solid #ECECEC',
-        paddingLeft: 10,
-        paddingTop: 4
+        padding: 10,
+        // paddingTop: 4
     }
 
 
@@ -41,7 +41,7 @@ const QuantityCounter = () => {
             <div style={iconLeft} >
             <FaMinus size={7} onClick={subtract} />
             </div>
-            <h6 style={{paddingRight:10, paddingLeft:10, paddingTop:5, marginBottom:2, fontSize:16 }} >{count}</h6>
+            <h6 style={{paddingRight:10, paddingLeft:10, paddingTop:13, marginBottom:2, fontSize:16 }} >{count}</h6>
             <div style={iconRight} >
             <FaPlus size={7} onClick={add} />
             </div>

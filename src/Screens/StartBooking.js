@@ -103,18 +103,19 @@ const StartBooking = () => {
                         <input type="email" placeholder="Location" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
                     </div>
                     <div class="col-md-2">
-                        <DatePicker className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />
+                        <DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />
 
                     </div>
                     <div class="col-md-2">
-                        <DatePicker className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
+
+                        <DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
                         
                     </div>
 
                     <div style={{display:'flex', justifyContent:'space-between'}} class="col-md-4">
                         <div>
                         <h6 style={price}>GHS1,200</h6>
-                        <Range />
+                        <Slider min={0} max={20} defaultValue={3}/>
                         </div>
                     <div >
                         <QuantityCounter/>
