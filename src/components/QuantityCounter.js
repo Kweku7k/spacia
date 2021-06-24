@@ -38,15 +38,14 @@ const QuantityCounter = () => {
     return (
         <>
         <div style={inline}>
-                            <div style={iconLeft} >
-
-                            <FaPlus onClick={add} />
-                            </div>
-                            <h4 style={{paddingRight:10, paddingLeft:10, paddingTop:5, marginBottom:2 }} >{count}</h4>
-                            <div style={iconRight} >
-                            <FaMinus onClick={subtract} />
-                            </div>
-                        </div>
+            <div style={iconLeft} >
+            <FaMinus size={7} onClick={subtract} />
+            </div>
+            <h6 style={{paddingRight:10, paddingLeft:10, paddingTop:5, marginBottom:2, fontSize:16 }} >{count}</h6>
+            <div style={iconRight} >
+            <FaPlus size={7} onClick={add} />
+            </div>
+        </div>
         </>
     )
 }

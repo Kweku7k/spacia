@@ -165,7 +165,7 @@ const EditBooking = () => {
    
    {/* Decline Changes Modal */}
     <InformationModal body="Are you sure you want to decline these changes" title="Title" isOpen={showDeclineModal} isClose={closeDeclineModal} onSubmit={openDeclineModalFeedback} acceptButton="Decline Changes" declineButton="Cancel">
-        <h4>Are you sure you want to decline these changes</h4>
+        <h6>Are you sure you want to decline these changes</h6>
     </InformationModal>
 
 

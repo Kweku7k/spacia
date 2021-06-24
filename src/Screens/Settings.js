@@ -18,7 +18,7 @@ const Settings = () => {
         <div >
              <div className="header">
                 <div style={{display:'flex', justifyContent:'space-between'}}>
-                    <h4>Settings</h4>         
+                    <h4><b>Settings</b></h4>         
                 </div>
             </div>
             <Container >

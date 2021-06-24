@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Table, Dropdown, Toast, Modal, Row } from 'react-bootstrap'
-import demo from '../img/Web/Spacia/Demo.png'
+import demo from '../img/Web/Spacia/Rectangle 66.png'
 import demo2 from '../img/Web/Spacia/Demo.png'
 import TableRow from '../components/TableRow'
 import prop2 from '../img/Web/Spacia/prop2.png'
@@ -34,7 +34,15 @@ const FilterProperties = () => {
     const [price, setPrice] = useState('')
 
 
-    
+    const [viewModal, setViewModal] = useState(false)
+
+    const showViewModal = () =>{
+        setViewModal(true)
+    }
+
+    const closeViewModal = () =>{
+        setViewModal(false)
+    }
 
     const openFormModal = ()  => {
         setformModal(true)  
@@ -144,8 +152,9 @@ const FilterProperties = () => {
             {/* 
             Filter goes here 
             */}
-
-            <Filter />
+            <Toast style={{width:'90%', padding:10, borderRadius:10, margin:'auto', marginBottom:10}}>
+                <Filter />
+            </Toast>
             <div>
 
             </div>
@@ -167,18 +176,20 @@ const FilterProperties = () => {
                     <TableRow onDelete={() => deleteModal(property.id)} image={demo} info={property.info} added={property.added} beds={property.beds} showers={property.baths} status='FOR RENT' price={property.price}></TableRow>
                     ))} */}
                     <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
-                    <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
+                    <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onView={showViewModal}></TableRow>
+
                     <TableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
             </Table>
 </Container>
-{/* 
-<Modal show="False" onHide="True" size="lg" >
+
+<Modal show={viewModal} onHide={closeViewModal} size="lg" >
        <div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>
-        <FaTimes />
+        <FaTimes onClick={showViewModal} />
        </div>
         <div style={{textAlign:'center', padding:30}}>
-            <h6 style={{fontSize:'small'}}>COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION</h6>
-            <img src={demo} alt="img" style={{width:'60%'}}/>
+            <h6 style={{fontSize:'small'}}><b>COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION</b></h6>
+            <br/>
+            <img src={demo} alt="img" style={{width:'40%'}}/>
             <div style={fit}>
                 <div>
                     <img src={holder} alt="placeholder" />
@@ -201,7 +212,7 @@ const FilterProperties = () => {
             </div>
             <div>
             <br/>
-                <Row>
+                <Row style={{paddingLeft:40,paddingRight:40}}>
                     <div className="col" style={{textAlign:'left'}}>
                         <h6 style={{color:'#066875', fontWeight:'bold'}}>FOR SALE <span style={{color:'#393939', fontWeight:'normal'}}>GHC 560,000</span></h6>
                         <h6>Description
@@ -213,12 +224,11 @@ const FilterProperties = () => {
                             </span>
                         </h6>
                     </div>
-                    <div className="col">
+                    <div className="col" style={{textAlign:'right'}}>
                         <button className="button">Add To Order</button>
                         <h6 style={{fontSize:'small', color:'#2B86FF'}}><FaLandmark /> Ashaley Botwe school junction</h6>
                     </div>
             <br/>
-
                 </Row>
             </div>
             <div className="description" style={{padding:10}}>
@@ -231,7 +241,8 @@ const FilterProperties = () => {
             </div>
         </div>
        
-        </Modal> */}
+        </Modal>
+
 
 {/* doneButton={() => deleteProperty()} */}
 <FormModal onSubmit={onSubmit} title="Add a new property" isOpen={formModal} isClose={closeFormModal} declineButton="Cancel" acceptButton="Change" info={info} setInfo={setInfo} status={status} setStatus={setStatus} beds={beds} setBeds={setBeds} price={price} setPrice={setPrice} baths={baths} setBaths={setBaths}/>

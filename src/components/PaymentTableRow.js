@@ -18,6 +18,8 @@ const PaymentTableRow = ({date, bank, account, status}) => {
         <tr>
             <td>{date}</td>            
             <td><div> <img src={bank} style={{marginRight:10}} alt="User"/>{account}</div></td>
+            <td><h6>Ghc 7000</h6></td>
+            <td><a>Invoice</a></td>
             <td><button className="user-admin" style={failed} >{status}</button></td>
         </tr>
         </>

@@ -33,13 +33,13 @@ const PropsRow = ({image, info, added, status, price, beds, showers, onDelete, o
 
     return (
             <tr style={{borderBottom:"1px dashed black"}} >
-                    <td><div class="form-check">
+                    <td style={tableCell}><div class="form-check">
                       <label class="form-check-label">
                         <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader"/>
                       </label>
                     </div></td>
-                    <td><img src={image} width={100} alt="demo"/></td>
-                    <td >
+                    <td style={tableCell}><img src={image} width={100} alt="demo"/></td>
+                    <td style={tableCell}>
                         <div>
                          <h6><b>Private Office</b></h6>
                          <br/>

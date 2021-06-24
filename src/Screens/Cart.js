@@ -14,7 +14,7 @@ import FormModal from '../components/NewPropertyModal'
 import FeedbackModal from '../components/FeedbackModall'
 import Filter from '../components/Filter'
 import PropsRow from '../components/PropsRow'
-
+import {Link} from 'react-router-dom'
 <tr>
 <td></td> 
 <td>Photo</td> 
@@ -124,13 +124,15 @@ const Properties = () => {
         <div>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
                 <div>
-                    <h4><b>Cart</b></h4>
+                    <h4><b>My Cart</b></h4>
                 </div>
                 <div style={{display:'flex', justifyContent:'space-between'}}>
                 <div style={{marginTop:'auto',marginDown:'auto'}}>
                 <h6><b>Total: GHS 1750</b></h6>
                 </div>
-                    <button class="button-yellow" style={{marginLeft:20, marginRight:20}} onClick={openFormModal}>Create Service Bundle</button>
+                <Link to="/checkout">
+                    <button class="button-yellow" style={{marginLeft:20, marginRight:20}} onClick={openFormModal}>Checkout</button>
+                </Link>
                     <button class="button" onClick={openFormModal}>Create Service Bundle</button>
 
                 </div>

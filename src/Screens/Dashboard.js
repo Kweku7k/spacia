@@ -20,7 +20,9 @@ const Dashboard = () => {
                     <Card title="Pending Properties" Icon={box} supportTitle="15" style={{color:'#2B86FF', fontWeight:'bold'}}/>   
                     <Card title="Favourites" Icon={heart} supportTitle="75" style={{color:'#066875', fontWeight:'bold'}}/>   
                     <Card title="Featured Properties" Icon={star} supportTitle="20" style={{color:'#D22129', fontWeight:'bold'}}/>   
-                    <Card style={{display:'hidden'}} title="Test One" supportTitle="Testing"/>   
+                    <div class="stripCard col-md-3" style={{border:'none'}} >
+                        
+                    </div>
                </Row>
             </Container> 
         </>

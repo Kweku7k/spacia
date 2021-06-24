@@ -124,9 +124,9 @@ const Properties = () => {
                 <div>
                     <h4><b>Properties</b></h4>
                 </div>
-                <div style={{display:'flex', justifyContent:'space-between'}}>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                <div style={{display:'flex'}}>
+                <form style={{width:'100%'}} class="form-inline my-2 my-lg-0">
+                    <input style={{width:'100%'}} class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                     </form>
                     <div class="dropdown" style={{margin:'auto 30px'}}>
                             <Dropdown>
@@ -143,15 +143,11 @@ const Properties = () => {
                             </Dropdown>
                     </div>
 
-                    <button class="button" onClick={openFormModal}>Add New Property </button>
+                    <button class="button" style={{width:'100%'}} onClick={openFormModal}>Add New Property </button>
 
                 </div>
             </div>
-            <div>
-
-            <Toast style={{width:'90%', padding:10, borderRadius:10, margin:'auto', marginBottom:10}}>
-                <Filter />
-            </Toast>
+            <div>            
             </div>
 
 <Container>

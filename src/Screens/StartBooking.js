@@ -14,6 +14,7 @@ import Filter from '../components/Filter'
 import 'rc-slider/assets/index.css';
 import "react-datepicker/dist/react-datepicker.css";
 import '../App.css';
+import QuantityCounter from '../components/QuantityCounter'
 
 const StartBooking = () => {
     //useState handling counter
@@ -38,7 +39,8 @@ const StartBooking = () => {
 
     const price = {
         color:'grey',
-        fontWeight:'bold'
+        fontWeight:'bold',
+        fontSize:10
     }
 
     const inline ={
@@ -74,7 +76,7 @@ const StartBooking = () => {
         <div>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
                 <div>
-                    <h4>Find a Space</h4>
+                    <h4><b>Find a Space</b></h4>
                 </div>
 {/* 
                 <form class="form-inline my-2 my-lg-0">
@@ -108,12 +110,12 @@ const StartBooking = () => {
                         <DatePicker className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
                         
                         </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <h6 style={price}>GHS1,200</h6>
                         <Range />
                     </div>
                     <div class="col-md-2">
-                        <div style={inline}>
+                        {/* <div style={inline}>
                             <div style={iconLeft} >
 
                             <FaPlus onClick={add} />
@@ -122,10 +124,11 @@ const StartBooking = () => {
                             <div style={iconRight} >
                             <FaMinus onClick={subtract} />
                             </div>
-                        </div>
+                        </div> */}
+                        <QuantityCounter/>
                     </div>
-                    <div class="col-md-2">
-                        <Link to='/booking'>
+                    <div class="col-md-1">
+                        <Link to='/filterprops'>
                             <button className="button">Search</button>
                         </Link>
                     </div>

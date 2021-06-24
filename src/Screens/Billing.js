@@ -71,6 +71,8 @@ const UserManagement = () => {
                     <tr className="tableUnderline">
                         <th>Date</th>
                         <th>Payment Account</th>
+                        <th>Amount</th>
+                        <th>Invoice</th>
                         <th>Status</th>
                     </tr>
                     
