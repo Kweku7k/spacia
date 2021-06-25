@@ -125,16 +125,15 @@ const Properties = () => {
                     <h4><b>Properties</b></h4>
                 </div>
                 <div style={{display:'flex'}}>
-                <form style={{width:'100%'}} class="form-inline my-2 my-lg-0">
-                    <input style={{width:'100%'}} class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                    </form>
+                <form class="form-inline my-2 my-xl-0" style={{width:"30vw"}}>
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                {/* <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
+                </form>
                     <div class="dropdown" style={{margin:'auto 30px'}}>
                             <Dropdown>
                             <Dropdown.Toggle style={{backgroundColor:'#ECECEC', border:'none', color:'#848484'}} variant="success" id="dropdown-basic">
                                 All Properties 
-
                             </Dropdown.Toggle>
-
                             <Dropdown.Menu>
                                 <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                                 <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
@@ -143,7 +142,7 @@ const Properties = () => {
                             </Dropdown>
                     </div>
 
-                    <button class="button" style={{width:'100%'}} onClick={openFormModal}>Add New Property </button>
+                    <button class="button" style={{width:'30%'}} onClick={openFormModal}>Add New Property </button>
 
                 </div>
             </div>
@@ -166,8 +165,8 @@ const Properties = () => {
                 {/* {properties.map((property) => (
                     <TableRow onDelete={() => deleteModal(property.id)} image={demo} info={property.info} added={property.added} beds={property.beds} showers={property.baths} status='FOR RENT' price={property.price}></TableRow>
                     ))} */}
-                    <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
-                    <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onView={showViewModal}></TableRow>
+                    <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onView={showViewModal}></TableRow>
+                    <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
                     <TableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
             </Table>
 </Container>

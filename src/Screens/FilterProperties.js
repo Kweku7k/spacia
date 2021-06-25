@@ -36,9 +36,6 @@ const FilterProperties = () => {
     const [status, setStatus] = useState("Pending")
     const [price, setPrice] = useState('')
 
-    const sliderValue = (e) => {
-        console.log(e.value)
-        } 
 
     const edit ={
         backgroundColor:"transparent"
@@ -125,9 +122,8 @@ const FilterProperties = () => {
 
     // jhdjhdkjsfkjnfkjnfsd
 
-    const Slider = require('rc-slider');
-    const createSliderWithTooltip = Slider.createSliderWithTooltip;
-    const Range = createSliderWithTooltip(Slider.Range);
+
+
     const onSubmit = (e)=> {
         e.preventDefault()
 
@@ -141,9 +137,6 @@ const FilterProperties = () => {
         const added = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         onAdd({ info, price, status, added, beds, baths })
         setInfo('')
-
-
-        
     }
 
     const [properties, setproperties] = useState([
@@ -175,6 +168,16 @@ const FilterProperties = () => {
         padding:20
     }
 
+
+    const [sliderValue, setSliderValue] = useState(0)
+
+
+    const handleChange = (e) => {
+        setSliderValue(e.target.value);
+        console.log(e.target.value)
+        // this.setState(obj);
+    }
+
     const [showDeleteModal, setshowDeleteModal] = useState(false)
     const deleteProperty = (id) =>{
         setproperties(properties.filter((property) => property.id !== id))
@@ -187,7 +190,7 @@ const FilterProperties = () => {
                     <h4><b>Properties</b></h4>
                 </div>
                 <div style={{display:'flex', justifyContent:'space-between'}}>
-                <form class="form-inline my-2 my-lg-0">
+                <form class="form-inline my-2 my-xl-0" style={{width:"30vw"}}>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                     </form>
                     <div class="dropdown" style={{margin:'auto 30px'}}>
@@ -234,8 +237,9 @@ const FilterProperties = () => {
 
                     <div style={{display:'flex', justifyContent:'space-between'}} class="col-md-4">
                         <div>
-                        <h6 >GHS1,200</h6>
-                        <Slider min={0} max={20} defaultValue={3} value={80} onChange={(e) => (sliderValue)}/>
+                        <h6 >GHS{sliderValue}000</h6>
+                        {/* <Slider min={0} max={20} defaultValue={sliderValue} value={80} onChange={(e) => (sliderValue)}/> */}
+                        <input type="range" min="1" max="10" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>
                         </div>
                     <div >
                         <QuantityCounter/>
