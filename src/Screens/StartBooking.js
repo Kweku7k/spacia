@@ -71,6 +71,15 @@ const StartBooking = () => {
         borderRadius:10
     }
 
+    const [sliderValue, setSliderValue] = useState(1)
+
+
+    const handleChange = (e) => {
+        setSliderValue(e.target.value);
+        console.log(e.target.value)
+        // this.setState(obj);
+    }
+
     const showBooking = false
     return (
         <div>
@@ -113,9 +122,14 @@ const StartBooking = () => {
                     </div>
 
                     <div style={{display:'flex', justifyContent:'space-between'}} class="col-md-4">
-                        <div style={{width:100}}>
+                        {/* <div style={{width:100}}>
                         <h6 style={price}>GHS1,200</h6>
                         <Slider min={0} max={20} defaultValue={3} />
+                        </div> */}
+                        <div>
+                        <h6 >GHS{sliderValue}000</h6>
+                        {/* <Slider min={0} max={20} defaultValue={sliderValue} value={80} onChange={(e) => (sliderValue)}/> */}
+                        <input type="range" min="1" max="10" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>
                         </div>
                     <div >
                         <QuantityCounter/>
