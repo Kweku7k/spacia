@@ -13,7 +13,7 @@ const Dashboard = () => {
     return (
         <>
            <Container>
-               <Header title="Dashboard" button="Add New Property" />
+               <Header title="Dashboard" />
                <Row style={{justifyContent:'space-evenly'}}>
                     <Card title="Total Properties" Icon={home} supportTitle="75" style={{color:'#02BD04', fontWeight:'bold'}}/>   
                     <Card title="Published Properties" Icon={file} supportTitle="20" style={{color:'#F99500', fontWeight:'bold'}}/>   
