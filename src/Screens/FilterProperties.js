@@ -339,7 +339,7 @@ const FilterProperties = () => {
                     <div className="col" style={{textAlign:'left'}}>
                         <h5 style={{color:'#066875', fontWeight:'bold'}}>FOR SALE <span style={{color:'#393939', fontWeight:'normal'}}>GHC 560,000</span></h5>
                         <br/>
-                        <h6 >Description
+                        <h6 ><b>Description</b>
                             <span style={{display:'flex'}}>
                                 <img src={bed} style={{ width:20, height:20, marginRight:10}} alt="bed"/>
                                 <h6>0</h6>
