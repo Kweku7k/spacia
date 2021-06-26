@@ -1,6 +1,6 @@
 import { FaHome, FaTachometerAlt, FaTimes, FaChevronRight, FaUsers, FaUser, FaFileInvoiceDollar, FaChartBar, FaCog, FaChevronDown, FaQuestionCircle } from 'react-icons/fa'
 import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 
@@ -19,6 +19,8 @@ import report from '../img/Web/Spacia/chart.png';
 
 // import dashboard from '../img/Web/Spacia/dashboard.png'
 
+
+
 const SideNav = () => {
     //setStates to handle dropdown
     const [open, setOpen] = useState(false);
@@ -31,6 +33,9 @@ const SideNav = () => {
     const closeToggle = () => {
         setOpen(false)
     }
+
+
+    const location = useLocation();
 
     const icon ={
         marginRight:10,
@@ -54,12 +59,14 @@ const SideNav = () => {
     return (
         <div className="sideNav col-md-2" >
 
-            <div className="navItem">
-                <img src={logo} width={100} alt="LOGO"/>
+            <div >
+                <img src={logo} width={100} style={{padding:10}}alt="LOGO"/>
+                <br/>
             </div>
             
             <Link className="link" to="/dashboard" onClick={closeToggle}>
-                <div className="navItem">
+                <div className={` ${location.pathname === "/dashboard" ? "navItem-active" : "navItem" }`}>
+                {/* {`banner ${active ? "active" : ""}`} */}
                     <div>
                         <img src={dash} alt="dashboard"/>
                     </div>
@@ -69,17 +76,35 @@ const SideNav = () => {
             </Link>
 
             <Link className="link" to="/properties" onClick={closeToggle}>
-                <div className="navItem">
-                    {/* <FaHome style={icon} /> */}
+                <div className={` ${location.pathname === "/properties" ? "navItem-active" : "navItem" }`}>
                     <div>
                     <img src={dashboard} alt="dashboard"/>
                     </div>
                     <h6 style={navItem}> Properties</h6>
-                </div>
+                </div> 
+                    
             </Link>
 
             <button style={{ background: 'none', border: 'none', padding: '0px', width: '100%' }} onClick={toggle}>
                 <Link className="link">
+                {location.pathname === ("/startBooking" || "/booking") ? (
+                    <div className="navItem-active" style={{ alignItems:'flex-end' }}>
+                        <div>
+                            <img src={profile} alt="dashboard"/>
+                        </div>
+                        <h6 style={navItem}> Booking</h6>
+                        {open && (
+                            <>
+                                <FaChevronDown style={{ marginLeft:'30px'}}/>
+                            </>
+                        )}
+                        {!open && (
+                            <>
+                                <FaChevronRight style={{ marginLeft:'30px'}}/>
+                            </>
+                        )}
+                    </div>
+                ):(
                     <div className="navItem" style={{ alignItems:'flex-end' }}>
                         <div>
                             <img src={profile} alt="dashboard"/>
@@ -96,6 +121,7 @@ const SideNav = () => {
                             </>
                         )}
                     </div>
+                )}
                 </Link>
             </button >
             {open && (
@@ -107,7 +133,7 @@ const SideNav = () => {
             )}
 
             <Link className="link" to="/users" onClick={closeToggle}>
-                <div className="navItem">
+                <div className={` ${location.pathname === "/users" ? "navItem-active" : "navItem" }`}>
                     <div>
                         <img src={users} alt="users" />
                     </div>
@@ -117,7 +143,7 @@ const SideNav = () => {
             </Link>
 
             <Link className="link" to="/billing" onClick={closeToggle}>
-                <div className="navItem">
+                <div className={` ${location.pathname === "/billing" ? "navItem-active" : "navItem" }`}>
                     <div>
                         <img src={bill} alt=""/>
                     </div>
@@ -126,7 +152,7 @@ const SideNav = () => {
                 </div>
             </Link>
 
-            <div className="navItem" onClick={closeToggle}>
+            <div className={` ${location.pathname === "/report" ? "navItem-active" : "navItem" }`} onClick={closeToggle}>
                 <div>
                     <img src={report} alt=""/>
                 </div>
@@ -135,8 +161,7 @@ const SideNav = () => {
             </div>
 
             <Link className="link" to="/settings" onClick={closeToggle}>
-                <div className="navItem">
-
+                <div className={` ${location.pathname === "/settings" ? "navItem-active" : "navItem" }`}>
                     <div>
                         <img src={settings} alt="settings" />
                     </div>

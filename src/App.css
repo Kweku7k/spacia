@@ -271,6 +271,16 @@ tr:nth-child(odd) {
 	margin: auto;
 	/* justify-content: center; */
 }
+.navItem-active {
+	/* background-color:red ; */
+	padding: 20px;
+	color: white;
+	font-weight: bold;
+	border-left: 3px solid #f85a47;
+	display: flex;
+	margin: auto;
+	/* justify-content: center; */
+}
 
 .tableUnderline {
 	border-bottom: #343434;

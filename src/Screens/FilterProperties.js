@@ -3,6 +3,7 @@ import { Container, Table, Dropdown, Toast, Modal, Row } from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Rectangle 66.png'
 import demo2 from '../img/Web/Spacia/Demo.png'
 import TableRow from '../components/TableRow'
+import FilterTableRow from '../components/FilterTableRow'
 import prop2 from '../img/Web/Spacia/prop2.png'
 import prop3 from '../img/Web/Spacia/prop3.png'
 import {FaCaretDown, FaLandmark, FaTimes} from 'react-icons/fa'
@@ -24,15 +25,6 @@ import home4 from '../img/homes/home4.jpeg'
 import home5 from '../img/homes/home5.jpeg'
 import home6 from '../img/homes/home6.jpeg' 
 import home7 from '../img/homes/home6.jpeg'
-
-<tr>
-<td>Photo</td> 
-<td>Property Info</td> 
-<td>Added on</td> 
-<td>Property Status</td> 
-<td>Status</td> 
-<td>Price</td> 
-</tr>
 
 const FilterProperties = () => {
     const [formModal, setformModal] = useState(false)
@@ -295,9 +287,9 @@ const FilterProperties = () => {
                 {/* {properties.map((property) => (
                     <TableRow onDelete={() => deleteModal(property.id)} image={demo} info={property.info} added={property.added} beds={property.beds} showers={property.baths} status='FOR RENT' price={property.price}></TableRow>
                     ))} */}
-                    <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
-                    <TableRow image={home1} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onClick={showViewModal} onView={showViewModal}></TableRow>
-                    <TableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
+                    <FilterTableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></FilterTableRow>
+                    <FilterTableRow image={home1} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onClick={showViewModal} onView={showViewModal}></FilterTableRow>
+                    <FilterTableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></FilterTableRow>
             </Table>
 </Container>
 

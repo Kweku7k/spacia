@@ -7,7 +7,7 @@ import '../css/Table.css'
 
 {/* <TableRow info="Some Text" Added='February 20th' Status='Availble' Price='Ghc30'></TableRow> */}
 
-const TableRow = ({image, info, added, status, price, beds, showers, onDelete, onEditProperty, onView}) => {
+const FilterTableRow = ({image, info, added, status, price, beds, showers, onDelete, onEditProperty, onView}) => {
 
     const available = {
         backgroundColor:'#02BD04', 
@@ -50,17 +50,10 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
                             <b>Ghc {price} / month</b>
                             <br/>
                             <div style={{display:'flex', marginTop:20}}>
-                  
+                            
                             <div onClick={onView} style={{display:'flex', cursor:'pointer', color:'grey', margin:"auto"}}>
+                                {/* <br/> */}
                             <FaEye style={{margin:'auto'}}/><h6 style={{margin:0}}> View</h6>
-                            </div>
-                            
-                            <div onClick={onEditProperty} style={{display:'flex', cursor:'pointer', color:'grey', margin:"auto"}}>
-                            <FaEdit style={{margin:'auto'}}/><h6 style={{margin:0}}> Edit</h6>
-                            </div>
-                            
-                            <div onClick={onDelete} style={{display:'flex', cursor:'pointer', color:'grey', margin:"auto"}}>
-                            <FaTimes style={{margin:'auto'}}/><h6 style={{margin:0}}> Delete</h6>
                             </div>
                             
                             {/* <div onClick={onEditProperty} style={{display:'flex', cursor:'pointer', paddingRight:10, paddingLeft:10,color:'grey'}}>
@@ -73,13 +66,13 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
                             <FaTimes /><h6>Delete</h6>
                             </div> */}
 
+                            
                             </div>
-                            </div>
-
+                        </div>
                     </td>
                 </tr>
 
     )
 }
 
-export default TableRow
+export default FilterTableRow
