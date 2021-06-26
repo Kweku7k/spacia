@@ -127,9 +127,9 @@ const StartBooking = () => {
                         <Slider min={0} max={20} defaultValue={3} />
                         </div> */}
                         <div>
-                        <h6 >GHS{sliderValue}000</h6>
+                        <h6 class="text-muted" style={{fontSize:10}}>GHS{sliderValue}000</h6>
                         {/* <Slider min={0} max={20} defaultValue={sliderValue} value={80} onChange={(e) => (sliderValue)}/> */}
-                        <input type="range" min="1" max="10" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>
+                        <input type="range" min="100" max="10000" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>
                         </div>
                     <div >
                         <QuantityCounter/>

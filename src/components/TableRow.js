@@ -26,7 +26,7 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
         paddingTop:10
     }
     return (
-            <tr style={{borderBottom:"1px dashed black"}} >
+            <tr onClick={onView} style={{borderBottom:"1px dashed black"}} >
                     <td><img src={image} width={100} alt="demo"/></td>
                     <td style={{width:200}}>
                         <div>
@@ -51,13 +51,13 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
                             <br/>
                             <div style={{display:'flex', marginTop:20}}>
                             
-                            <div onClick={onView} style={{display:'flex', cursor:'pointer', color:'grey'}}>
-                                <br/>
-                            <FaEye /><h6>View</h6>
+                            <div onClick={onView} style={{display:'flex', cursor:'pointer', color:'grey', margin:"auto"}}>
+                                {/* <br/> */}
+                            <FaEye style={{margin:'auto'}}/><h6 style={{margin:0}}> View</h6>
 
                             </div>
                             
-                            <div onClick={onEditProperty} style={{display:'flex', cursor:'pointer', paddingRight:10, paddingLeft:10,color:'grey'}}>
+                            {/* <div onClick={onEditProperty} style={{display:'flex', cursor:'pointer', paddingRight:10, paddingLeft:10,color:'grey'}}>
                                 <br/>
                             <FaEdit /><h6>Edit</h6>
                             </div>
@@ -65,7 +65,7 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
                             <div onClick={onDelete} style={{display:'flex', cursor:'pointer', color:'grey'}}>
                                 <br/>
                             <FaTimes /><h6>Delete</h6>
-                            </div>
+                            </div> */}
 
                             
                             </div>

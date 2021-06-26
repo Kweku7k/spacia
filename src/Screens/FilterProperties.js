@@ -17,6 +17,14 @@ import DatePicker from "react-datepicker";
 import Slider, { Range } from 'rc-slider';
 import {Link} from 'react-router-dom'
 import QuantityCounter from '../components/QuantityCounter'
+import home1 from '../img/homes/home1.jpeg'
+import home2 from '../img/homes/home2.jpeg'
+import home3 from '../img/homes/home3.jpeg'
+import home4 from '../img/homes/home4.jpeg'
+import home5 from '../img/homes/home5.jpeg'
+import home6 from '../img/homes/home6.jpeg' 
+import home7 from '../img/homes/home6.jpeg'
+
 <tr>
 <td>Photo</td> 
 <td>Property Info</td> 
@@ -40,7 +48,10 @@ const FilterProperties = () => {
     const edit ={
         backgroundColor:"transparent"
     }
-
+ 
+    const imgholder = {
+        width:'90%'
+    }
     // const price = {
     //     color:'grey',
     //     fontWeight:'bold'
@@ -74,9 +85,12 @@ const FilterProperties = () => {
         borderRadius:10
     }
 
+
+
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
+    const [image, setImage] = useState(home1)
 
     const [count, setCount] = useState(1);
 
@@ -87,9 +101,16 @@ const FilterProperties = () => {
         setCount(count - 1);
     }
 
+
+    const changeImage = (e) => {
+        // const temp = e.target.value
+        console.log(e.target.src)
+        setImage(e.target.src)
+    }
     const [viewModal, setViewModal] = useState(false)
 
     const showViewModal = () =>{
+        console.log("Clicked")
         setViewModal(true)
     }
 
@@ -187,7 +208,7 @@ const FilterProperties = () => {
         <div>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
                 <div>
-                    <h4><b>Properties</b></h4>
+                    <h4><b>Search Results</b></h4>
                 </div>
                 <div style={{display:'flex', justifyContent:'space-between'}}>
                 <form class="form-inline my-2 my-xl-0" style={{width:"30vw"}}>
@@ -208,7 +229,7 @@ const FilterProperties = () => {
                             </Dropdown>
                     </div>
 
-                    <button class="button" onClick={openFormModal}>Add New Property </button>
+                    {/* <button class="button" onClick={openFormModal}>Add New Property </button> */}
 
                 </div>
             </div>
@@ -239,7 +260,7 @@ const FilterProperties = () => {
                         <div>
                         <h6 >GHS{sliderValue}000</h6>
                         {/* <Slider min={0} max={20} defaultValue={sliderValue} value={80} onChange={(e) => (sliderValue)}/> */}
-                        <input type="range" min="1" max="10" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>
+                        <input type="range" min="1" max="10" color="red" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>
                         </div>
                     <div >
                         <QuantityCounter/>
@@ -273,46 +294,50 @@ const FilterProperties = () => {
                     <TableRow onDelete={() => deleteModal(property.id)} image={demo} info={property.info} added={property.added} beds={property.beds} showers={property.baths} status='FOR RENT' price={property.price}></TableRow>
                     ))} */}
                     <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
-                    <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onView={showViewModal}></TableRow>
-
+                    <TableRow image={home1} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onClick={showViewModal} onView={showViewModal}></TableRow>
                     <TableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
             </Table>
 </Container>
 
+
+{/* View Property Modal  */}
+
+
 <Modal show={viewModal} onHide={closeViewModal} size="lg" >
        <div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>
-        <FaTimes onClick={showViewModal} />
+        <FaTimes onClick={closeViewModal} />
        </div>
         <div style={{textAlign:'center', padding:30}}>
-            <h6 style={{fontSize:'small'}}><b>COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION</b></h6>
+            <h6><b>COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION</b></h6>
             <br/>
-            <img src={demo} alt="img" style={{width:'40%'}}/>
+            <img src={image} alt="img" style={{width:'40%'}}/>
             <div style={fit}>
                 <div>
-                    <img src={holder} alt="placeholder" />
+                    <img onClick={changeImage} src={home1} style={imgholder} alt="placeholder" />
                 </div>
                 <div>
-                    <img src={imgplaceholder} alt="placeholder" />
+                    <img onClick={changeImage} src={home2} style={imgholder} alt="placeholder" />
                 </div>
                 <div>
-                    <img src={imgplaceholder} alt="placeholder" />
+                    <img onClick={changeImage} src={home3} style={imgholder} alt="placeholder" />
                 </div>
                 <div>
-                    <img src={imgplaceholder} alt="placeholder" />
+                    <img onClick={changeImage} src={home4} style={imgholder} alt="placeholder" />
                 </div>
                 <div>
-                    <img src={imgplaceholder} alt="placeholder" />
+                    <img onClick={changeImage} src={home5} style={imgholder} alt="placeholder" />
                 </div>
                 <div>
-                    <img src={imgplaceholder} alt="placeholder" />
+                    <img onClick={changeImage} src={home6} style={imgholder} alt="placeholder" />
                 </div>
             </div>
             <div>
             <br/>
                 <Row style={{paddingLeft:40,paddingRight:40}}>
                     <div className="col" style={{textAlign:'left'}}>
-                        <h6 style={{color:'#066875', fontWeight:'bold'}}>FOR SALE <span style={{color:'#393939', fontWeight:'normal'}}>GHC 560,000</span></h6>
-                        <h6>Description
+                        <h5 style={{color:'#066875', fontWeight:'bold'}}>FOR SALE <span style={{color:'#393939', fontWeight:'normal'}}>GHC 560,000</span></h5>
+                        <br/>
+                        <h6 >Description
                             <span style={{display:'flex'}}>
                                 <img src={bed} style={{ width:20, height:20, marginRight:10}} alt="bed"/>
                                 <h6>0</h6>
@@ -322,15 +347,16 @@ const FilterProperties = () => {
                         </h6>
                     </div>
                     <div className="col" style={{textAlign:'right'}}>
-                        <button className="button">Add To Order</button>
-                        <h6 style={{fontSize:'small', color:'#2B86FF'}}><FaLandmark /> Ashaley Botwe school junction</h6>
+                        <button className="button" style={{width:200}} onClick={closeViewModal} >Add To Cart</button>
+                        <br/>
+                        <h6 style={{fontSize:'small', color:'#2B86FF', marginTop:10}}><FaLandmark /> Ashaley Botwe school junction</h6>
                     </div>
-            <br/>
+                    <br/>
                 </Row>
             </div>
             <div className="description" style={{padding:10}}>
 
-                <h6 style={{fontSize:'small', textAlign:'left', }} className="text-muted">
+                <h6 style={{fontSize:'small', textAlign:'left', lineHeight:2 }} className="text-muted">
 
             Just steps away from QM2 express bus to Manhattan and local buses; only minutes from the LIRR. Walking distance to the Bay Terrace Shopping Center, Baybridge Commons Shopping Center, pool clubs, movie theaters and tennis courts. 1.5 blocks away from elementary school PS 169 and Bell Academy middle school in the award-winning District 25. Don’t miss this opportunity!
                 </h6>
