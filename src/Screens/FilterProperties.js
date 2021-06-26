@@ -252,15 +252,17 @@ const FilterProperties = () => {
                     </div>
                     <div class="col-md-2">
 
-                        <DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
+                        <DatePicker style={{fontSize:100}} showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
                         
                     </div>
 
                     <div style={{display:'flex', justifyContent:'space-between'}} class="col-md-4">
                         <div>
-                        <h6 >GHS{sliderValue}000</h6>
+                        <h6 class="text-muted" style={{fontSize:10}}>GHS{sliderValue}000</h6>
+
                         {/* <Slider min={0} max={20} defaultValue={sliderValue} value={80} onChange={(e) => (sliderValue)}/> */}
-                        <input type="range" min="1" max="10" color="red" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>
+                        <input type="range" min="100" max="10000" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>
+
                         </div>
                     <div >
                         <QuantityCounter/>
