@@ -13,6 +13,13 @@ import holder from '../img/Web/Spacia/thumb.png'
 import FormModal from '../components/NewPropertyModal'
 import FeedbackModal from '../components/FeedbackModall'
 import Filter from '../components/Filter'
+import home1 from '../img/homes/home1.jpeg'
+import home2 from '../img/homes/home2.jpeg'
+import home3 from '../img/homes/home3.jpeg'
+import home4 from '../img/homes/home4.jpeg'
+import home5 from '../img/homes/home5.jpeg'
+import home6 from '../img/homes/home6.jpeg' 
+import home7 from '../img/homes/home6.jpeg'
 
 <tr>
 <td>Photo</td> 
@@ -82,6 +89,17 @@ const Properties = () => {
 
 
         
+    }
+    const imgholder = {
+        width:'90%'
+    }
+    const [image, setImage] = useState(home1)
+
+
+    const changeImage = (e) => {
+        // const temp = e.target.value
+        console.log(e.target.src)
+        setImage(e.target.src)
     }
 
     const [properties, setproperties] = useState([
@@ -171,39 +189,43 @@ const Properties = () => {
             </Table>
 </Container>
 
+
+
 <Modal show={viewModal} onHide={closeViewModal} size="lg" >
        <div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>
-        <FaTimes onClick={showViewModal} />
+        <FaTimes onClick={closeViewModal} />
        </div>
         <div style={{textAlign:'center', padding:30}}>
-            <h6 style={{fontSize:'small'}}>COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION</h6>
-            <img src={demo} alt="img" style={{width:'60%'}}/>
+            <h6><b>COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION</b></h6>
+            <br/>
+            <img src={image} alt="img" style={{width:'40%'}}/>
             <div style={fit}>
                 <div>
-                    <img src={holder} alt="placeholder" />
+                    <img onClick={changeImage} src={home1} style={imgholder} alt="placeholder" />
                 </div>
                 <div>
-                    <img src={imgplaceholder} alt="placeholder" />
+                    <img onClick={changeImage} src={home2} style={imgholder} alt="placeholder" />
                 </div>
                 <div>
-                    <img src={imgplaceholder} alt="placeholder" />
+                    <img onClick={changeImage} src={home3} style={imgholder} alt="placeholder" />
                 </div>
                 <div>
-                    <img src={imgplaceholder} alt="placeholder" />
+                    <img onClick={changeImage} src={home4} style={imgholder} alt="placeholder" />
                 </div>
                 <div>
-                    <img src={imgplaceholder} alt="placeholder" />
+                    <img onClick={changeImage} src={home5} style={imgholder} alt="placeholder" />
                 </div>
                 <div>
-                    <img src={imgplaceholder} alt="placeholder" />
+                    <img onClick={changeImage} src={home6} style={imgholder} alt="placeholder" />
                 </div>
             </div>
             <div>
             <br/>
                 <Row style={{paddingLeft:40,paddingRight:40}}>
                     <div className="col" style={{textAlign:'left'}}>
-                        <h6 style={{color:'#066875', fontWeight:'bold'}}>FOR SALE <span style={{color:'#393939', fontWeight:'normal'}}>GHC 560,000</span></h6>
-                        <h6>Description
+                        <h5 style={{color:'#066875', fontWeight:'bold'}}>FOR SALE <span style={{color:'#393939', fontWeight:'normal'}}>GHC 560,000</span></h5>
+                        <br/>
+                        <h6 ><b>Description</b>
                             <span style={{display:'flex'}}>
                                 <img src={bed} style={{ width:20, height:20, marginRight:10}} alt="bed"/>
                                 <h6>0</h6>
@@ -213,16 +235,16 @@ const Properties = () => {
                         </h6>
                     </div>
                     <div className="col" style={{textAlign:'right'}}>
-                        <button className="button">Add To Order</button>
-                        <h6 style={{fontSize:'small', color:'#2B86FF'}}><FaLandmark /> Ashaley Botwe school junction</h6>
+                        <button className="button" style={{width:200}} onClick={closeViewModal} >Add To Cart</button>
+                        <br/>
+                        <h6 style={{fontSize:'small', color:'#2B86FF', marginTop:10}}><FaLandmark /> Ashaley Botwe school junction</h6>
                     </div>
-            <br/>
+                    <br/>
                 </Row>
-
             </div>
             <div className="description" style={{padding:10}}>
 
-                <h6 style={{fontSize:'small', textAlign:'left', }} className="text-muted">
+                <h6 style={{fontSize:'small', textAlign:'left', lineHeight:2 }} className="text-muted">
 
             Just steps away from QM2 express bus to Manhattan and local buses; only minutes from the LIRR. Walking distance to the Bay Terrace Shopping Center, Baybridge Commons Shopping Center, pool clubs, movie theaters and tennis courts. 1.5 blocks away from elementary school PS 169 and Bell Academy middle school in the award-winning District 25. Don’t miss this opportunity!
                 </h6>
@@ -231,6 +253,7 @@ const Properties = () => {
         </div>
        
         </Modal>
+
 
 {/* doneButton={() => deleteProperty()} */}
 <FormModal onSubmit={onSubmit} title="Add a new property" isOpen={formModal} isClose={closeFormModal} declineButton="Cancel" acceptButton="Change" info={info} setInfo={setInfo} status={status} setStatus={setStatus} beds={beds} setBeds={setBeds} price={price} setPrice={setPrice} baths={baths} setBaths={setBaths}/>
