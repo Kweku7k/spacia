@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'ProximaBold';
+    src: local('ProximaBold'),
+         url('../fonts/ProximaNova-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'ProximaRegular';
+    src: local('ProximaRegular'),
+         url('../fonts/ProximaNova-Regular.woff') format('woff');
+}
+
+/* 
+@font-face {
+    font-family: 'CustomFont2Name':
+    src: local('CustomFont2Name'),
+         url('./fonts/CustomFont2Name.woff') format('woff'),
+         url('./fonts/CustomFont2Name.woff2') format('woff2');
+} */

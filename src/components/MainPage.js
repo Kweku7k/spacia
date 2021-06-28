@@ -29,7 +29,7 @@ const MainPage = (props) => {
         <Router>
         <div class="row" style={{backgroundColor:'#F9F9F9'}}>
         <SideNav/>
-            <Nav>
+            <Nav >
                 <Switch>
                     <Route path="/dashboard">
                         <Dashboard />

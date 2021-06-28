@@ -1,15 +1,22 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { FaCaretDown, FaBell } from 'react-icons/fa'
 import profile from '../img/Web/Spacia/navbar/Mask.png'
 import bellIcon from '../img/Web/Spacia/settings/navbar/bell 1.png'
 import cartIcon from '../img/Web/Spacia/cart 3.png'
+import activeCartIcon from '../img/Web/Spacia/activeCart.png'
 import {Link} from 'react-router-dom'
 // /Users/kweku/Documents/Projects/ReactProjects/spacia/src/img/Web/Spacia/settings/navbar/bell.png
-const Nav = (props) => {
+const Nav = ({children}) => {
 
     const username = "Nana Kweku" 
     // const userPicture = "Nana Kweku"
-
+    // const cart = true
+    const [cart, setcart] = useState(false)
+    
+    const onAddToCart = () => {
+        console.log("Added To Cart")
+        setcart (true)
+    }
     return (
         // <div style={{display:"flex", flexDirection:'row-reverse', padding:10, backgroundColor:"grey", color:'white' }}>
         //     {/* <img src={userPicture}  /> */}
@@ -26,7 +33,12 @@ const Nav = (props) => {
     <img src={profile} alt="img" style={{ width:30, height:30, borderRadius:'50%', marginRight:10 }} />
     <Link to ="/cart">
    <div style={{marginRight:40}}>
-    <img src={cartIcon} alt="bell"/>
+       {cart ? 
+       (
+           <img src={activeCartIcon} alt="bell"/>
+           ):(
+               <img src={cartIcon} alt="bell"/>
+       )}
    </div>
   </Link>
    <div style={{marginRight:40}} >
@@ -34,7 +46,7 @@ const Nav = (props) => {
    </div>
 </div>
 
-{props.children}
+{children}
 </div>
     )
 }

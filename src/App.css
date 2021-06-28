@@ -1,6 +1,9 @@
+@import '../src/css/font.css';
+
 body {
-	font-family: "Lato", sans-serif;
+	font-family: ProximaRegular;
 }
+
 
 .bg {
 	background-image: url("./img/Web/Spacia/settings/payment/bookingbg.png");
@@ -226,7 +229,7 @@ input[type="range"]::-moz-range-progress {
 }
 
 td {
-	font-family: "Lato", sans-serif;
+	font-family: ProximaRegular;
 	vertical-align: middle;
 	padding-top: 0;
 }

@@ -55,7 +55,6 @@ const FilterTableRow = ({image, info, added, status, price, beds, showers, onDel
                                 {/* <br/> */}
                             <FaEye style={{margin:'auto'}}/><h6 style={{margin:0}}> View</h6>
                             </div>
-                            
                             {/* <div onClick={onEditProperty} style={{display:'flex', cursor:'pointer', paddingRight:10, paddingLeft:10,color:'grey'}}>
                                 <br/>
                             <FaEdit /><h6>Edit</h6>

@@ -26,7 +26,8 @@ import home5 from '../img/homes/home5.jpeg'
 import home6 from '../img/homes/home6.jpeg' 
 import home7 from '../img/homes/home6.jpeg'
 
-const FilterProperties = () => {
+
+const FilterProperties = (onAddToCart) => {
     const [formModal, setformModal] = useState(false)
     // Form Values
     const [beds, setBeds] = useState("")
@@ -288,7 +289,7 @@ const FilterProperties = () => {
                     <TableRow onDelete={() => deleteModal(property.id)} image={demo} info={property.info} added={property.added} beds={property.beds} showers={property.baths} status='FOR RENT' price={property.price}></TableRow>
                     ))} */}
                     <FilterTableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></FilterTableRow>
-                    <FilterTableRow image={home1} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onClick={showViewModal} onView={showViewModal}></FilterTableRow>
+                    <FilterTableRow image={home1} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onClick={showViewModal} onView={showViewModal} onAddToCart={onAddToCart}></FilterTableRow>
                     <FilterTableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></FilterTableRow>
             </Table>
 </Container>

@@ -66,7 +66,6 @@ const SideNav = () => {
             
             <Link className="link" to="/dashboard" onClick={closeToggle}>
                 <div className={` ${location.pathname === "/dashboard" ? "navItem-active" : "navItem" }`}>
-                {/* {`banner ${active ? "active" : ""}`} */}
                     <div>
                         <img src={dash} alt="dashboard"/>
                     </div>
