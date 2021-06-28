@@ -2,6 +2,23 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This is an nom project, run with
+`npm start`
+
+`Routing`
+The Structure for this project is 
+
+`Main Page`
+This holds the side Nav and the nav bar
+
+`Side Nav`
+Most routing can be found here
+
+`Nav`
+This is the main page. It has a childrens prop that allows the different pages to render.
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
