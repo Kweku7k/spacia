@@ -153,9 +153,9 @@ const StartBooking = () => {
             </Container>
             
 
-<Modal style={newModal}>
+{/* <Modal style={newModal}>
     <h4>Welcome</h4>
-</Modal>
+</Modal> */}
         </div>
     )
 }
