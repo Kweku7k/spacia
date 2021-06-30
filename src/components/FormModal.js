@@ -19,7 +19,7 @@ function FormModal({ declineButton,acceptButton,body,title, isOpen, isClose, onS
        </div>
        {/* <h4 style={{padding:10}}>{title}</h4> */}
         {/* <Modal.Body> */} 
-        <div style={{textAlign:'center', padding:30}}>
+        <div style={{textAlign:'center', padding:30, paddingTop:10}}>
         <div style={{textAlign:'left'}}>
             <img src={imageHolder} alt="imae"/>
         </div>
@@ -54,7 +54,7 @@ function FormModal({ declineButton,acceptButton,body,title, isOpen, isClose, onS
         </div>
         {/* </Modal.Body> */}
         {/* <Modal.Footer> */}
-        <div style={{display:'flex', justifyContent:'space-evenly', padding:10}} >
+        <div style={{display:'flex', justifyContent:'space-evenly', padding:10, paddingBottom:30}} >
             <button onClick={isClose} className="button-calm">{declineButton}</button>
             <button onClick={onSubmit} className="button">{acceptButton}</button>
         </div>

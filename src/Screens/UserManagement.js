@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Table, Toast, Button, Row, Modal } from 'react-bootstrap'
-import { FaCaretDown, FaEllipsisH, FaImage } from 'react-icons/fa'
+import { FaCaretDown, FaTimes, FaEllipsisH, FaImage } from 'react-icons/fa'
 import Search from '../components/Search'
 import UserTableRow from '../components/UserTableRow'
 import img from '../img/Web/Spacia/Ellipse.png'
@@ -19,6 +19,10 @@ import InformationModal from "../components/informationModal";
 import FeedBackModal from "../components/feedbackModal";
 import FormModal from "../components/FormModal";
 import FeedbackModall from '../components/FeedbackModall'
+ 
+import { InputTags } from 'react-bootstrap-tagsinput'
+import 'react-bootstrap-tagsinput/dist/index.css'
+ 
 
 const UserManagement = () => {
     // Functions
@@ -118,6 +122,8 @@ const UserManagement = () => {
     const [confirmUserAddition, setConfirmUserAddition] = useState(false);
     // const [loaded, setLoaded] = useState(false);
     
+    const [state, setState] = useState([])
+
     // Functions to toggle Invite User Modal
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -187,6 +193,28 @@ const UserManagement = () => {
         </Table>
     </Toast>
 
+    {/* <div style={{ margin: 10 }}>
+      <div className='input-group'>
+        <InputTags values={state} onTags={(value) => setState(value.values)} />
+        <button
+          className='btn btn-outline-secondary'
+          type='button'
+          data-testid='button-clearAll'
+          onClick={() => {
+            setState([])
+          }}
+        >
+          Delete all
+        </button>
+      </div>
+      <hr />
+      <ol>
+        {state.map((item, index) => (
+          <li key={item + index}>{item}</li>
+        ))}
+      </ol>
+    </div> */}
+
     <Toast style={{width:'100%', padding:20}}>
         <div style={{display:'flex', justifyContent:'space-between'}}>
             <Search />
@@ -222,29 +250,47 @@ Launch demo modal
 
 {/* Invite User */}
 
-<Modal show={show} onHide={handleClose}>
-<Modal.Header closeButton>
-<Modal.Title>Edit User</Modal.Title>
-</Modal.Header>
-<Modal.Body>
-{/* <h6>Text</h6> */}
-<div class="form-group">
-<label for="">Email</label>
-<input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="" />
+<Modal size="lg" show={show} aria-labelledby="contained-modal-title-vcenter" centered onHide={handleClose}>
+<div class="form-group" style={{padding:20}}>
+<div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>
+        <FaTimes />
+        <h6 style={{marginRight:'auto'}}><b>Invite New Users</b></h6>
+       </div>
+<label for="" style={{fontSize:14}} class="text-muted">Email Address</label>
+
+<div style={{  background:'white',  }}>
+      <div style={{margin:0, background:'#DDDDDD'}} className='input-group'>
+        <InputTags style={{backgroundColor:'white'}} values={state} onTags={(value) => setState(value.values)} />
+        {/* <button
+          className='btn btn-outline-secondary'
+          type='button'
+          data-testid='button-clearAll'
+          onClick={() => {
+            setState([])
+          }}
+        >
+          Delete all
+        </button> */}
+      </div>
+    </div>
+
+
 <br/>
- <label for="">Role</label>
+ <label style={{fontSize:14}} class="text-muted" for="">Role</label>
  <select class="form-control" name="" id="">
    <option>Admin</option>
    <option>Employee</option>
    <option>Approver</option>
  </select>
 
-<small id="emailHelpId" class="form-text text-muted">Help text</small>
-</div>
-</Modal.Body>
-<Modal.Footer>
+<br/>
+<div>
+
 <button onClick={handleClose} className="button">Invite User</button>
-</Modal.Footer>
+</div>
+</div>
+{/* </Modal.Body> */}
+
 </Modal>
 
 {/* Delete User */}
