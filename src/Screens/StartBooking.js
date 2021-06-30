@@ -15,7 +15,8 @@ import 'rc-slider/assets/index.css';
 import "react-datepicker/dist/react-datepicker.css";
 import '../App.css';
 import QuantityCounter from '../components/QuantityCounter'
-
+import { Modal } from 'bootstrap'
+import bg from '../img/Web/Spacia/Web/Spacia/nastuh-abootalebi-eHD8Y1Znfpk-unsplash 1.png'
 const StartBooking = () => {
     //useState handling counter
     const [count, setCount] = useState(1);
@@ -32,6 +33,9 @@ const StartBooking = () => {
         setCount(count - 1);
     }
 
+    const newModal = {
+        backgroundImage:`url(${bg})` 
+    }
 
     const edit ={
         backgroundColor:"transparent"
@@ -149,7 +153,9 @@ const StartBooking = () => {
             </Container>
             
 
-
+<Modal style={newModal}>
+    <h4>Welcome</h4>
+</Modal>
         </div>
     )
 }

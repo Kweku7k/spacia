@@ -4,7 +4,7 @@ import bg from '../img/spacia/web/Background.png'
 import logo from '../img/spacia/web/logo.png'
 import googleLogo from '../img/Web/Spacia/spacia/web/google 1.png'
 import {Link} from 'react-router-dom'
-const Signup = () => {
+const SignIn = () => {
 
 
     const bgImage = {
@@ -73,36 +73,37 @@ const Signup = () => {
                         <br/>
                         <div class="form-group">
                           <label for="">Email</label>
+                          <input type="email" class="form-control" placeholder="Eg. lindaantwi@gmail.com" name="" id="" aria-describedby="emailHelpId" />
+                        </div>
+                        <br/>
 
-                            <input type="email" class="form-control" placeholder="Eg. lindaantwi@gmail.com" name="" id="" aria-describedby="emailHelpId" />
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                          <label for="">Phone Number</label>
-                          <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="+233" />
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                          <label for="">Password</label>
-                          <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="" />
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                          <label for="">Confirm Password</label>
-                          <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="" />
-                        </div>
-                        <br/>
+                        {/* Functions */}
+                        <div style={{display:'flex', justifyContent:'space-between'}}>
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="" id="" value="checkedValue"/><h6 style={{fontSize:'smaller'}}> I agree to the Terms of Conditions and Privacy Policy</h6>
+                                <input style={{marginTop:0}} class="form-check-input" type="checkbox" name="" id="" value="checkedValue"/><h6 style={{fontSize:'smaller'}}> Remember Me</h6>
                             </label>
                         </div>
-                        <Link to="/signin">
-
-                        <div style={{margin:'auto', textAlign:'center'}}>
-                        <button className="button" style={{width:'100%'}}>Activate Account</button>
+                            
+                            <a href={{}}>
+                                <h6  style={{fontSize:'smaller'}}>
+                                    Forgot Password
+                                </h6>
+                            </a>
                         </div>
+
+                        <br/>
+                        <br/>
+
+                        <Link to="/startbooking">
+                            <div style={{margin:'auto', textAlign:'center'}}>
+                            <button className="button" style={{width:'100%', margin:'auto'}}>Sign in</button>
+                            </div>
                         </Link>
+                        <br/>
+                        <h6 class="text-muted">Do no have an account? <span><Link to="/signup" style={{color:'blue',fontSize:'smaller'}}>Sign Up</Link></span></h6>
+                        
+                        
                     </Container>
                 </div>
             {/* </div> */}
@@ -110,4 +111,4 @@ const Signup = () => {
     )
 }
 
-export default Signup
+export default SignIn
