@@ -118,7 +118,6 @@ const UserManagement = () => {
     const [confirmUserAddition, setConfirmUserAddition] = useState(false);
     // const [loaded, setLoaded] = useState(false);
     
-    
     // Functions to toggle Invite User Modal
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -225,7 +224,7 @@ Launch demo modal
 
 <Modal show={show} onHide={handleClose}>
 <Modal.Header closeButton>
-<Modal.Title>Invite New Users</Modal.Title>
+<Modal.Title>Edit User</Modal.Title>
 </Modal.Header>
 <Modal.Body>
 {/* <h6>Text</h6> */}
@@ -253,9 +252,9 @@ Launch demo modal
     <Modal.Header closeButton>
     <Modal.Title>Delete</Modal.Title>
     </Modal.Header>
-    <Modal.Body> */}
-{/* <h6>Text</h6> */}
-    {/* <h6>Are you sure you want to delete this user</h6>
+    <Modal.Body>
+<h6>Text</h6>
+    <h6>Are you sure you want to delete this user</h6>
     </Modal.Body>
     <Modal.Footer>
     <button onClick={handleDeleteClose} className="button-calm">Cancel</button>
@@ -263,24 +262,21 @@ Launch demo modal
     </Modal.Footer>
     </Modal> */}
 
-<FormModal title="Invite New Users" isOpen={editShow} isClose={handleEditClose} onSubmit={confirmUserOpen} acceptButton="Update User" declineButton="Cancel" name={name} phone={phone} email={email} setName={setName} />
+<FormModal title="Edit User" isOpen={editShow} isClose={handleEditClose} onSubmit={confirmUserOpen} acceptButton="Update User" declineButton="Cancel" name={name} phone={phone} email={email} setName={setName} />
 
 
 <FeedbackModall title="Confirm User Addition" isOpen={confirmUserAddition} isClose={confirmUserClose} doneButton="Done">
     <img src={check} alt="check"/>
-        <h6 style={{paddingTop:10}}>This user has been deleted</h6>
-
+        <h6 style={{paddingTop:10}}>This user has been added</h6>
 </FeedbackModall>
 
 <InformationModal title="Confirm Deletion" isOpen={deleteshow} isClose={handleDeleteClose} onSubmit={confirmDeleteOpen} acceptButton="Delete User" declineButton="Cancel">
     <h6>Are you sure you want to delete this User</h6>
 </InformationModal>
 
-
 <FeedbackModall isOpen={confirmDelete} isClose={confirmDeleteClose} doneButton="Okay">
         <img src={check} alt="check"/>
         <h6 style={{paddingTop:10}}>This user has been deleted</h6>
-
 </FeedbackModall>
 
 

@@ -14,9 +14,11 @@ import Filter from '../components/Filter'
 import 'rc-slider/assets/index.css';
 import "react-datepicker/dist/react-datepicker.css";
 import '../App.css';
+import DateTimePicker from 'react-datetime-picker'
 import QuantityCounter from '../components/QuantityCounter'
 import { Modal } from 'bootstrap'
 import bg from '../img/Web/Spacia/Web/Spacia/nastuh-abootalebi-eHD8Y1Znfpk-unsplash 1.png'
+import '../css/datetime.css';
 const StartBooking = () => {
     //useState handling counter
     const [count, setCount] = useState(1);
@@ -75,8 +77,14 @@ const StartBooking = () => {
         borderRadius:10
     }
 
-    const [sliderValue, setSliderValue] = useState(1)
+    const input = {
+        // fontSize:'0.5rem',
+        width:'50%'
+    }
 
+    const [sliderValue, setSliderValue] = useState(0)
+
+    const [value, onChange] = useState(new Date());
 
     const handleChange = (e) => {
         setSliderValue(e.target.value);
@@ -109,36 +117,34 @@ const StartBooking = () => {
             {/* <Slider /> */}
             
                 <Row>
-                    <div class="col-md-2">
-                        <input type="email" placeholder="Type of service" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
-                    </div>
-                    <div class="col-md-2">
-                        <input type="email" placeholder="Location" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
-                    </div>
-                    <div class="col-md-2">
-                        <DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />
+                    <div style={{display:'flex'}}>
+                    <input type="email" style={{width:'15%', marginRight:20}} placeholder="Type of service" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
 
+                    <input type="email" style={{width:'10%', marginRight:20}} placeholder="Location" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
+                    <div style={{width:'100%', marginRight:20}}>
+                        <DatePicker  showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />
                     </div>
-                    <div class="col-md-2">
-
+                    <div style={{width:'100%', marginRight:20}}>
+                        {/* <DateTimePicker style={{fontSize:20}} onChange={onChange} value={value}  /> */}
                         <DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
-                        
                     </div>
+                        
 
-                    <div style={{display:'flex', justifyContent:'space-between'}} class="col-md-4">
+
+                    {/* <div style={{display:'flex', justifyContent:'space-between'}} class="col-md-4"> */}
                         {/* <div style={{width:100}}>
                         <h6 style={price}>GHS1,200</h6>
                         <Slider min={0} max={20} defaultValue={3} />
                         </div> */}
-                        <div>
-                        <h6 class="text-muted" style={{fontSize:10}}>GHS{sliderValue}000</h6>
+                        <div style={{width:'50%'}}>
+                        <h6 class="text-muted" style={{fontSize:10}}>GHS{sliderValue}</h6>
                         {/* <Slider min={0} max={20} defaultValue={sliderValue} value={80} onChange={(e) => (sliderValue)}/> */}
-                        <input type="range" min="100" max="10000" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>
+                        <input type="range" min="0" max="10000" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>
                         </div>
-                    <div >
+                    {/* <div > */}
                         <QuantityCounter/>
-                    </div>
-                    <div >
+                    {/* </div> */}
+                    <div style={{marginLeft:10}}>
                         <Link to='/filterprops'>
                             <button className="button">Search</button>
                         </Link>

@@ -60,7 +60,7 @@ const SideNav = () => {
         <div className="sideNav col-md-2" >
 
             <div >
-                <img src={logo} width={100} style={{padding:10}}alt="LOGO"/>
+                <img src={logo} width={120} style={{margin:35, marginBottom:10}}alt="LOGO"/>
                 <br/>
             </div>
             

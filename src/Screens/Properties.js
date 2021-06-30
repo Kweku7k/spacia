@@ -148,8 +148,8 @@ const Properties = () => {
                 {/* <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
                 </form>
                     <div class="dropdown" style={{margin:'auto 30px'}}>
-                            <Dropdown>
-                            <Dropdown.Toggle style={{backgroundColor:'#ECECEC', border:'none', color:'#848484'}} variant="success" id="dropdown-basic">
+                            <Dropdown >
+                            <Dropdown.Toggle style={{backgroundColor:'#ECECEC', border:'none', color:'#848484'}} >
                                 All Properties 
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
@@ -164,8 +164,6 @@ const Properties = () => {
 
                 </div>
             </div>
-            <div>            
-            </div>
 
 <Container>
             <Table>
@@ -175,7 +173,7 @@ const Properties = () => {
                    <td>Added on</td> 
                    <td>Property Status</td> 
                    <td>Status</td> 
-                   <td>Price</td> 
+                   <td style={{textAlign:'right', paddingRight:20}}>Price</td> 
                 </tr>
 
 
@@ -183,13 +181,11 @@ const Properties = () => {
                 {/* {properties.map((property) => (
                     <TableRow onDelete={() => deleteModal(property.id)} image={demo} info={property.info} added={property.added} beds={property.beds} showers={property.baths} status='FOR RENT' price={property.price}></TableRow>
                     ))} */}
-                    <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onView={showViewModal}></TableRow>
-                    <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
-                    <TableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></TableRow>
+                    <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="2" showers='25 sq ft' status='FOR RENT' price="600" onView={showViewModal}></TableRow>
+                    <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='25 sq ft' status='FOR RENT' price="600"></TableRow>
+                    <TableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='25 sq ft' status='FOR RENT' price="600"></TableRow>
             </Table>
 </Container>
-
-
 
 <Modal show={viewModal} onHide={closeViewModal} size="lg" >
        <div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>

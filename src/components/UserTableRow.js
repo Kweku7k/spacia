@@ -32,7 +32,7 @@ const edit={
     backgroundColor: 'transparent',
     display:'flex',
     paddingLeft:0,
-    color:'black',
+    color:'transparent',
 
 }
 
@@ -44,11 +44,12 @@ const edit={
             <td>{email}</td>
 
             <td>
+            <h6 style={{color:'#02BD04', fontWeight:'bold'}}>Active</h6>
+
                 {/* Tenary conditional statement */}
                 {/* <div className={`banner ${active ? "active" : ""}`}>{children}</div> */}
-                       <Dropdown>
+                       {/* <Dropdown>
                         <Dropdown.Toggle style={edit} id="dropdown-basic">
-                                <h6 style={{color:'#02BD04', fontWeight:'bold'}}>Active</h6>
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
@@ -57,21 +58,16 @@ const edit={
                             <Dropdown.Item href="#/action-3">Disable</Dropdown.Item>
                             <Dropdown.Item href="#/action-3">Reset Password</Dropdown.Item>
                         </Dropdown.Menu>
-                        </Dropdown> 
+                        </Dropdown>  */}
             </td>
             
             <td><button style={style}>{role}</button></td>
+            
             <td>
-                <h6 style={{color:'#2B86FF', textDecoration:'none'}} href="#" onClick={onEdit}>Edit</h6>
-            </td>
-            <td>
-                <div>
+            
 
-        <FaEllipsisH color="black"/>
-                </div>
-
-            {/* <Dropdown>
-  <Dropdown.Toggle variant="success" style={edit} id="dropdown-basic">
+            <Dropdown>
+  <Dropdown.Toggle color="red" style={edit}>
         <FaEllipsisH color="black"/>
   </Dropdown.Toggle>
 
@@ -81,7 +77,7 @@ const edit={
     <Dropdown.Item href="#/action-3">Disable</Dropdown.Item>
     <Dropdown.Item href="#/action-3">Reset Password</Dropdown.Item>
   </Dropdown.Menu>
-</Dropdown> */}
+</Dropdown>
             </td>
         </tr>
         </>

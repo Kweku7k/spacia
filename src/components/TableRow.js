@@ -1,9 +1,12 @@
 import React from 'react'
 import bed from '../img/Web/Spacia/bed.png'
+import homeicon from '../img/Web/Spacia/Homedd.png'
 import bathtub from '../img/Web/Spacia/bathtub.png'
-import { FaEdit, FaEye, FaTimes } from 'react-icons/fa'
+import view from '../img/Web/Spacia/view.png'
+import { FaEdit, FaEye, FaHome, FaPencilAlt, FaRegEye, FaTimes, FaUser } from 'react-icons/fa'
 import {Row} from 'react-bootstrap'
 import '../css/Table.css'
+
 
 {/* <TableRow info="Some Text" Added='February 20th' Status='Availble' Price='Ghc30'></TableRow> */}
 
@@ -23,44 +26,58 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
 
     const tableCell = {
         verticalAlign:'top',
-        paddingTop:10
+        paddingTop:12,
+        color:'#737373'
     }
     return (
             <tr onClick={onView} style={{borderBottom:"1px dashed black"}} >
-                    <td><img src={image} width={100} alt="demo"/></td>
-                    <td style={{width:200}}>
+                    <td style={{tableCell}}><img src={image} width={100} alt="demo"/></td>
+                    <td style={{width:200,verticalAlign:'top',paddingTop:10, color:'#737373'}}>
                         <div>
                             <h6 style={{fontSize:'small'}}>
                         {info} 
                             </h6>
                             <br/>
                             <div style={{display:'flex'}}>
-                            <img src={bed} style={{ width:20, height:20}} alt="bed"></img>
+                            {/* <img src={bed} style={{ width:20, height:20}} alt="bed"></img> */}
+                            <FaHome color="grey" />
                             <h6 style={{paddingLeft:20, paddingRight:20}}>{showers}</h6>
-                            <img src={bathtub} style={{ width:20, height:20}} alt="bathtub"></img>
+                            {/* <img src={homeicon}  alt="bathtub"></img> */}
+                            <FaUser color="grey"/>
                             <h6 style={{paddingLeft:20, paddingRight:20}}>{beds}</h6>
                             </div>
                         </div>
                         </td>
                     <td style={tableCell}>{added}</td>
-                    <td style={tableCell}><b>{status}</b></td>
-                    <td style={tableCell}><button style={available}>AVAILABLE</button></td>
-                    <td style={tableCell}>
-                        <div>
+                    <td style={{verticalAlign:'top', paddingTop:12, color:'black', fontSize:15}}><b>{status}</b></td>
+                    <td style={{verticalAlign:'top',
+        paddingTop:17, }}><button style={available}>AVAILABLE</button></td>
+                    <td style={{verticalAlign:'top', paddingTop:5}}>
+                        <div style={{textAlign:'right'}}>
                             <b>Ghc {price} / month</b>
                             <br/>
-                            <div style={{display:'flex', marginTop:20}}>
-                  
-                            <div onClick={onView} style={{display:'flex', cursor:'pointer', color:'grey', margin:"auto"}}>
-                            <FaEye style={{margin:'auto'}}/><h6 style={{margin:0}}> View</h6>
+                            <br/>
+                            {/* <br/> */}
+
+
+                            <div style={{display:'flex', marginTop:30}}>
+                            {/* <FaRegEye/> */}
+                            {/* <div onClick={onView} style={{display:'flex', cursor:'pointer', color:'grey', margin:"auto"}}>
+                            <div>
+                                <img src={{view}} alt="view"/><h6 style={{margin:0}}> View</h6>
                             </div>
+                            </div> */}
                             
+                            <div onClick={onView} style={{display:'flex', cursor:'pointer', color:'grey', margin:"auto"}}>
+                            <FaRegEye color="black" style={{margin:'auto'}}/><h6 style={{margin:0, paddingLeft:5}}> View</h6>
+                            </div>
+
                             <div onClick={onEditProperty} style={{display:'flex', cursor:'pointer', color:'grey', margin:"auto"}}>
-                            <FaEdit style={{margin:'auto'}}/><h6 style={{margin:0}}> Edit</h6>
+                            <FaPencilAlt color="black" style={{margin:'auto'}}/><h6 style={{margin:0, paddingLeft:5}}> Edit</h6>
                             </div>
                             
                             <div onClick={onDelete} style={{display:'flex', cursor:'pointer', color:'grey', margin:"auto"}}>
-                            <FaTimes style={{margin:'auto'}}/><h6 style={{margin:0}}> Delete</h6>
+                            <FaTimes color="black" style={{margin:'auto'}}/><h6 style={{margin:0, paddingLeft:5}}> Delete</h6>
                             </div>
                             
                             {/* <div onClick={onEditProperty} style={{display:'flex', cursor:'pointer', paddingRight:10, paddingLeft:10,color:'grey'}}>
