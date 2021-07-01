@@ -154,8 +154,42 @@ const UserManagement = () => {
         setConfirmUserAddition(true);
         setEditShow(!editShow);   
     }
+
+
+    // Functions to toggle disable user
+    // const confirmDisableUser = () => setDisableModal(false);
+
+    const confirmDisableUser = () => {
+        setConfirmDisableModal(true)
+        setDisableModal(false);   
+    }
     
+    const [disableModal, setDisableModal] = useState(false)
+    const [confirmDisableModal,setConfirmDisableModal] = useState(false)
+
+    const handleDisableUser = () => {
+        console.log("Here")
+        setDisableModal(true)
+    }
+
     const loaded = true;
+
+
+    // Reset Password
+
+    const [resetPasswordModal, setResetPasswordModal] = useState(false)
+    const [confirmResetPasswordModal, setConfirmResetPasswordModal] = useState(false)
+
+
+    const closeResetPasswordModal = () =>{
+        setResetPasswordModal(false)
+
+    }
+
+    const confirmResetPassword = () =>{
+        setResetPasswordModal(false)
+        setConfirmResetPasswordModal(true)
+    }
 
     return (
     <div>
@@ -235,7 +269,7 @@ const UserManagement = () => {
                 <th>Action</th>
             </tr>
 
-            <UserTableRow profile={peter} name="Floyd Miles" email="petergriffin@gmail.com" status="Active" statusStyle={inactive} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} />
+            <UserTableRow profile={peter} name="Floyd Miles" email="petergriffin@gmail.com" status="Active" statusStyle={inactive} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} onDisable={() => handleDisableUser()} onReset={() => setResetPasswordModal(true)} />
           <UserTableRow profile={img} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} />
             <UserTableRow profile={profile3} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} />
 
@@ -315,6 +349,30 @@ Launch demo modal
     <img src={check} alt="check"/>
         <h6 style={{paddingTop:10}}>This user has been added</h6>
 </FeedbackModall>
+
+
+{/* Disable User */}
+<InformationModal title="Confirm Disable" isOpen={disableModal} isClose={handleDisableUser } onSubmit={confirmDisableUser} acceptButton="Disable User" declineButton="Cancel">
+    <h6>Are you sure you want to disbale this User</h6>
+</InformationModal>
+
+<FeedbackModall isOpen={confirmDisableModal} isClose={() => setConfirmDisableModal(false)} doneButton="Okay">
+        <img src={check} alt="check"/>
+        <h6 style={{paddingTop:10}}>This user has been deleted</h6>
+</FeedbackModall>
+{/* End of Disable User */}
+
+{/* Reset Password */}
+<InformationModal title="Confirm Disable" isOpen={resetPasswordModal} isClose={closeResetPasswordModal } onSubmit={confirmResetPassword} acceptButton="Reset Password" declineButton="Cancel">
+    <h6>Are you sure you want to reset password for this user</h6>
+</InformationModal>
+
+<FeedbackModall isOpen={confirmResetPasswordModal} isClose={() => setConfirmResetPasswordModal(false)} doneButton="Okay" >
+        <img src={check} alt="check"/>
+        <h6 style={{paddingTop:10}}>This user recieved a reset password link</h6>
+</FeedbackModall>
+{/* End of Reset Password */}
+
 
 <InformationModal title="Confirm Deletion" isOpen={deleteshow} isClose={handleDeleteClose} onSubmit={confirmDeleteOpen} acceptButton="Delete User" declineButton="Cancel">
     <h6>Are you sure you want to delete this User</h6>

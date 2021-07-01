@@ -16,9 +16,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import '../App.css';
 import DateTimePicker from 'react-datetime-picker'
 import QuantityCounter from '../components/QuantityCounter'
-import { Modal } from 'bootstrap'
+import { Modal } from 'react-bootstrap'
 import bg from '../img/Web/Spacia/Web/Spacia/nastuh-abootalebi-eHD8Y1Znfpk-unsplash 1.png'
 import '../css/datetime.css';
+import calendar from '../img/Web/Spacia/calendar-2 9.png'
 const StartBooking = () => {
     //useState handling counter
     const [count, setCount] = useState(1);
@@ -27,6 +28,10 @@ const StartBooking = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
+
+    const closeModal = () => {
+        console.log('Yep')
+    }
     //function to add and subtract counter
     const add = () => {
         setCount(count + 1);
@@ -93,6 +98,7 @@ const StartBooking = () => {
     }
 
     const showBooking = false
+
     return (
         <div>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
@@ -121,8 +127,8 @@ const StartBooking = () => {
                     <input type="email" style={{width:'15%', marginRight:20}} placeholder="Type of service" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
 
                     <input type="email" style={{width:'10%', marginRight:20}} placeholder="Location" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
-                    <div style={{width:'100%', marginRight:20}}>
-                        <DatePicker  showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />
+                    <div style={{width:'100%', marginRight:20, padding:0}}>
+                        <DatePicker style={{height:'100%',width:'100%', marginRight:20, padding:10 }}  showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />
                     </div>
                     <div style={{width:'100%', marginRight:20}}>
                         {/* <DateTimePicker style={{fontSize:20}} onChange={onChange} value={value}  /> */}
@@ -159,9 +165,17 @@ const StartBooking = () => {
             </Container>
             
 
-{/* <Modal style={newModal}>
-    <h4>Welcome</h4>
-</Modal> */}
+<Modal show={false} onClose={closeModal} centered size='lg' style={newModal}>
+    <h4 style={{textAlign:'center'}}>Find The Perfect Space</h4>
+
+    <div style={{display:'flex'}}>
+        {/* <img src={calendar} /> */}
+<h6>Want to find a space on SPACIA?</h6>
+<button>
+    
+</button>
+    </div>
+</Modal>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Row} from 'react-bootstrap'
 
-const CardPaymentTab = () => {
+const MomoPaymentTab = () => {
     return (
         <>
              <Row>
@@ -34,4 +34,4 @@ const CardPaymentTab = () => {
     )
 }
 
-export default CardPaymentTab
+export default MomoPaymentTab

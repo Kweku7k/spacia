@@ -8,10 +8,8 @@ const Password = () => {
             <div class="form-group">
               <label for="">Current Password</label>
               <input type="password" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="" />
-              <small id="emailHelpId" class="form-text text-muted">Help text</small>
             </div>
-            <br/>
-            <h6><a href="#">Reset my password</a></h6>
+
             <br/>
             <div class="form-group">
               <label for="">New Password</label>
@@ -25,7 +23,7 @@ const Password = () => {
               {/* <small id="emailHelpId" class="form-text text-muted">Help text</small> */}
             </div>
             <br/>
-            <button className="button">Save</button>
+            <button className="button">Reset My Password</button>
         </div>
     )
 }

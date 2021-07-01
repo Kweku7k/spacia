@@ -6,7 +6,7 @@ import CardPaymentTab from '../CardPaymentTab'
 import MomoPaymentTab from '../MomoPaymentTab'
 // import Checkout from "./Checkout";
 
-const CardPayment = () => {
+const MomoPayment = () => {
     return (
         <div>
             <div className="strip">
@@ -14,18 +14,17 @@ const CardPayment = () => {
             <br />
             </div>
             <div className='flexStrip'>
+            <Link style={{textDecoration:'transparent'}}  to="/settings/payment">
 
-            <div style={{width:170}} className="paymentCard-active">
+            <div style={{width:170}} className="paymentCard">
                 <FaCreditCard style={{marginRight:10}} />
                 <h6 style={{marginBottom:0}}>Card</h6>
             </div>
-            <Link style={{textDecoration:'transparent'}}  to="/settings/momopayment">
-
-            <button style={{width:200}} className="paymentCard">
+            </Link>
+            <button style={{width:200}} className="paymentCard-active">
                 <FaMobileAlt style={{marginRight:10}} />
                 <h6 style={{marginBottom:0}}>Mobile Money</h6>
             </button>
-            </Link>
             {/* <Link className="paymentCard" style={{ textDecoration: 'none' }} to="/checkout">
                 Checkout
             </Link> */}
@@ -33,10 +32,10 @@ const CardPayment = () => {
 
                 <br/>
                 {/*  */}
-           <CardPaymentTab />
-            {/* <MomoPaymentTab/> */}
+           {/* <CardPaymentTab /> */}
+            <MomoPaymentTab/>
         </div>
     )
 }
 
-export default CardPayment
+export default MomoPayment

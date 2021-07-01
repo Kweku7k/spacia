@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Row, Toast } from 'react-bootstrap'
 import { FaBell, FaCamera, FaCaretSquareDown, FaCreditCard, FaShieldAlt } from 'react-icons/fa'
 import CardPayment from '../components/Settings/CardPayment'
+import MomoPayment from '../components/Settings/MomoPayment.js'
 import Notifications from '../components/Settings/Notifications'
 import Profile from '../components/Settings/Profile'
 import Password from '../components/Settings/Password'
@@ -67,6 +68,9 @@ const Settings = () => {
                 </Route>
                 <Route path="/settings/payment">
                     <CardPayment />
+                </Route>
+                <Route path="/settings/momopayment">
+                    <MomoPayment />
                 </Route>
                 <Route path="/settings/security">
                     <Password />

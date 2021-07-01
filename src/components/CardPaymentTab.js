@@ -40,7 +40,8 @@ const CardPaymentTab = () => {
               {/* <small id="emailHelpId" class="form-text text-muted">Help text</small> */}
             </div>
             </Row>
-            <button className="button">Update</button>
+            <br/>
+            <button className="button">Save</button>
 
         </>
     )
