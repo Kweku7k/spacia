@@ -20,6 +20,7 @@ import AddedProperties from '../Screens/AddedProperties'
 import Checkout from "../components/Settings/Checkout";
 import Cart from "../Screens/Cart"
 import FilterProperties from '../Screens/FilterProperties'
+import ListProperty from '../Screens/ListProperty'
 
 // /Users/kweku/Documents/Projects/ReactProjects/spacia/src/img/Web/Spacia/settings/navbar/bell.png
 const Nav = () => {
@@ -96,6 +97,9 @@ const Nav = () => {
                     </Route>
                     <Route path="/filterprops">
                         <FilterProperties />
+                    </Route>
+                    <Route path="/listproperty">
+                        <ListProperty />
                     </Route>
                 </Switch>
 </div>

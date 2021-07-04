@@ -82,6 +82,8 @@ html {
 	color: white;
 }
 
+
+
 .button {
 	background-color: #f85a47;
 	border-radius: 5px;
@@ -120,6 +122,13 @@ html {
 	justify-content: space-between;
 	padding: 10px;
 }
+
+.selectCard{
+	background-color:#F1F1F1;
+    padding:20px;
+    border-radius:5px;
+}
+
 
 .active {
 	font-weight: bold;
