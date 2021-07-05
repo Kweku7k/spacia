@@ -1,12 +1,41 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import { Container, Row } from 'react-bootstrap'
 import bg from '../img/spacia/web/Background.png'
 import logo from '../img/spacia/web/logo.png'
 import googleLogo from '../img/Web/Spacia/spacia/web/google 1.png'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 const Signup = () => {
 
 
+    const localurl = 'https://spacia.page/users/api/v1/users'
+    useEffect(() => {
+        axios.post(localurl,
+            {
+                "avatar": "https://www.google.com?avatar.jpg",
+                "companyId": 1,
+                "confirmPassword": "12345",
+                "contacts": [{
+                    "isContactable": true,
+                    "isPrimary": true,
+                    "type": "mobile",
+                    "value": "+233545917791"
+                  }],
+                "firstName": "Kwamw",
+                "lastName": "Lynx1",
+                "password": "12345",
+                "role": "admin",
+                "username": "nanakwame.akorful65@gmail.com"
+              }
+
+
+        )
+        .then(res=>(console.log(res)))
+        .catch(err=>(console.log(err))
+        )
+        console.log(localurl)
+        
+    }, [localurl])
     const bgImage = {
         width:'100vw',
         height:'100vh',
@@ -46,6 +75,11 @@ const Signup = () => {
         backgroundColor:'white'
     }
 
+    const submitSignup = (e) =>{
+        e.preventDefault()
+
+        
+    }
     return (
         <Row style={bgImage}>
             {/* <div > */}
@@ -100,7 +134,7 @@ const Signup = () => {
                         <Link to="/signin">
 
                         <div style={{margin:'auto', textAlign:'center'}}>
-                        <button className="button" style={{width:'100%'}}>Activate Account</button>
+                        <button onClick={submitSignup} className="button" style={{width:'100%'}}>Activate Account</button>
                         </div>
                         </Link>
                     </Container>
