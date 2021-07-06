@@ -12,7 +12,7 @@ const Workspace = () => {
 
                 <h6 className="flatText">Type of Workspace</h6>
                 <div className="selectCard">
-                    <h6 className="flatText">Serviced</h6>
+                    <h6 className="flatText">Airport Shuttle</h6>
                 
                     <Dropdown>
                 <Dropdown.Toggle style={{backgroundColor:'transparent', border:'none'}} id="dropdown-basic">
@@ -20,8 +20,9 @@ const Workspace = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-2">Serviced</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Hotel</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Airport Shuttle</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Car Rentals</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Car Hire</Dropdown.Item>
                 </Dropdown.Menu>
                 </Dropdown>
                 </div>

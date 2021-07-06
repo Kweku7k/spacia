@@ -20,7 +20,7 @@ const Workspace = () => {
     
                 </div>
                 <div className="selectCard">
-                    <h6 className="flatText">Courage</h6>
+                    <h6 className="flatText">Concierge</h6>
                 </div>
                 </div>
 

@@ -9,6 +9,7 @@ import HotDesk from '../components/ListProperties/HotDesk'
 import Meeting from '../components/ListProperties/Meetings'
 import TypeProps from '../components/ListProperties/TypeProp'
 import TypeOfProps from '../components/ListProperties/TypeOfProp'
+import TypeOfPropertyC from '../components/ListProperties/TypePropertyC'
 const ListProperty = () => {
 
     const url = 'https://60e22fca5a5596001730f32d.mockapi.io/homes'
@@ -78,7 +79,7 @@ const ListProperty = () => {
             <Header title="List a Property" />
             <Container>
 
-                    <TypeOfProps/>
+                    <TypeOfPropertyC/>
 
             </Container>
 
