@@ -11,7 +11,7 @@ RUN npm run build --production
 
 RUN npm install -g serve
 
-EXPOSE 3000
+EXPOSE 9106
 
 CMD ["serve", "-s", "build"]
 
