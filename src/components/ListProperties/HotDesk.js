@@ -12,7 +12,7 @@ const Workspace = () => {
 
                 <h6 className="flatText">Type of Workspace</h6>
                 <div className="selectCard">
-                    <h6 className="flatText">Private Office</h6>
+                    <h6 className="flatText">Hot Desk</h6>
                 
                     <Dropdown>
                 <Dropdown.Toggle style={{backgroundColor:'transparent', border:'none'}} id="dropdown-basic">
@@ -34,7 +34,7 @@ const Workspace = () => {
 
                 <h6 className="flatText">Additional Specification</h6>
                 <div className="selectCard">
-                    <h6 className="flatText">Serviced</h6>
+                    <h6 className="flatText">Hot Hour</h6>
                 
                     <Dropdown>
                 <Dropdown.Toggle style={{backgroundColor:'transparent', border:'none'}} id="dropdown-basic">
@@ -42,17 +42,18 @@ const Workspace = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-2">Serviced</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Finished</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Unfinished</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Hot Hour</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Hot Day</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Week</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Month</Dropdown.Item>
                 </Dropdown.Menu>
                 </Dropdown>
                 </div>
                 </div>
 
 
-
                 <button className="ListPropBtn">Continue</button>
+
 
             </Interactive>
         </div>
