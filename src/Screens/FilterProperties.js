@@ -361,6 +361,10 @@ const FilterProperties = (onAddToCart) => {
        
         </Modal>
 
+    <Modal show='true'>
+<h4>Show Modal</h4>
+    </Modal>
+
 
 {/* doneButton={() => deleteProperty()} */}
 <FormModal onSubmit={onSubmit} title="Add a new property" isOpen={formModal} isClose={closeFormModal} declineButton="Cancel" acceptButton="Change" info={info} setInfo={setInfo} status={status} setStatus={setStatus} beds={beds} setBeds={setBeds} price={price} setPrice={setPrice} baths={baths} setBaths={setBaths}/>

@@ -5,7 +5,7 @@ import TableRow from '../components/TableRow'
 import BookingTableRow from '../components/BookingTableRow'
 import prop2 from '../img/Web/Spacia/prop2.png'
 import prop3 from '../img/Web/Spacia/prop3.png'
-import {FaCaretDown, FaCircle, FaEllipsisV, FaEllipsisH, FaPlus, FaMinus} from 'react-icons/fa'
+import {FaCaretDown, FaCircle, FaEllipsisV, FaEllipsisH, FaPlus, FaMinus, FaCalendarAlt, FaArrowRight, FaHome, FaTimes} from 'react-icons/fa'
 import {Link} from 'react-router-dom' 
 import bookingbg from '../img/Web/Spacia/settings/payment/bookingbg.png'
 import DatePicker from "react-datepicker";
@@ -28,6 +28,12 @@ const StartBooking = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
+    const [newUserModal, setNewUserModal] = useState(true)
+
+    const link = {
+        textDecoration:'none', 
+        color:'black'
+    }
 
     const closeModal = () => {
         console.log('Yep')
@@ -85,6 +91,18 @@ const StartBooking = () => {
     const input = {
         // fontSize:'0.5rem',
         width:'50%'
+    }
+
+    const modalBar = {
+        display:'flex', 
+        justifyContent:'space-between', 
+        backgroundColor:'white', 
+        width:'80%', 
+        marginRight:'auto', 
+        marginLeft:'auto', 
+        padding:10, 
+        marginBottom:30,
+        borderRadius:5
     }
 
     const [sliderValue, setSliderValue] = useState(0)
@@ -157,23 +175,40 @@ const StartBooking = () => {
                     </div>
                     </div>
                 </Row>
-
                 {/* <Filter startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} count={count} setCount={setCount} add={add} subtract={subtract}/> */}
-
             </div >
             </div>
             </Container>
             
-
-<Modal show={false} onClose={closeModal} centered size='lg' style={newModal}>
-    <h4 style={{textAlign:'center'}}>Find The Perfect Space</h4>
-
-    <div style={{display:'flex'}}>
-        {/* <img src={calendar} /> */}
-<h6>Want to find a space on SPACIA?</h6>
-<button>
+<Modal show={newUserModal} onHide={() => setNewUserModal(false)} centered size='lg' style={{borderRadius:10}}>
     
-</button>
+        <div style={newModal} className="newmodal">
+            <div style={{display:'flex', flexDirection:'row-reverse', margin:20}}>
+            <FaTimes onClick={() => setNewUserModal(false)} color="white"/>
+            </div>
+        <h4 style={{textAlign:'center', marginTop:'10vh', marginBottom:'10vh', color:'white'}}><b>Find The Perfect Space</b></h4>
+    <Container>
+        {/* <Link to="/startbooking" style={link}> */}
+            <div style={modalBar} onClick={() => setNewUserModal(false)} >
+                <FaCalendarAlt size={28} color='red' style={{marginTop:'auto', marginBottom:'auto'}}/>
+                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Want to find a space on SPACIA?</b></h5>
+                <div style={{padding:10, borderRadius:5, backgroundColor:'red'}}>
+                    <FaArrowRight color="white"/>
+                </div>
+            </div>
+        {/* </Link> */}
+
+        <Link to="/listproperty" style={link}>
+            <div style={modalBar}>
+                <FaHome size={28} color='red' style={{marginTop:'auto', marginBottom:'auto'}}/>
+                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Want to add a listing on SPACIA?</b></h5>
+                <div style={{padding:10, borderRadius:5, backgroundColor:'red'}}>
+                    <FaArrowRight color="white"/>
+                </div>
+            </div>
+        </Link>
+
+    </Container>
     </div>
 </Modal>
         </div>

@@ -123,6 +123,12 @@ html {
 	padding: 10px;
 }
 
+.newmodal {
+	height: 80vh;
+	background-image:url('../src/img/Web/Spacia/nastuh-abootalebi-eHD8Y1Znfpk-unsplash 1.png');
+	background-size: cover;
+}
+
 .selectCard{
 	background-color:#F1F1F1;
     padding:20px;
