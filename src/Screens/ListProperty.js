@@ -1,16 +1,22 @@
 import React,{useState, useEffect} from 'react'
 import {Container, Row} from 'react-bootstrap'
 import Header from '../components/Header'
+import { Switch , Route, Link} from 'react-router-dom'
 import axios from 'axios'
 import Interactive from '../components/Interactive'
 import Workspace from '../components/ListProperties/Workspace'
 import TypeOfWorkspace from '../components/ListProperties/TypeOfWorkspace'
+import HotDesk from '../components/ListProperties/HotDesk'
+import Meeting from '../components/ListProperties/Meetings'
+import TypeProps from '../components/ListProperties/TypeProp'
+import TypeOfProps from '../components/ListProperties/TypeOfProp'
+import TypeOfPropertyC from '../components/ListProperties/TypePropertyC'
 const ListProperty = () => {
 
     const url = 'https://60e22fca5a5596001730f32d.mockapi.io/homes'
     const [product, setProduct] = useState([])
 
-    useEffect(() => {
+  /*  useEffect(() => {
         axios.get(url)
             .then(response => {
             setProduct(response.data)
@@ -49,7 +55,7 @@ const ListProperty = () => {
         console.log(localurl)
         
     }, [localurl])
-
+*/
     const card = {
         width:'100%',
         height:'70vh',
@@ -73,9 +79,26 @@ const ListProperty = () => {
         <>
             <Header title="List a Property" />
             <Container>
-
+                <Switch>
+                <Route  path="/listproperty/typeOfProperty">
+                    <TypeOfPropertyC/>
+                </Route>
+                <Route path="/listproperty/hotdesk">
+                    <HotDesk/>
+                </Route>
+                <Route path="/listproperty/meeting">
+                    <Meeting/>
+                </Route>
+                <Route path="/listproperty/typeofprop">
+                    <TypeOfProps/>
+                </Route>
+                <Route exact path="/listproperty">
+                    <TypeProps/>
+                </Route>
+                <Route path="/listproperty/typeofworkspace">
                     <TypeOfWorkspace/>
-
+                </Route>
+                </Switch>
             </Container>
 
 
