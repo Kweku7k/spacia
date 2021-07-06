@@ -171,6 +171,15 @@ input {
 	background-color: #ececec;
 }
 
+.ListPropBtn{
+	border: none;
+	margin-top: 80px;
+	background-color: #c24b4b;
+	color: #fff;
+	width: 120px;
+	height: 40px;
+	border-radius: 5px;
+}
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     input[type='range'] {
       overflow: hidden;

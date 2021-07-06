@@ -5,12 +5,16 @@ import axios from 'axios'
 import Interactive from '../components/Interactive'
 import Workspace from '../components/ListProperties/Workspace'
 import TypeOfWorkspace from '../components/ListProperties/TypeOfWorkspace'
+import HotDesk from '../components/ListProperties/HotDesk'
+import Meeting from '../components/ListProperties/Meetings'
+import TypeProps from '../components/ListProperties/TypeProp'
+import TypeOfProps from '../components/ListProperties/TypeOfProp'
 const ListProperty = () => {
 
     const url = 'https://60e22fca5a5596001730f32d.mockapi.io/homes'
     const [product, setProduct] = useState([])
 
-    useEffect(() => {
+  /*  useEffect(() => {
         axios.get(url)
             .then(response => {
             setProduct(response.data)
@@ -49,7 +53,7 @@ const ListProperty = () => {
         console.log(localurl)
         
     }, [localurl])
-
+*/
     const card = {
         width:'100%',
         height:'70vh',
@@ -74,7 +78,7 @@ const ListProperty = () => {
             <Header title="List a Property" />
             <Container>
 
-                    <TypeOfWorkspace/>
+                    <TypeOfProps/>
 
             </Container>
 
