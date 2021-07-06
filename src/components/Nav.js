@@ -21,6 +21,7 @@ import Checkout from "../components/Settings/Checkout";
 import Cart from "../Screens/Cart"
 import FilterProperties from '../Screens/FilterProperties'
 import ListProperty from '../Screens/ListProperty'
+import ListPropertyForm from '../Screens/ListPropertyForm'
 
 // /Users/kweku/Documents/Projects/ReactProjects/spacia/src/img/Web/Spacia/settings/navbar/bell.png
 const Nav = () => {
@@ -100,6 +101,9 @@ const Nav = () => {
                     </Route>
                     <Route path="/listproperty">
                         <ListProperty />
+                    </Route>
+                    <Route path="/listpropertyform">
+                        <ListPropertyForm />
                     </Route>
                 </Switch>
 </div>
