@@ -307,6 +307,23 @@ tr:nth-child(odd) {
   height: 10; */
 }
 
+.uploadBox{
+	padding: 20px;
+	text-align: center;
+	border: 1px dashed tomato;
+	background-color: #f859471f;
+}
+
+.uploadButton{
+	padding:10px 40px;
+	border: none;
+	color: white;
+	background-color: red;
+	border-radius: 5px;
+	margin-top: 10px;
+
+}
+
 .role-admin {
 	color: red;
 	background-color: red;
