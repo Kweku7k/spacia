@@ -54,7 +54,7 @@ const Workspace = () => {
 
 
 
-                <Link to="meeting">
+                <Link to="hotdesk">
 
                     <button className="ListPropBtn">Continue</button>
                 </Link>

@@ -11,6 +11,8 @@ import Meeting from '../components/ListProperties/Meetings'
 import TypeProps from '../components/ListProperties/TypeProp'
 import TypeOfProps from '../components/ListProperties/TypeOfProp'
 import TypeOfPropertyC from '../components/ListProperties/TypePropertyC'
+import StayProperty from '../components/ListProperties/Stay/StayProperty'
+import Concierge from '../components/ListProperties/Stay/Concierge'
 const ListProperty = () => {
 
     const url = 'https://60e22fca5a5596001730f32d.mockapi.io/homes'
@@ -97,6 +99,18 @@ const ListProperty = () => {
                 </Route>
                 <Route path="/listproperty/typeofworkspace">
                     <TypeOfWorkspace/>
+                </Route>
+
+                {/* Stay */}
+
+
+                <Route path="/listproperty/stayproperty">
+                    <StayProperty/>
+                </Route>
+
+                {/* Concierge */}
+                <Route path="/listproperty/concierge">
+                    <Concierge/>
                 </Route>
                 </Switch>
             </Container>

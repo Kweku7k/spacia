@@ -23,13 +23,20 @@ const Workspace = () => {
                 </div>
                 </Link>
 
+                <Link style={link} to="listproperty/stayproperty">
+
                 <div className="selectCard">
                     <h6 className="flatText">Stay</h6>
     
                 </div>
+                </Link>
+
+                <Link to="/listproperty/concierge" style={link}>
+
                 <div className="selectCard">
                     <h6 className="flatText">Concierge</h6>
                 </div>
+                </Link>
                 </div>
 
 
