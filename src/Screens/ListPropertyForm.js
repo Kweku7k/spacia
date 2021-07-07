@@ -20,6 +20,10 @@ const ListPropertyForm = () => {
     padding:20
 }
 
+const label = {
+  fontWeight:'300'
+}
+
 const imgholder = {
   width:'90%'
 }
@@ -46,7 +50,7 @@ const imgholderActive = {
             <h5><b>Property Description</b></h5>
 
             <div class="form-group">
-              <label for="">Property Tile</label>
+              <label style={label} for="">Property Tile</label>
               <input type="text"
                 class="form-control" name="" id="" aria-describedby="helpId" placeholder=""/>
               <small id="helpId" class="form-text text-muted">Help text</small>
@@ -58,6 +62,8 @@ const imgholderActive = {
 
           {/* Upload Box */}
 
+            <Container>
+              <br/>
             <h6>Upload Pictures of your property</h6>
             <div className="uploadBox">
               <div>
@@ -117,32 +123,39 @@ const imgholderActive = {
             <div class="col-md-6">
 
             <div class="form-group">
-              <label for="">Image Title</label>
+              <label style={label} for="">Image Title</label>
               <input type="text"
                 class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
             </div>
 
             <div class="form-group">
-              <label for="">Image Description</label>
+              <label style={label} for="">Image Description</label>
               <input type="text"
                 class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
             </div>
 
-            <h6><b>Video Option (Optional)</b></h6>
+            <br/>
+
+            <h5><b>Video Option (Optional)</b></h5>
             <div class="form-group">
-              <label for="">Upload From</label>
+              <label style={label} for="">Upload From</label>
               <input type="text"
                 class="form-control" name="" id="" aria-describedby="helpId" placeholder=""/>
             </div>
 
             <div class="form-group">
-              <label for="">Embeded Video ID</label>
+              <label style={label} for="">Embeded Video ID</label>
               <input type="text"
                 class="form-control" name="" id="" aria-describedby="helpId" placeholder=""/>
             </div>
             </div>
             </div>
-
+<br/>
+            <div style={{display:'flex'}}>
+              <button className="button-calm">Back</button>
+              <button style={{marginLeft:20}} className="button">Next Step</button>
+            </div>
+            </Container>
           </Tab>
           
           
@@ -151,7 +164,7 @@ const imgholderActive = {
             <h6><b>Property Listing</b></h6>
 
             <div class="form-group">
-              <label for="">Address</label>
+              <label style={label} for="">Address</label>
               <input type="text"
                 class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
             </div>
@@ -160,7 +173,7 @@ const imgholderActive = {
 
             <div class="col-md-6">
               <div class="form-group">
-                <label for="">City</label>
+                <label style={label} for="">City</label>
                 <input type="text"
                   class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
               </div>
@@ -168,26 +181,7 @@ const imgholderActive = {
 
             <div class="col-md-6">
               <div class="form-group">
-                <label for="">Region Of Province</label>
-                <input type="text"
-                  class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
-              </div>
-            </div>
-            </Row>
-
-            <Row>
-
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="">Digital Address</label>
-                <input type="text"
-                  class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="">Select Country</label>
+                <label style={label} for="">Region Of Province</label>
                 <input type="text"
                   class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
               </div>
@@ -198,7 +192,7 @@ const imgholderActive = {
 
             <div class="col-md-6">
               <div class="form-group">
-                <label for="">Latitude</label>
+                <label style={label} for="">Digital Address</label>
                 <input type="text"
                   class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
               </div>
@@ -206,7 +200,26 @@ const imgholderActive = {
 
             <div class="col-md-6">
               <div class="form-group">
-                <label for="">Longitude</label>
+                <label style={label} for="">Select Country</label>
+                <input type="text"
+                  class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
+              </div>
+            </div>
+            </Row>
+
+            <Row>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label style={label} for="">Latitude</label>
+                <input type="text"
+                  class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label style={label} for="">Longitude</label>
                 <input type="text"
                   class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
               </div>
@@ -231,28 +244,29 @@ const imgholderActive = {
             <Row>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Equiped Kitchen
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Gym
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Laundry
                 </label>
               </div>
             </div>
+            <br/>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Media Room
                 </label>
               </div>
@@ -267,42 +281,42 @@ const imgholderActive = {
             <Row>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Back yard
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Basketball Court
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Front yard
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Garage Attatched
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Hot Bath
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Pool
                 </label>
               </div>
@@ -319,42 +333,42 @@ const imgholderActive = {
             <Row>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" />Central Air
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Electricity
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Heating
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Natural Gas
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Ventilation
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Water
                 </label>
               </div>
@@ -369,35 +383,35 @@ const imgholderActive = {
             <Row>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" />Water Sprinklers
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Elevator
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Wifi
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Smoke Detectors
                 </label>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-check">
-                <label class="form-check-label">
+                <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Washer and Dryer
                 </label>
               </div>

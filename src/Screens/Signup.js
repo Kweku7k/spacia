@@ -97,7 +97,7 @@ const Signup = () => {
     const bgImage = {
         width:'100vw',
         height:'100vw',
-        background: 'green',
+        background: 'white',
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
         backgroundSize: 'cover',

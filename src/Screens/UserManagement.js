@@ -286,8 +286,8 @@ Launch demo modal
 
 <Modal size="lg" show={show} aria-labelledby="contained-modal-title-vcenter" centered onHide={handleClose}>
 <div class="form-group" style={{padding:20}}>
-<div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>
-        <FaTimes />
+<div style={{display:'flex', flexDirection:'row-reverse', padding:10, paddingLeft:0}}>
+        <FaTimes onClick={handleClose} />
         <h6 style={{marginRight:'auto'}}><b>Invite New Users</b></h6>
        </div>
 <label for="" style={{fontSize:14}} class="text-muted">Email Address</label>
