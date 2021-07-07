@@ -38,13 +38,13 @@ const Nav = () => {
     return (
 <>
 {/* <MainPage /> */}
-<div class="row" style={{backgroundColor:'#F9F9F9'}}>
+<div style={{backgroundColor:'#F9F9F9', display:'flex'}}>
         <SideNav/>
-
-<div className="col-md-10" style={{ justifyContent:"space-between", padding:0}}>
+<div  style={{ marginLeft:'20%',width:"90%",justifyContent:"space-between", padding:0, minHeight:'100vh'}}>
 <div style={{display:"flex", flexDirection:'row-reverse', padding:20, backgroundColor:"#F3F3F3", color:'black' }}>
     {/* <img src={userPicture}  /> */}
     <FaCaretDown style={{marginTop:'auto', marginBottom:'auto'}} />
+    
     <h6 style={{marginTop:'auto'}}>Nana Kweku</h6>
     <img src={profile} alt="img" style={{ width:30, height:30, borderRadius:'50%', marginRight:10 }} />
     <Link to ="/cart">

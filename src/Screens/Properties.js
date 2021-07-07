@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Container, Table, Dropdown, Toast, Modal, Row } from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Demo.png'
 import demo2 from '../img/Web/Spacia/Demo.png'
+import {Link, useHistory} from 'react-router-dom'
 import TableRow from '../components/TableRow'
 import prop2 from '../img/Web/Spacia/prop2.png'
 import prop3 from '../img/Web/Spacia/prop3.png'
@@ -32,6 +33,9 @@ import home7 from '../img/homes/home6.jpeg'
 
 const Properties = () => {
     const [formModal, setformModal] = useState(false)
+
+    let history = useHistory();
+
     // Form Values
     const [beds, setBeds] = useState("")
     const [baths, setBaths] = useState("")
@@ -51,7 +55,9 @@ const Properties = () => {
     }
 
     const openFormModal = ()  => {
-        setformModal(true)  
+        // setformModal(true)  
+        history.push("/listproperty");
+
     }
 
     const deleteModal = (id) => {
@@ -160,7 +166,9 @@ const Properties = () => {
                             </Dropdown>
                     </div>
 
+                    {/* <Link to="/listproperty"> */}
                     <button class="button" style={{width:'30%'}} onClick={openFormModal}>Add New Property </button>
+                    {/* </Link> */}
 
                 </div>
             </div>

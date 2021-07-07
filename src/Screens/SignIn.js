@@ -60,20 +60,20 @@ const SignIn = () => {
                             <img src={googleLogo} alt="G"/>
                             <div style={{margin:'auto'}}>
 
-                            <h6 style={{textAlign:'center', marginBottom:0}}>Sign Up With Google</h6>
+                            <h6 style={{textAlign:'center', marginBottom:0}}>Sign In With Google</h6>
                             </div>
                         </button>
 
                         <hr/>
 
                         <div class="form-group">
-                          <label for="">Full Name</label>
-                          <input type="email" class="form-control" placeholder="Full Name" name="" id="" aria-describedby="emailHelpId" />
+                          <label for="">Email</label>
+                          <input type="email" class="form-control" placeholder="" name="" id="" aria-describedby="emailHelpId" />
                         </div>
                         <br/>
                         <div class="form-group">
-                          <label for="">Email</label>
-                          <input type="email" class="form-control" placeholder="Eg. lindaantwi@gmail.com" name="" id="" aria-describedby="emailHelpId" />
+                          <label for="">Password</label>
+                          <input type="email" class="form-control" placeholder="Password" name="" id="" aria-describedby="emailHelpId" />
                         </div>
                         <br/>
 
@@ -95,7 +95,7 @@ const SignIn = () => {
                         <br/>
                         <br/>
 
-                        <Link to="/startbooking">
+                        <Link to="/">
                             <div style={{margin:'auto', textAlign:'center'}}>
                             <button className="button" style={{width:'100%', margin:'auto'}}>Sign in</button>
                             </div>

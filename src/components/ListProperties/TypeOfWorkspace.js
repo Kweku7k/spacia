@@ -7,6 +7,8 @@ import {FaEllipsisH} from 'react-icons/fa'
 const Workspace = () => {
     const [dropdown1, setdropdown1] = useState("Private Office")
     const [dropdown2, setdropdown2] = useState("Serviced")
+    const [hotdesk, sethotdesk] = useState("Hot Hour")
+    const [meeting, setmeeting] = useState("Board Room")
     return (
         <div>
             <Interactive title="What type of Property would you like to visit">
@@ -32,13 +34,15 @@ const Workspace = () => {
 
 
 <br/>
-                <div>
+                
+                {dropdown1 === "Private Office" && 
 
+                <div>
                 <h6 className="flatText">Additional Specification</h6>
                 <div className="selectCard">
                     <h6 className="flatText">{dropdown2}</h6>
                 
-                    <Dropdown>
+                <Dropdown>
                 <Dropdown.Toggle style={{backgroundColor:'transparent', border:'none', color:'black'}} id="dropdown-basic">
                         {/* <FaEllipsisH color="black"/> */}
                 </Dropdown.Toggle>
@@ -51,10 +55,60 @@ const Workspace = () => {
                 </Dropdown>
                 </div>
                 </div>
+                }
+
+            {dropdown1 === "HotDesk" && 
+                            
+            <div>
+            <h6 className="flatText">Additional Specification</h6>
+            <div className="selectCard">
+                <h6 className="flatText">{hotdesk}</h6>
+
+            <Dropdown>
+            <Dropdown.Toggle style={{backgroundColor:'transparent', border:'none', color:'black'}} id="dropdown-basic">
+                    {/* <FaEllipsisH color="black"/> */}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+                <Dropdown.Item onClick={()=>sethotdesk("Hot Hour")} href="#/action-2">Hot Hour</Dropdown.Item>
+                <Dropdown.Item onClick={()=>sethotdesk("Hot Day")} href="#/action-3">Hot Day</Dropdown.Item>
+                <Dropdown.Item onClick={()=>sethotdesk("Week")} href="#/action-3">Week</Dropdown.Item>
+                <Dropdown.Item onClick={()=>sethotdesk("Month")} href="#/action-3">Month</Dropdown.Item>
+            </Dropdown.Menu>
+            </Dropdown>
+            </div>
+            </div>
+
+            }
 
 
+            {dropdown1 === "Meeting & Venue" && 
+                            
+                <div>
+                <h6 className="flatText">Additional Specification</h6>
+                <div className="selectCard">
+                    <h6 className="flatText">{meeting}</h6>
+    
+                <Dropdown>
+                <Dropdown.Toggle style={{backgroundColor:'transparent', border:'none', color:'black'}} id="dropdown-basic">
+                        {/* <FaEllipsisH color="black"/> */}
+                </Dropdown.Toggle>
+    
+                <Dropdown.Menu>
+                    <Dropdown.Item onClick={()=>setmeeting("Board Room")} href="#/action-2">Board Room</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setmeeting("Meeting")} href="#/action-3">Meeting</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setmeeting("Lounge")} href="#/action-3">Lounge</Dropdown.Item>
+                </Dropdown.Menu>
+                </Dropdown>
+                </div>
+                </div>
+    
+                }
 
-                <Link to="hotdesk">
+{/* Dropdown 2 */}
+
+
+                <Link to="/listpropertyform">
 
                     <button className="ListPropBtn">Continue</button>
                 </Link>

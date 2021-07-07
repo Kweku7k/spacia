@@ -331,9 +331,23 @@ tr:nth-child(odd) {
 	padding: 10px;
 }
 
+.gmap_canvas {
+	overflow:hidden;
+	background:none!important;
+	height:500px;
+	width:600px;
+}
+.mapouter{
+	position:relative;
+	text-align:right;
+	height:500px;
+	width:100%;
+}
+
 .sideNav {
 	background-color: #343434;
 	height: 100vh;
+	position: fixed;
 }
 
 .navItem {
