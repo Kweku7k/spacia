@@ -9,10 +9,49 @@ const ListPropertyForm = () => {
 
   const [image, setImage] = useState(imgplaceholder)
 
+  const button = () =>{
+    const thebutton = document.getElementById('filepicker')
+    console.log(thebutton)
+  }
+
+
   const [dropdown1, setdropdown1] = useState("initialState")
   const [dropdown2, setdropdown2] = useState("initialState")
 
   const [form, setform] = useState(0)
+
+
+  const [img1, setimg1] = useState(imgplaceholder)
+  const [img2, setimg2] = useState(imgplaceholder)
+  const [img3, setimg3] = useState(imgplaceholder)
+  const [img4, setimg4] = useState(imgplaceholder)
+  const [img5, setimg5] = useState(imgplaceholder)
+
+  const addFileHandler = (e) =>{
+    var rows = [];
+    console.log(e.target.files.length)
+    const filesLength = e.target.files.length
+    for (var i = 0; i < filesLength; i++) {
+      rows.push( e.target.files[i])
+      // const blahsrc = URL.createObjectURL(e.target.files)
+      var binaryData = [];
+      // const blahsrc = window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))
+      const blahsrc = window.URL.createObjectURL(new Blob(binaryData))
+      
+      if (i = 1) {
+        console.log(e.target.files[0].src)
+        binaryData.push(e.target.files[0].src);
+        setimg1(blahsrc)
+      }
+      else if (i = 2)(
+        setimg2(e.target.src)
+
+      )
+    }
+    console.log(rows)
+    // setfileimage(rows)
+  }
+
 
   const [additionalSpec, setadditionalSpec] = useState('')
   const [description, setdescription] = useState('')
@@ -40,6 +79,9 @@ const ListPropertyForm = () => {
   const [tags, settags] = useState('')
   const [typeOfWorkspace, settypeOfWorkspace] = useState('')
 
+  // const clickkk = {
+  //   docume
+  // }
 
   const submitForm = (e) => {
     // e.preventDefault()
@@ -47,10 +89,14 @@ const ListPropertyForm = () => {
   }
 // AXIOS POST REQUEST FOR FORM
 
+  const [fileimage, setfileimage] = useState(null)
+
+  // /api/v1/listings/media
+
   const localurl = 'https://spacia.page/booking/api/v1/listings'
-  useEffect(() => {
+  const submit =() => {
       axios.post(localurl,
-  //   {
+    // {
   //   "additionalSpec": "HOT_HOUR",
   //   "description": description,
   //   "details": {
@@ -135,8 +181,19 @@ const ListPropertyForm = () => {
       )
       console.log(localurl)
       
-  }, [form])
+  }
 
+
+
+const uploadimage=(fileimage)=>{
+  console.log(fileimage)
+  axios.post('https://spacia.page/api/v1/listings/media', {
+    "description":'First Test Item',
+    'files': fileimage,
+    'title':fileimage.name,
+    'userId':2
+  })
+}
 
 
   // {
@@ -194,7 +251,7 @@ const imgholderActive = {
     border: '1px solid red'
 }
 
-    const [key, setKey] = useState('3.Location');
+    const [key, setKey] = useState('1.Description');
     return (
         <div>
             <Header title="List a Property"/>
@@ -308,19 +365,32 @@ const imgholderActive = {
 
             <Container>
               <br/>
-            <h6>Upload Pictures of your property</h6>
+            <h6>Upload Pictures of your property 1</h6>
             <div className="uploadBox">
               <div>
               <img src={uploadButton} alt="upload" />
               </div>
-            <button className="uploadButton">Select Media</button>
+              {/* Sends file to the back */}
+            {/* <button id="filepicker" onClick={()=> 
+              uploadimage(fileimage)
+            } className="uploadButton" style={{color:'#FFA197'}}>Select Media</button> */}
+
+            {/* Input field */}
+            <input type="file"  multiple="multiple" style={{color:'#FFCBC6'}} onChange={addFileHandler} className="uploadButton"/>
+
+{/* <input type="file" id="selectedFile"/>
+<input type="button" value="Browse..." onClick="document.getElementById('selectedFile').click();" /> */}
+
+{/* <div class="inputWrapper">
+    <input class="fileInput" type="file" name="file1"/>
+</div> */}
             </div>
 
             {/* placeholders */}
 
 <div style={fit}>
                 <div>
-                    <img onClick={changeImage} src={imgplaceholder} style={imgholderActive} alt="placeholder" />
+                    <img onClick={changeImage} src={img1} style={imgholderActive} alt="placeholder" />
                 </div>
                 <div>
                     <img onClick={changeImage} src={imgplaceholder} style={imgholder} alt="placeholder" />
@@ -346,6 +416,12 @@ const imgholderActive = {
               <img src={uploadButton} alt="upload" />
               </div>
             <button className="uploadButton">Select Media</button>
+
+            <input type="file" accept="image/*" id="primaryButton" onclick="ExistingLogic()" />
+<input type="button" 
+       id="secondaryButton" 
+       value="Esss"
+       onClick="document.getElementById('primaryButton').click()" />
             </div>
 
             {/* placeholders */}

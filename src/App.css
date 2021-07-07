@@ -311,18 +311,19 @@ tr:nth-child(odd) {
 	padding: 20px;
 	text-align: center;
 	border: 1px dashed tomato;
-	background-color: #f859471f;
+	background-color: #FFCBC6;
 }
 
 .uploadButton{
 	padding:10px 40px;
 	border: none;
 	color: white;
-	background-color: red;
+	background-color: #FFCBC6;
 	border-radius: 5px;
 	margin-top: 10px;
-
+	margin-left: 17vw;
 }
+
 
 .role-admin {
 	color: red;
@@ -331,11 +332,36 @@ tr:nth-child(odd) {
 	padding: 10px;
 }
 
+.inputWrapper {
+    height: 32px;
+    width: 64px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    /*Using a background color, but you can use a background image to represent a button*/
+    background-color: #DDF;
+}
+.fileInput {
+    cursor: pointer;
+    height: 100%;
+    position:absolute;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    /*This makes the button huge. If you want a bigger button, increase the font size*/
+    font-size:50px;
+    /*Opacity settings for all browsers*/
+    opacity: 0;
+    -moz-opacity: 0;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
+}
+
 .gmap_canvas {
 	overflow:hidden;
 	background:none!important;
 	height:500px;
-	width:600px;
+	width:100%;
+	margin-top: 40px;
 }
 .mapouter{
 	position:relative;
