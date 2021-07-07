@@ -1,10 +1,15 @@
 import React, {useState} from 'react'
 import Header from '../components/Header'
 import { Container, Tabs, Tab, Row } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap'
 import uploadButton from '../img/Web/Spacia/Group 426.png'
 import imgplaceholder from '../img/Web/Spacia/imgplaceholder.png'
 
 const ListPropertyForm = () => {
+  const [key, setKey] = useState('3.Location');
+  const [dropdown1, setdropdown1] = useState("Published")
+  const [dropdown2, setdropdown2] = useState("Hourly")
+
 
   const [image, setImage] = useState(imgplaceholder)
 
@@ -32,7 +37,6 @@ const imgholderActive = {
     border: '1px solid red'
 }
 
-    const [key, setKey] = useState('3.Location');
     return (
         <div>
             <Header title="List a Property"/>
@@ -46,16 +50,99 @@ const imgholderActive = {
    
           <Tab eventKey="1.Description" title="1.Description">
               <br/>
-            <Container>
+              <Container>
             <h5><b>Property Description</b></h5>
 
             <div class="form-group">
-              <label style={label} for="">Property Tile</label>
+              <label for="">Property Tile</label>
               <input type="text"
                 class="form-control" name="" id="" aria-describedby="helpId" placeholder=""/>
-              <small id="helpId" class="form-text text-muted">Help text</small>
+                
+            </div>
+            <div class="form-group">
+              <label for="">Property Descriptions</label>
+             <textarea style={{height:'180px'}} class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
+                
+            </div>
+            <div class="form-group">
+              <label for="">Add Tags</label>
+              <input type="text"
+                class="form-control" name="" id="" aria-describedby="helpId" placeholder=""/>
+                
             </div>
             </Container>
+            <Container>
+            <h5><b>Property Price</b></h5>
+
+            <div class="form-group">
+              <div style={{display:'flex', alignItems:'center'}}>
+                <div style={{width:'50%'}}>
+              <label for="">Price in GHS(only numbers)</label>
+              <input type="text" style={{width:'80%'}}
+                class="form-control" name="" id="" aria-describedby="helpId" placeholder=""/>
+                </div>
+                <div style={{width:'50%'}}>
+                  <label for="">Billing Period</label>
+                <div className="selectCard" style={{width:'100%', padding:'5px'}}>
+                
+                    <h6 className="flatText">{dropdown2}</h6>
+                    <Dropdown>
+                <Dropdown.Toggle style={{backgroundColor:'transparent', color:'black', border:'none'}} id="dropdown-basic">
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item onClick={()=>setdropdown2("Hourly")} href="#/action-2">Hourly</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setdropdown2("Daily")} href="#/action-3">Daily</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setdropdown2("Weekly")} href="#/action-3">Weekly</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setdropdown2("Monthly")} href="#/action-3">Monthly</Dropdown.Item>
+                </Dropdown.Menu>
+                </Dropdown>
+                </div>
+            </div>
+            </div> 
+            </div>
+           
+            </Container>
+            <Container>
+            <h5><b>Details</b></h5>
+            <div style={{display:'flex', alignItems:'center'}}>
+                <div style={{width:'50%'}}>
+              <label for="">Size in ft2(only numbers)</label>
+              <input type="text" style={{width:'80%'}}
+                class="form-control" name="" id="" aria-describedby="helpId" placeholder=""/>
+                </div>
+                <div style={{width:'50%'}}>
+                  <label for="">Floor Number</label>
+                  <input type="text" style={{width:'80%'}}
+                class="form-control" name="" id="" aria-describedby="helpId" placeholder=""/>
+            </div> 
+            </div>
+            <div style={{width:'50%'}}>
+              <label for="">Capacity(number of people)</label>
+              <input type="text" style={{width:'80%'}}
+                class="form-control" name="" id="" aria-describedby="helpId" placeholder=""/>
+                </div>
+            </Container>
+            <Container>
+            <h5><b>Select Property Status</b></h5>
+            <div style={{width:'50%'}}>
+                  <label for="">Property status</label>
+                <div className="selectCard" style={{width:'100%',padding:'5px'}}>
+                
+                    <h6 className="flatText">{dropdown1}</h6>
+                    <Dropdown>
+                <Dropdown.Toggle style={{backgroundColor:'transparent', color:'black', border:'none'}} id="dropdown-basic">
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item onClick={()=>setdropdown1("Published")} href="#/action-2">Published</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>setdropdown1("Not Published")} href="#/action-3">Not Published</Dropdown.Item>
+                </Dropdown.Menu>
+                </Dropdown>
+                </div>
+            </div>
+            </Container>
+            <button className="ListPropBtn">Next Step</button>
           </Tab>
           <Tab eventKey="2.Media" title="2.Media">
             
