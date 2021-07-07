@@ -22,7 +22,7 @@ const ListPropertyForm = () => {
   const fit = {
     display:'flex',
     // justifyContent: 'space-evenly',
-    padding:20
+    padding:'20px 0',
 }
 
 const label = {
@@ -34,21 +34,27 @@ const imgholder = {
 }
 
 const imgholderActive = {
-    border: '1px solid red'
+    border: '2px solid red'
 }
 
     return (
         <div>
-            <Header title="List a Property"/>
-
+          <div style={{display:'flex'}}>
+            <div className='headerListPropBtn'>
+          <Header title="List a Property"/>
+          </div>
+            <div className='headerListPropBtn'>
+              <button>List a Properties</button>
+            </div>
+          </div>
+            
             <Container>
             <Tabs
           id="controlled-tab-example"
           activeKey={key}
           onSelect={(k) => setKey(k)}
         >
-   
-          <Tab eventKey="1.Description" title="1.Description">
+          <Tab eventKey="1.Description" title="1.Description" className='tagMargin'>
               <br/>
               <Container>
             <h5><b>Property Description</b></h5>
@@ -144,7 +150,7 @@ const imgholderActive = {
             </Container>
             <button className="ListPropBtn">Next Step</button>
           </Tab>
-          <Tab eventKey="2.Media" title="2.Media">
+          <Tab eventKey="2.Media" title="2.Media" marginLeft='20px'> 
             
 
           {/* Upload Box */}
@@ -161,7 +167,7 @@ const imgholderActive = {
 
             {/* placeholders */}
 
-<div style={fit}>
+<div style={fit} className='fitImage'>
                 <div>
                     <img onClick={changeImage} src={imgplaceholder} style={imgholderActive} alt="placeholder" />
                 </div>
@@ -193,7 +199,7 @@ const imgholderActive = {
 
             {/* placeholders */}
 
-<div style={fit}>
+<div style={fit} className='fitImage'>
                 <div>
                     <img onClick={changeImage} src={imgplaceholder} style={imgholderActive} alt="placeholder" />
                 </div>
@@ -321,9 +327,10 @@ const imgholderActive = {
               <button className="button-calm">Back</button>
               <button style={{margin:'auto 20'}} className="button">Next Step</button>
             </div>
-
+          
           </Tab>
           <Tab eventKey="4.Amenities" title="4.Amenities">
+          <div class="form-group">
             <h6>Amenities</h6>
 
             <h6><b>Interior Details</b></h6>
@@ -504,6 +511,7 @@ const imgholderActive = {
               </div>
             </div>
             </Row>
+            </div>
           </Tab>
        
         </Tabs>
