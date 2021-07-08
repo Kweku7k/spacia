@@ -42,6 +42,16 @@ html {
 	pointer-events: none;
 }
 
+.tagMargin ,.form-group{
+	padding: 10px;
+	background-color: #FFF;
+}
+/* .tagMargin h5, .form-group h5{
+	margin: 20px 5px;
+} */
+/* .tagMargin label, .form-group label{
+	margin: 20px 5px;
+} */
 @media (prefers-reduced-motion: no-preference) {
 	.App-logo {
 		animation: App-logo-spin infinite 20s linear;
@@ -90,14 +100,19 @@ html {
 	padding: 10px 20px;
 	border: none;
 	color: white;
+	width: 150px;
+	border: none;
 }
 
 .button-calm {
-	background-color: #f7f7f7;
+	background-color: #e2e2e2;
 	border-radius: 5px;
+	border: none;
 	padding: 10px 20px;
 	border: none;
 	color: black;
+	width: 150px;
+	margin-right: 20px;
 }
 
 .header {
@@ -179,12 +194,27 @@ input {
 
 .ListPropBtn{
 	border: none;
-	margin-top: 80px;
-	background-color: #c24b4b;
+	margin: 50px 20px;
+	background-color: #f85a47;
 	color: #fff;
-	width: 120px;
-	height: 40px;
+	width: 130px;
+	height: 45px;
 	border-radius: 5px;
+}
+.headerListPropBtn{
+	flex-basis: 50%;
+	position: relative;
+}
+.headerListPropBtn button{
+	position: absolute;
+	right: 10px;
+	top: 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #f85a47;
+	color: #FFF;
+	height: 45px;
+	width: 180px;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     input[type='range'] {
@@ -322,6 +352,9 @@ tr:nth-child(odd) {
 	border-radius: 5px;
 	margin-top: 10px;
 	margin-left: 17vw;
+}
+.fitImage img{
+	border-radius: 6px;
 }
 
 

@@ -6,6 +6,9 @@ import imgplaceholder from '../img/Web/Spacia/imgplaceholder.png'
 import axios from 'axios'
 
 const ListPropertyForm = () => {
+  const [dropdown1, setdropdown1] = useState("Published")
+  const [dropdown2, setdropdown2] = useState("Hourly")
+
 
   // For Blob
   const fileToDataUri = (file) => new Promise((resolve, reject) => {
@@ -17,7 +20,7 @@ const ListPropertyForm = () => {
     reader.readAsDataURL(file);
     })
 
-  const [dataUri, setDataUri] = useState('')
+  const [dataUri, setDataUri] = useState(imgplaceholder)
 
   const onChangePlace = (file) => {
     
@@ -26,6 +29,25 @@ const ListPropertyForm = () => {
       return;
     }
 
+    // for (var i = 0; i < filesLength; i++) {
+    //   rows.push( e.target.files[i])
+    //   var binaryData = [];
+    //   const blahsrc = window.URL.createObjectURL(new Blob(binaryData,{type: "application/zip"}))
+      
+    //   if (i = 1) {
+    //     console.log(e.target.files[0].src)
+    //     binaryData.push(e.target.files[0].src);
+    //     setimg1(blahsrc)
+    //   }
+    //   else if (i = 2)(
+    //     setimg2(e.target.src)
+    //   )
+    //   else if (i = 3)(
+    //     setimg2(e.target.src)
+    //   )
+    // }
+
+    
     fileToDataUri(file)
       .then(dataUri => {
         setDataUri(dataUri)
@@ -41,8 +63,8 @@ const ListPropertyForm = () => {
   }
 
 
-  const [dropdown1, setdropdown1] = useState("initialState")
-  const [dropdown2, setdropdown2] = useState("initialState")
+  // const [dropdown1, setdropdown1] = useState("initialState")
+  // const [dropdown2, setdropdown2] = useState("initialState")
 
   const [form, setform] = useState(0)
 
@@ -114,6 +136,8 @@ const ListPropertyForm = () => {
   const submitForm = (e) => {
     // e.preventDefault()
     setform(1)
+    console.log(description)
+    submit()
   }
 // AXIOS POST REQUEST FOR FORM
 
@@ -124,7 +148,7 @@ const ListPropertyForm = () => {
   const localurl = 'https://spacia.page/booking/api/v1/listings'
   const submit =() => {
       axios.post(localurl,
-    // {
+  //   {
   //   "additionalSpec": "HOT_HOUR",
   //   "description": description,
   //   "details": {
@@ -149,7 +173,7 @@ const ListPropertyForm = () => {
   //   },
   //   "propertyStatus": "FOR_RENT",
   //   "propertyTitle": propertyTitle,
-  //   "propertyType": propertyType,
+  //   "propertyType": "propertyType",
   //   "tags": [
   //     tags
   //   ],
@@ -158,28 +182,28 @@ const ListPropertyForm = () => {
   // }
   {
     "additionalSpec": "HOT_HOUR",
-    "description": "string",
+    "description": description,
     "details": {
-      "capacity": 50,
-      "floorNumber": "string",
-      "propertySize": 2
+      "capacity": capacity,
+      "floorNumber": floornumber,
+      "propertySize": propertySize
     },
     "location": {
-      "address": "50 3rd Road",
-      "city": "Accra",
-      "country": "gh",
-      "latitude": "12345",
-      "longitude": "-12345",
-      "streetName": "50 3rd Road"
+      "address": address,
+      "city": city,
+      "country": country,
+      "latitude": latitude,
+      "longitude": longitude,
+      "streetName": streetname
     },
     "propertyPrice": {
       "billingPeriod": "HOURLY",
       "createdOn": "2021-07-07T13:27:40.853Z",
-      "price": 3000,
+      "price": price,
       "updatedOn": "2021-07-07T13:27:40.854Z"
     },
     "propertyStatus": "FOR_RENT",
-    "propertyTitle": "Nice House In the Hamptoms",
+    "propertyTitle": propertyTitle,
     "propertyType": "OFFICE_SPACE",
     "tags": [
       "string"
@@ -196,8 +220,9 @@ const ListPropertyForm = () => {
           // submitSignup(res)
           // Tenary
           (res.status = 200 ? (
-              // history.push("/startbooking"),
+              // history.push("/properties"),
               console.log("Add Booking dey work")
+
           ):
           (
               console.log("Didnt Work")
@@ -205,7 +230,7 @@ const ListPropertyForm = () => {
           
       
           ))
-      .catch(err=>(console.log(err))
+      .catch(err=>(console.log("Error: " + err))
       )
       console.log(localurl)
       
@@ -264,7 +289,7 @@ const uploadimage=(fileimage)=>{
   const fit = {
     display:'flex',
     // justifyContent: 'space-evenly',
-    padding:20
+    padding:'20px 0',
 }
 
 const label = {
@@ -272,11 +297,13 @@ const label = {
 }
 
 const imgholder = {
-  width:'90%'
+  width:100,
+  height:100,
+  objectFit:'cover'
 }
 
 const imgholderActive = {
-    border: '1px solid red'
+    border: '2px solid red'
 }
 
     const [key, setKey] = useState('1.Description');
@@ -288,22 +315,28 @@ const imgholderActive = {
     }
     return (
         <div>
-            <Header title="List a Property"/>
-
+          <div style={{display:'flex'}}>
+            <div className='headerListPropBtn'>
+          <Header title="List a Property"/>
+          </div>
+            <div className='headerListPropBtn'>
+              <button>List a Properties</button>
+            </div>
+          </div>
+            
             <Container>
             <Tabs
           id="controlled-tab-example"
           activeKey={key}
           onSelect={(k) => setKey(k)}
         >
-   
-          <Tab eventKey="1.Description" title="1.Description">
+          <Tab eventKey="1.Description" title="1.Description" className='tagMargin'>
               <br/>
-            <Container>
+              <Container>
             <h5><b>Property Description</b></h5>
 
             <div class="form-group">
-              <label style={label} for="">Property Tile</label>
+              <label for="">Property Tile</label>
               <input type="text"
                 class="form-control" name="" id="" aria-describedby="helpId" value={propertyTitle} onChange={(e) => setpropertyTitle(e.target.value)} placeholder=""/>
                 
@@ -399,12 +432,13 @@ const imgholderActive = {
 
 <br/>
             <div style={{display:'flex'}}>
-              <button className="button-calm">Back</button>
+              {/* <button className="button-calm">Back</button> */}
               <button style={{marginLeft:20}} onClick={() => setKey('2.Media')} className="button">Next Step</button>
             </div>
             </Container>
+            {/* <button className="ListPropBtn">Next Step</button> */}
           </Tab>
-          <Tab eventKey="2.Media" title="2.Media">
+          <Tab eventKey="2.Media" title="2.Media" marginLeft='20px'> 
             
 
           {/* Upload Box */}
@@ -434,10 +468,7 @@ const imgholderActive = {
 
             {/* placeholders */}
 
-<div style={fit}>
-                <div>
-                    <img onClick={changeImage} src={img1} style={imgholderActive} alt="placeholder" />
-                </div>
+<div style={fit} className='fitImage'>
                 <div>
                     <img onClick={changeImage} src={dataUri} style={imgholder} alt="placeholder" />
                 </div>
@@ -453,10 +484,13 @@ const imgholderActive = {
                 <div>
                     <img onClick={changeImage} src={imgplaceholder} style={imgholder} alt="placeholder" />
                 </div>
+                <div>
+                    <img onClick={changeImage} src={imgplaceholder} style={imgholder} alt="placeholder" />
+                </div>
             </div>
 
 
-            <h6>Upload Pictures of your property</h6>
+            {/* <h6>Upload Pictures of your property</h6>
             <div className="uploadBox">
               <div>
               <img src={uploadButton} alt="upload" />
@@ -468,11 +502,11 @@ const imgholderActive = {
        id="secondaryButton" 
        value="Esss"
        onClick="document.getElementById('primaryButton').click()" />
-            </div>
+            </div> */}
 
             {/* placeholders */}
 
-<div style={fit}>
+{/* <div style={fit} className='fitImage'>
                 <div>
                     <img onClick={changeImage} src={imgplaceholder} style={imgholderActive} alt="placeholder" />
                 </div>
@@ -482,7 +516,7 @@ const imgholderActive = {
                 <div>
                     <img onClick={changeImage} src={imgplaceholder} style={imgholder} alt="placeholder" />
                 </div>
-            </div>
+            </div> */}
 
             <div class="row">
 
@@ -609,9 +643,10 @@ const imgholderActive = {
                 setKey("4.Amenities")
               }} style={{margin:'auto 20'}} className="button">Next Step</button>
             </div>
-
+          
           </Tab>
           <Tab eventKey="4.Amenities" title="4.Amenities">
+          <div class="form-group">
             <h6>Amenities</h6>
 
             <h6><b>Interior Details</b></h6>
@@ -791,7 +826,14 @@ const imgholderActive = {
                 </label>
               </div>
             </div>
+
             </Row>
+
+            <div style={{display:'flex'}}>
+              <button className="button-calm">Back</button>
+              <button style={{marginLeft:20}} onClick={submitForm} className="button">Next Step</button>
+            </div>
+            </div>
           </Tab>
        
         </Tabs>
