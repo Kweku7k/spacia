@@ -9,6 +9,7 @@ import Nav from './components/Nav'
 import ResetPassword from './Screens/ResetPassword';
 // import Properties from './Screens/Properties';
 import { BrowserRouter as Router,  Switch,  Route, Link} from "react-router-dom";
+import ConfirmInvite from "./Screens/ConfirmInvite";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
     <Route path="/resetpassword">
         <ResetPassword />
     </Route>
+        <Route path="/authentication/confirm-invite">
+            <ConfirmInvite />
+        </Route>
 
     <Route path="/">
           <Nav />
