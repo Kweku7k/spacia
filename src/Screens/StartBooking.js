@@ -12,13 +12,13 @@ import DatePicker from "react-datepicker";
 import Slider, { Range } from 'rc-slider';
 import Filter from '../components/Filter'
 import 'rc-slider/assets/index.css';
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 import '../App.css';
 import DateTimePicker from 'react-datetime-picker'
 import QuantityCounter from '../components/QuantityCounter'
 import { Modal } from 'react-bootstrap'
 import bg from '../img/Web/Spacia/Web/Spacia/nastuh-abootalebi-eHD8Y1Znfpk-unsplash 1.png'
-import '../css/datetime.css';
+// import '../css/datetime.css';
 import calendar from '../img/Web/Spacia/calendar-2 9.png'
 const StartBooking = () => {
     //useState handling counter
