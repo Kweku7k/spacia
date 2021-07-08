@@ -291,10 +291,10 @@ Launch demo modal
         <h6 style={{marginRight:'auto'}}><b>Invite New Users</b></h6>
        </div>
 <label for="" style={{fontSize:14}} class="text-muted">Email Address</label>
-<p>{state}</p>
-<div style={{  background:'white',  }}>
-      <div style={{margin:0, background:'#DDDDDD'}} className='input-group'>
-        <InputTags style={{backgroundColor:'white'}} values={state} onTags={(value) => setState(value.values)} />
+{/* <p>{state}</p> */}
+<div style={{  background:'white' }}>
+      <div style={{margin:0, background:'#DDDDDD'}}>
+        <InputTags style={{backgroundColor:'white', fontSize:16}} values={state} onTags={(value) => setState(value.values)} />
         {/* <button
           className='btn btn-outline-secondary'
           type='button'

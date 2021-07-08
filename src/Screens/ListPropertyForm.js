@@ -319,9 +319,9 @@ const imgholderActive = {
             <div className='headerListPropBtn'>
           <Header title="List a Property"/>
           </div>
-            <div className='headerListPropBtn'>
+            {/* <div className='headerListPropBtn'>
               <button>List a Properties</button>
-            </div>
+            </div> */}
           </div>
             
             <Container>
@@ -336,7 +336,7 @@ const imgholderActive = {
             <h5><b>Property Description</b></h5>
 
             <div class="form-group">
-              <label style={label} for="">Property Tile</label>
+              <label style={label} for="                              ">Property Tile</label>
               <input type="text"
                 class="form-control" name="" id="" aria-describedby="helpId" value={propertyTitle} onChange={(e) => setpropertyTitle(e.target.value)} placeholder=""/>
                 
@@ -472,21 +472,7 @@ const imgholderActive = {
                 <div>
                     <img onClick={changeImage} src={dataUri} style={imgholder} alt="placeholder" />
                 </div>
-                <div>
-                    <img onClick={changeImage} src={imgplaceholder} style={imgholder} alt="placeholder" />
-                </div>
-                <div>
-                    <img onClick={changeImage} src={imgplaceholder} style={imgholder} alt="placeholder" />
-                </div>
-                <div>
-                    <img onClick={changeImage} src={imgplaceholder} style={imgholder} alt="placeholder" />
-                </div>
-                <div>
-                    <img onClick={changeImage} src={imgplaceholder} style={imgholder} alt="placeholder" />
-                </div>
-                <div>
-                    <img onClick={changeImage} src={imgplaceholder} style={imgholder} alt="placeholder" />
-                </div>
+               
             </div>
 
 
