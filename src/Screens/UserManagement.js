@@ -22,6 +22,7 @@ import FeedbackModall from '../components/FeedbackModall'
  
 import { InputTags } from 'react-bootstrap-tagsinput'
 import 'react-bootstrap-tagsinput/dist/index.css'
+import axios from "axios";
  
 
 const UserManagement = () => {
@@ -191,6 +192,21 @@ const UserManagement = () => {
         setConfirmResetPasswordModal(true)
     }
 
+    let localUrl = 'https://spacia.page/users/api/v1/users/invite';
+    const inviteUser = () => {
+        console.log(state);
+
+        axios.post(localUrl,
+            {
+                "emailsOfInvitees": state,
+                "invitationId": 1,
+                "inviterId": 42,
+                "role": "ROLE_SUBSCRIBER_APPROVER"
+            }).then(res => {
+            console.log(res);
+        }).catch(err=>(console.log(err)))
+    }
+
     return (
     <div>
         <div>
@@ -312,15 +328,15 @@ Launch demo modal
 <br/>
  <label style={{fontSize:14}} class="text-muted" for="">Role</label>
  <select class="form-control" name="" id="">
-   <option>Admin</option>
-   <option>Employee</option>
+   {/*<option>Admin</option>*/}
+   {/*<option>Employee</option>*/}
    <option>Approver</option>
  </select>
 
 <br/>
 <div>
 
-<button onClick={handleClose} className="button">Invite User</button>
+<button onClick={inviteUser} className="button">Invite User</button>
 </div>
 </div>
 {/* </Modal.Body> */}
