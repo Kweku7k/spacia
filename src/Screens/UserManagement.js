@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Table, Toast, Button, Row, Modal } from 'react-bootstrap'
 import { FaCaretDown, FaTimes, FaEllipsisH, FaImage } from 'react-icons/fa'
 import Search from '../components/Search'
@@ -194,6 +194,8 @@ const UserManagement = () => {
 
     let localUrl = 'https://spacia.page/users/api/v1/users/invite';
     const inviteUser = () => {
+        const pay = localStorage.getItem('payload');
+        console.log(pay);
         console.log(state);
 
         axios.post(localUrl,
@@ -206,6 +208,10 @@ const UserManagement = () => {
             console.log(res);
         }).catch(err=>(console.log(err)))
     }
+
+    useEffect(() => {
+
+    });
 
     return (
     <div>
