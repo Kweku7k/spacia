@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Header from '../components/Header'
-import { Container, Tabs, Tab, Row, Dropdown } from 'react-bootstrap';
+import { Container, Tabs, Tab, Row, Dropdown, Form, FormCheck } from 'react-bootstrap';
 import uploadButton from '../img/Web/Spacia/Group 426.png'
 import imgplaceholder from '../img/Web/Spacia/imgplaceholder.png'
 import axios from 'axios'
@@ -643,6 +643,16 @@ const imgholderActive = {
               <div class="form-check">
                 <label style={label} class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" /> Equiped Kitchen
+                </label>
+              </div>
+
+              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+    <Form.Check type="checkbox" label="Check me out" />
+  </Form.Group>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader"/><h6>One</h6>
                 </label>
               </div>
             </div>
