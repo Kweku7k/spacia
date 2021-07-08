@@ -82,7 +82,6 @@ const ConfirmInvite = () => {
         // e.preventDefault();
 
         axios.get(localUrl, { params: { username } }).then(res => console.log(res));
-        alert('Wo tw3m');
     }
 
     return (
@@ -101,7 +100,7 @@ const ConfirmInvite = () => {
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input type="email" className="form-control" readOnly name="username" id="email"
-                                   aria-describedby="emailHelpId" value="nicholas.akorful68@gmail.com"/>
+                                   aria-describedby="emailHelpId" value={username}/>
                         </div>
                         <br/>
                         <div className="form-group">
