@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Container, Row } from 'react-bootstrap'
 import bg from '../img/spacia/web/Background.png'
 import logo from '../img/spacia/web/logo.png'
 import googleLogo from '../img/Web/Spacia/spacia/web/google 1.png'
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
+import queryString from "query-string";
 const SignIn = () => {
 
 
@@ -45,6 +46,28 @@ const SignIn = () => {
         borderRadius:10,
         backgroundColor:'white'
     }
+
+    const isValidJSON = str => {
+        try {
+            JSON.parse(str);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+
+    const location = useLocation();
+    const search = queryString.parse(location.search);
+    const params = (search && search.payload) ? search.payload : '';
+
+    let payload = null;
+    if (isValidJSON(params)) {
+        payload = JSON.parse(atob(params));
+    }
+
+    useEffect(() => {
+        console.log(payload);
+    }, []);
 
     return (
         <Row style={bgImage}>
