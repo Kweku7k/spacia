@@ -79,7 +79,8 @@ const Signup = () => {
             // Tenary
             (res.status = 201 ? (
                 history.push("/startbooking"),
-                console.log("201 dey work")
+                console.log("201 dey work"),
+                localStorage.setItem('currentUser',res.firstname + " " + res.lastname)
             ):
             (
                 console.log("Didnt Work")
@@ -87,7 +88,9 @@ const Signup = () => {
             
         
             ))
-        .catch(err=>(console.log(err))
+        .catch(err=>(console.log(err),
+            localStorage.setItem('currentUser','No User')
+        )
         )
         console.log(localurl)
         

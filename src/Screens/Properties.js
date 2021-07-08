@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Table, Dropdown, Toast, Modal, Row } from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Demo.png'
 import demo2 from '../img/Web/Spacia/Demo.png'
@@ -21,6 +21,9 @@ import home4 from '../img/homes/home4.jpeg'
 import home5 from '../img/homes/home5.jpeg'
 import home6 from '../img/homes/home6.jpeg' 
 import home7 from '../img/homes/home6.jpeg'
+import axios from 'axios'
+
+
 
 <tr>
 <td>Photo</td> 
@@ -32,6 +35,23 @@ import home7 from '../img/homes/home6.jpeg'
 </tr>
 
 const Properties = () => {
+
+    const [allproperties, setallproperties]=useState([])
+
+    const localurl = 'https://spacia.page/booking/api/v1/listings'
+    useEffect(() => {
+        axios.get(localurl)
+        .then(res=>(
+            console.log(res.data.data),
+            setallproperties(res.data.data)))
+        .catch(err=>(console.log(err))
+        )
+        console.log(localurl)
+        
+    }, [localurl])
+
+
+
     const [formModal, setformModal] = useState(false)
 
     let history = useHistory();
@@ -45,9 +65,68 @@ const Properties = () => {
     const [price, setPrice] = useState('')
 
     const [viewModal, setViewModal] = useState(false)
+    // Prefill selected modal
+    const [ModalProp, setModalProp] = useState(
+        {
+            "id": 93,
+            "name": "Just added",
+            "description": "string",
+            "propertyPrice": {
+                "id": 96,
+                "price": 3000.0,
+                "billingPeriod": "HOURLY",
+                "createdOn": "2021-07-08T00:29:24.044Z",
+                "updatedOn": "2021-07-08T00:29:24.090Z"
+            },
+            "location": {
+                "id": 95,
+                "latitude": "12345",
+                "longitude": "-12345",
+                "street": "50 3rd Road",
+                "address": "50 3rd Road",
+                "city": "Accra",
+                "country": "gh"
+            },
+            "tags": [
+                "string"
+            ],
+            "listingDetails": {
+                "id": 94,
+                "propertySize": 2,
+                "floorNumber": "string",
+                "capacity": 50,
+                "listingId": 93
+            },
+            "status": {
+                "ordinal": 1,
+                "value": "unpublished"
+            },
+            "propertyStatus": {
+                "ordinal": 0,
+                "value": "FOR_RENT",
+                "label": "FOR RENT"
+            },
+            "createdBy": {
+                "id": 2,
+                "username": "nicholas.akorful470@gmail.com",
+                "firstName": "Nick",
+                "lastName": "Lynx",
+                "name": null,
+                "userRole": "ROLE_CONTENT_PUBLISHER",
+                "isEnabled": false,
+                "createdOn": "2021-07-05T10:41:30.509Z",
+                "updatedOn": "2021-07-08T00:29:24.232Z"
+            },
+            "createdOn": "2021-07-08T00:29:24.014Z",
+            "updatedOn": "2021-07-08T00:29:24.014Z"
+        }
+    )
 
-    const showViewModal = () =>{
+    const showViewModal = (currentProperty) =>{
         setViewModal(true)
+        setModalProp(currentProperty)
+        console.log(currentProperty)
+        console.log("text")
     }
 
     const closeViewModal = () =>{
@@ -59,6 +138,8 @@ const Properties = () => {
         history.push("/listproperty");
 
     }
+
+
 
     const deleteModal = (id) => {
         console.log(id)
@@ -184,11 +265,15 @@ const Properties = () => {
                    <td style={{textAlign:'right', paddingRight:20}}>Price</td> 
                 </tr>
 
+                {/* {tasks.map((task)=>(
+                <Task key={task.id} task={task} onDelete={onDelete} onToggle={onToggle}/>
+            ))} */}
 
                 {/* From Source */}
-                {/* {properties.map((property) => (
-                    <TableRow onDelete={() => deleteModal(property.id)} image={demo} info={property.info} added={property.added} beds={property.beds} showers={property.baths} status='FOR RENT' price={property.price}></TableRow>
-                    ))} */}
+                {allproperties.map((property) => (
+                    <TableRow key={property.id} onDelete={() => deleteModal(property.id)} image={demo} info={property.name} added={property.propertyPrice.createdOn} beds={property.listingDetails.capacity} showers={property.listingDetails.propertySize} status='FOR RENT' price={property.propertyPrice.price} onView={() => {showViewModal(property)}} ></TableRow>
+                    ))}
+
                     <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="2" showers='25 sq ft' status='FOR RENT' price="600" onView={showViewModal}></TableRow>
                     <TableRow image={prop2} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='25 sq ft' status='FOR RENT' price="600"></TableRow>
                     <TableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='25 sq ft' status='FOR RENT' price="600"></TableRow>
@@ -200,7 +285,7 @@ const Properties = () => {
         <FaTimes onClick={closeViewModal} />
        </div>
         <div style={{textAlign:'center', padding:30}}>
-            <h6><b>COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION</b></h6>
+            <h6><b>{ModalProp.name}</b></h6>
             <br/>
             <img src={image} alt="img" style={{width:'40%'}}/>
             <div style={fit}>
@@ -232,9 +317,9 @@ const Properties = () => {
                         <h6 ><b>Description</b>
                             <span style={{display:'flex'}}>
                                 <img src={bed} style={{ width:20, height:20, marginRight:10}} alt="bed"/>
-                                <h6>0</h6>
+                                <h6>{ModalProp.listingDetails.propertySize}</h6>
                                 <img src={bath} style={{ width:20, height:20, marginLeft:10, marginRight:10}} alt="bed"/>
-                                <h6>0</h6>
+                                <h6>{ModalProp.listingDetails.capacity}</h6>
                             </span>
                         </h6>
                     </div>
@@ -250,7 +335,7 @@ const Properties = () => {
 
                 <h6 style={{fontSize:'small', textAlign:'left', lineHeight:2 }} className="text-muted">
 
-            Just steps away from QM2 express bus to Manhattan and local buses; only minutes from the LIRR. Walking distance to the Bay Terrace Shopping Center, Baybridge Commons Shopping Center, pool clubs, movie theaters and tennis courts. 1.5 blocks away from elementary school PS 169 and Bell Academy middle school in the award-winning District 25. Don’t miss this opportunity!
+            {ModalProp.description}
                 </h6>
 
             </div>

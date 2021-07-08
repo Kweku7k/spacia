@@ -26,6 +26,7 @@ import ListPropertyForm from '../Screens/ListPropertyForm'
 // /Users/kweku/Documents/Projects/ReactProjects/spacia/src/img/Web/Spacia/settings/navbar/bell.png
 const Nav = () => {
 
+    const currentUser = localStorage.getItem('currentUser');
     const username = "Nana Kweku" 
     // const userPicture = "Nana Kweku"
     // const cart = true
@@ -45,7 +46,7 @@ const Nav = () => {
     {/* <img src={userPicture}  /> */}
     <FaCaretDown style={{marginTop:'auto', marginBottom:'auto'}} />
     
-    <h6 style={{marginTop:'auto'}}>Nana Kweku</h6>
+    <h6 style={{marginTop:'auto'}}>{currentUser}</h6>
     <img src={profile} alt="img" style={{ width:30, height:30, borderRadius:'50%', marginRight:10 }} />
     <Link to ="/cart">
    <div style={{marginRight:40}}>

@@ -7,6 +7,32 @@ import axios from 'axios'
 
 const ListPropertyForm = () => {
 
+  // For Blob
+  const fileToDataUri = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      resolve(event.target.result)
+      console.log(event.target.result)
+    };
+    reader.readAsDataURL(file);
+    })
+
+  const [dataUri, setDataUri] = useState('')
+
+  const onChangePlace = (file) => {
+    
+    if(!file) {
+      setDataUri('');
+      return;
+    }
+
+    fileToDataUri(file)
+      .then(dataUri => {
+        setDataUri(dataUri)
+      })
+    
+  }
+
   const [image, setImage] = useState(imgplaceholder)
 
   const button = () =>{
@@ -36,7 +62,7 @@ const ListPropertyForm = () => {
       // const blahsrc = URL.createObjectURL(e.target.files)
       var binaryData = [];
       // const blahsrc = window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))
-      const blahsrc = window.URL.createObjectURL(new Blob(binaryData))
+      const blahsrc = window.URL.createObjectURL(new Blob(binaryData,{type: "application/zip"}))
       
       if (i = 1) {
         console.log(e.target.files[0].src)
@@ -45,7 +71,9 @@ const ListPropertyForm = () => {
       }
       else if (i = 2)(
         setimg2(e.target.src)
-
+      )
+      else if (i = 3)(
+        setimg2(e.target.src)
       )
     }
     console.log(rows)
@@ -252,6 +280,12 @@ const imgholderActive = {
 }
 
     const [key, setKey] = useState('1.Description');
+
+    const submitMedia = () => {
+      setKey('3.Location')
+
+      // axios.post() media
+    }
     return (
         <div>
             <Header title="List a Property"/>
@@ -269,35 +303,39 @@ const imgholderActive = {
             <h5><b>Property Description</b></h5>
 
             <div class="form-group">
-              <label for="">Property Tile</label>
+              <label style={label} for="">Property Tile</label>
               <input type="text"
                 class="form-control" name="" id="" aria-describedby="helpId" value={propertyTitle} onChange={(e) => setpropertyTitle(e.target.value)} placeholder=""/>
                 
             </div>
             <div class="form-group">
-              <label for="">Property Descriptions</label>
+              <label style={label} for="">Property Descriptions</label>
              <textarea style={{height:'180px'}} class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value={description} onChange={(e) => setdescription(e.target.value)} />
                 
             </div>
             <div class="form-group">
-              <label for="">Add Tags</label>
+              <label style={label} for="">Add Tags</label>
               <input type="text"
                 class="form-control" name="" id="" aria-describedby="helpId" value={tags} onChange={(e) => settags(e.target.value)} placeholder=""/>
                 
             </div>
+
+            
             </Container>
             <Container>
+            <br/>
+
             <h5><b>Property Price</b></h5>
 
             <div class="form-group">
               <div style={{display:'flex', alignItems:'center'}}>
                 <div style={{width:'50%'}}>
-              <label for="">Price in GHS(only numbers)</label>
+              <label style={label} for="">Price in GHS(only numbers)</label>
               <input type="text" style={{width:'80%'}}
                 class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value={price} onChange={(e) => setprice(e.target.value)}/>
                 </div>
                 <div style={{width:'50%'}}>
-                  <label for="">Billing Period</label>
+                  <label style={label} for="">Billing Period</label>
                 <div className="selectCard" style={{width:'100%', padding:'5px'}}>
                   {/* billingperiod = {this dropdown} */}
                     <h6 className="flatText">{dropdown2}</h6>
@@ -319,29 +357,31 @@ const imgholderActive = {
            
             </Container>
             <Container>
+              <br/>
             <h5><b>Details</b></h5>
             <div style={{display:'flex', alignItems:'center'}}>
                 <div style={{width:'50%'}}>
-              <label for="">Size in ft2(only numbers)</label>
+              <label style={label} for="">Size in ft2(only numbers)</label>
               <input type="text" style={{width:'80%'}}
                 class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value={propertySize} onChange={(e) => setpropertySize(e.target.value)}/>
                 </div>
                 <div style={{width:'50%'}}>
-                  <label for="">Floor Number</label>
+                  <label style={label} for="">Floor Number</label>
                   <input type="text" style={{width:'80%'}}
                 class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value={floornumber} onChange={(e) => setfloornumber(e.target.value)}/>
             </div> 
             </div>
             <div style={{width:'50%'}}>
-              <label for="">Capacity(number of people)</label>
+              <label style={label} for="">Capacity(number of people)</label>
               <input type="text" style={{width:'80%'}}
                 class="form-control" name="" id="" aria-describedby="helpId" placeholder="" value={capacity} onChange={(e) => setcapacity(e.target.value)}/>
                 </div>
             </Container>
             <Container>
+              <br/>
             <h5><b>Select Property Status</b></h5>
             <div style={{width:'50%'}}>
-                  <label for="">Property status</label>
+                  <label style={label} for="">Property status</label>
                 <div className="selectCard" style={{width:'100%',padding:'5px'}}>
                   {/* Property Status picks from this dropdown */}
                     <h6 className="flatText">{dropdown1}</h6>
@@ -355,6 +395,12 @@ const imgholderActive = {
                 </Dropdown.Menu>
                 </Dropdown>
                 </div>
+            </div>
+
+<br/>
+            <div style={{display:'flex'}}>
+              <button className="button-calm">Back</button>
+              <button style={{marginLeft:20}} onClick={() => setKey('2.Media')} className="button">Next Step</button>
             </div>
             </Container>
           </Tab>
@@ -376,7 +422,7 @@ const imgholderActive = {
             } className="uploadButton" style={{color:'#FFA197'}}>Select Media</button> */}
 
             {/* Input field */}
-            <input type="file"  multiple="multiple" style={{color:'#FFCBC6'}} onChange={addFileHandler} className="uploadButton"/>
+            <input type="file"  multiple="multiple" style={{color:'#FFCBC6'}} onChange={(event) => onChangePlace(event.target.files[0] || null)}  className="uploadButton"/>
 
 {/* <input type="file" id="selectedFile"/>
 <input type="button" value="Browse..." onClick="document.getElementById('selectedFile').click();" /> */}
@@ -393,7 +439,7 @@ const imgholderActive = {
                     <img onClick={changeImage} src={img1} style={imgholderActive} alt="placeholder" />
                 </div>
                 <div>
-                    <img onClick={changeImage} src={imgplaceholder} style={imgholder} alt="placeholder" />
+                    <img onClick={changeImage} src={dataUri} style={imgholder} alt="placeholder" />
                 </div>
                 <div>
                     <img onClick={changeImage} src={imgplaceholder} style={imgholder} alt="placeholder" />
@@ -418,7 +464,7 @@ const imgholderActive = {
             <button className="uploadButton">Select Media</button>
 
             <input type="file" accept="image/*" id="primaryButton" onclick="ExistingLogic()" />
-<input type="button" 
+      <input type="button" 
        id="secondaryButton" 
        value="Esss"
        onClick="document.getElementById('primaryButton').click()" />
@@ -473,7 +519,7 @@ const imgholderActive = {
 <br/>
             <div style={{display:'flex'}}>
               <button className="button-calm">Back</button>
-              <button style={{marginLeft:20}} onClick={() => submitForm()} className="button">Next Step</button>
+              <button style={{marginLeft:20}} onClick={submitMedia} className="button">Next Step</button>
             </div>
             </Container>
           </Tab>
