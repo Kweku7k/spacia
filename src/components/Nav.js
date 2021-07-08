@@ -71,7 +71,7 @@ const Nav = () => {
                     <Route path="/properties">
                         <Properties />
                     </Route>
-                    <Route path="/users">
+                    <Route path="/user-management">
                         <UserManagement />
                     </Route>
                     <Route path="/settings">
