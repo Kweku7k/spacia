@@ -646,15 +646,15 @@ const imgholderActive = {
                 </label>
               </div>
 
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group>
+              </Form.Group> */}
 
-              <div class="form-check">
+              {/* <div class="form-check">
                 <label class="form-check-label">
                   <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader"/><h6>One</h6>
                 </label>
-              </div>
+              </div> */}
             </div>
             <div class="col-md-4">
               <div class="form-check">
