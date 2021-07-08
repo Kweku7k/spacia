@@ -33,7 +33,7 @@ const Workspace = () => {
 
                 <Link to="/listproperty/concierge" style={link}>
 
-                <div className="selectCard">
+                <div className="selectCard disabled">
                     <h6 className="flatText">Concierge</h6>
                 </div>
                 </Link>
