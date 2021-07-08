@@ -312,13 +312,21 @@ input[type="range"]::-moz-range-progress {
 }
 
 td {
-	font-family: ProximaRegular;
-	vertical-align: middle;
-	padding-top: 0;
+	/*font-family: ProximaRegular;*/
+	/*vertical-align: middle;*/
+	/*padding-top: 0;*/
+	padding: 5px !important;
+}
+.table>:not(caption)>*>* {
+	padding: 0;
 }
 
-tr:nth-child(even) {
-	background: #f7f7f7;
+/*tr:nth-child(even) {*/
+/*	 background: #f7f7f7;*/
+/* }*/
+
+tr {
+	background: #fff;
 }
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
@@ -329,9 +337,9 @@ tr:nth-child(even) {
 	color: #393939 !important;
 	}
 
-tr:nth-child(odd) {
-	background: white;
-}
+/*tr:nth-child(odd) {
+/*	background: white;*/
+/*}*/
 
 .fomr-control{
 	font-size: 1rem;

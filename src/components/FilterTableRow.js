@@ -1,24 +1,22 @@
 import React from 'react'
 import bed from '../img/Web/Spacia/bed.png'
 import bathtub from '../img/Web/Spacia/bathtub.png'
+import capacityImg from '../img/Web/Spacia/capacity.svg'
+import floorSize from '../img/Web/Spacia/floor_size.svg'
 import { FaEdit, FaEye, FaTimes } from 'react-icons/fa'
 import {Row} from 'react-bootstrap'
 import '../css/Table.css'
 
 {/* <TableRow info="Some Text" Added='February 20th' Status='Availble' Price='Ghc30'></TableRow> */}
 
-const FilterTableRow = ({image, info, added, status, price, beds, showers, onDelete, onEditProperty, onView}) => {
+const FilterTableRow = ({image, info, added, status, price, size, capacity, propertyStatus, onDelete, onEditProperty, onView}) => {
 
     const available = {
         backgroundColor:'#02BD04', 
         color:'white', 
         border:'none',
-        fontWeight:'bold', 
-        borderRadius:5, 
-        paddingTop:4, 
-        paddingBottom:4, 
-        paddingLeft:20, 
-        paddingRight:20
+        fontWeight:'bold',
+        borderRadius: '6px'
     }
 
     const tableCell = {
@@ -26,28 +24,28 @@ const FilterTableRow = ({image, info, added, status, price, beds, showers, onDel
         paddingTop:10
     }
     return (
-            <tr onClick={onView} style={{borderBottom:"1px dashed black"}} >
-                    <td><img src={image} width={100} alt="demo"/></td>
-                    <td style={{width:200}}>
-                        <div>
-                            <h6 style={{fontSize:'small'}}>
+            <tr onClick={onView} style={{borderBottom:"1px dashed black", height: '170px'}} >
+                    <td><img src={image} alt="demo" style={{width: '210px', height: '140px', borderRadius: '12px', objectFit:'cover'}}/></td>
+                    <td style={{width:270}}>
+                        <div style={{paddingLeft: 0}}>
+                            <h6 style={{fontSize:'small', fontWeight: 400, letterSpacing: .5}}>
                         {info} 
                             </h6>
                             <br/>
-                            <div style={{display:'flex'}}>
-                            <img src={bed} style={{ width:20, height:20}} alt="bed"></img>
-                            <h6 style={{paddingLeft:20, paddingRight:20}}>{showers}</h6>
-                            <img src={bathtub} style={{ width:20, height:20}} alt="bathtub"></img>
-                            <h6 style={{paddingLeft:20, paddingRight:20}}>{beds}</h6>
+                            <div style={{display:'flex', alignItems: 'flex-end'}}>
+                            <img src={floorSize} style={{ width:20, height:20}} alt="Size" />
+                            <h6 style={{fontSize: '.8rem', paddingLeft:5, paddingRight:20, marginBottom: '-2px'}}>{`${size} x ${size} ft`}</h6>
+                            <img src={capacityImg} style={{ width:16, height:16}} alt="Space capacity" />
+                            <h6 style={{fontSize: '.8rem', paddingLeft:5, paddingRight:20, marginBottom: '-2px'}}>{capacity}</h6>
                             </div>
                         </div>
                         </td>
                     <td style={tableCell}>{added}</td>
-                    <td style={tableCell}><b>{status}</b></td>
-                    <td style={tableCell}><button style={available}>AVAILABLE</button></td>
+                    <td style={tableCell}><b>{propertyStatus}</b></td>
+                    <td style={tableCell}><button style={available}>{status}</button></td>
                     <td style={tableCell}>
                         <div>
-                            <b>Ghc {price} / month</b>
+                            <b>{price}</b>
                             <br/>
                             <div style={{display:'flex', marginTop:20}}>
                             

@@ -6,10 +6,15 @@ const QuantityCounter = () => {
     const [count, setCount] = useState(1);
 
     const add = () => {
-        setCount(count + 1);
+        setCount(prevState => prevState + 1);
     }
     const subtract = () => {
-        setCount(count - 1);
+        setCount(prevState => {
+            if (prevState === 0) {
+                return prevState;
+            }
+            return prevState - 1
+        });
     }
 
     const inline ={
@@ -25,12 +30,14 @@ const QuantityCounter = () => {
         // padding:3
         borderRight: '1px solid #ECECEC',
         padding: 10,
+        cursor: 'pointer'
         // paddingTop: 4
     }
     const iconRight = {
         // padding:3
         borderLeft: '1px solid #ECECEC',
         padding: 10,
+        cursor: 'pointer'
         // paddingTop: 4
     }
 
@@ -38,12 +45,14 @@ const QuantityCounter = () => {
     return (
         <>
         <div style={inline}>
-            <div style={iconLeft} >
-            <FaMinus size={7} onClick={subtract} />
+            <div style={iconLeft} onClick={subtract} >
+            <FaMinus size={7} />
             </div>
-            <h6 style={{paddingRight:10, paddingLeft:10, paddingTop:13, marginBottom:2, fontSize:16 }} >{count}</h6>
-            <div style={iconRight} >
-            <FaPlus size={7} onClick={add} />
+            {/*<h6 style={{paddingRight:10, paddingLeft:10, paddingTop:13, marginBottom:2, fontSize:16 }} >{count}</h6>*/}
+            <input type="text" style={{ width: '35px', textAlign: 'center', background: 'white', border: 'none', outline: 'none' }}
+                value={count} onChange={(e) => setCount(Number(e.target.value))}/>
+            <div style={iconRight} onClick={add}>
+            <FaPlus size={7} />
             </div>
         </div>
         </>

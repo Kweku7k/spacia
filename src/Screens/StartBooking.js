@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Container, Table, Dropdown, Row, Col } from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Demo.png'
 import TableRow from '../components/TableRow'
@@ -9,7 +9,7 @@ import {FaCaretDown, FaCircle, FaEllipsisV, FaEllipsisH, FaPlus, FaMinus, FaCale
 import {Link} from 'react-router-dom' 
 import bookingbg from '../img/Web/Spacia/settings/payment/bookingbg.png'
 import DatePicker from "react-datepicker";
-import Slider, { Range } from 'rc-slider';
+import Slide, { Range as Hmm } from 'rc-slider';
 import Filter from '../components/Filter'
 import 'rc-slider/assets/index.css';
 // import "react-datepicker/dist/react-datepicker.css";
@@ -20,7 +20,22 @@ import { Modal } from 'react-bootstrap'
 import bg from '../img/Web/Spacia/Web/Spacia/nastuh-abootalebi-eHD8Y1Znfpk-unsplash 1.png'
 // import '../css/datetime.css';
 import calendar from '../img/Web/Spacia/calendar-2 9.png'
+import axios from "axios";
+import Slider, { Range } from 'rc-slider';
+import 'rc-slider/assets/index.css';
+
 const StartBooking = () => {
+    const [filterOptions, setFilterOptions] = useState({});
+
+    const filterOptionsUrl = "https://spacia.page/booking/api/v1/listings/filter/options";
+    useEffect(() => {
+        axios.get(filterOptionsUrl).then(res => {
+            const resData = (res.data) ? res.data.data : {};
+            setFilterOptions(resData);
+            console.log(res.data.data)
+        });
+    }, []);
+
     //useState handling counter
     const [count, setCount] = useState(1);
 
@@ -105,7 +120,36 @@ const StartBooking = () => {
         borderRadius:5
     }
 
-    const [sliderValue, setSliderValue] = useState(0)
+    const [sliderValue, setSliderValue] = useState(0);
+    const [propertyType, setPropertyType] = useState('');
+    const [location, setLocation] = useState({});
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+    const [capacity, setCapacity] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(0);
+
+    const convertType = (type) => {
+        switch (type) {
+            case 'Work':
+                return 'Office';
+
+            case 'Stay':
+                return 'Residential';
+
+            case 'Concierge':
+                return 'Service';
+        }
+    }
+
+    const a = (location) => {
+        const city = location.city;
+        const country = location.country;
+
+        let label = (country) ? country.label : '';
+        label = label.charAt(0).toUpperCase() + label.slice(1);
+
+        return `${city}, ${label}`;
+    }
 
     const [value, onChange] = useState(new Date());
 
@@ -127,7 +171,7 @@ const StartBooking = () => {
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" /></form>
                     */}
-                    <button class="button" style={{backgroundColor:'transparent'}}>Add New Property </button>
+                    <button className="button" style={{backgroundColor:'transparent'}}>Add New Property </button>
 
 
             </div>
@@ -141,10 +185,27 @@ const StartBooking = () => {
             {/* <Slider /> */}
             
                 <Row>
-                    <div style={{display:'flex'}}>
-                    <input type="email" style={{width:'15%', marginRight:20}} placeholder="Type of service" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
-
-                    <input type="email" style={{width:'10%', marginRight:20}} placeholder="Location" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
+                    <div style={{display:'flex', alignItems: 'center'}}>
+                    {/*<input type="email" style={{width:'15%', marginRight:20}} placeholder="Type of service" className="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />*/}
+                        <div style={{width:'100%', marginRight:20, padding:0}}>
+                            <select className="form-select" aria-label="Property Type">
+                                <option selected>Type of service</option>
+                                {
+                                    (filterOptions['propertyTypes']) &&
+                                    filterOptions['propertyTypes'].map((type) => <option value={type.value}>{convertType(type.label)}</option>)
+                                }
+                            </select>
+                        </div>
+                    {/*<input type="email" style={{width:'10%', marginRight:20}} placeholder="Location" className="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />*/}
+                        <div style={{width:'100%', marginRight:20, padding:0}}>
+                            <select className="form-select" aria-label="Location">
+                                <option selected>Location</option>
+                                {
+                                    (filterOptions['location']) &&
+                                    filterOptions['location'].map((type) => <option value={type.city}>{a(type)}</option>)
+                                }
+                            </select>
+                        </div>
                     <div style={{width:'100%', marginRight:20, padding:0}}>
                         <DatePicker style={{height:'100%',width:'100%', marginRight:20, padding:10 }}  showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />
                     </div>
@@ -152,7 +213,6 @@ const StartBooking = () => {
                         {/* <DateTimePicker style={{fontSize:20}} onChange={onChange} value={value}  /> */}
                         <DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
                     </div>
-                        
 
 
                     {/* <div style={{display:'flex', justifyContent:'space-between'}} class="col-md-4"> */}
@@ -160,13 +220,17 @@ const StartBooking = () => {
                         <h6 style={price}>GHS1,200</h6>
                         <Slider min={0} max={20} defaultValue={3} />
                         </div> */}
-                        <div style={{width:'50%'}}>
-                        <h6 class="text-muted" style={{fontSize:10}}>GHS{sliderValue}</h6>
-                        {/* <Slider min={0} max={20} defaultValue={sliderValue} value={80} onChange={(e) => (sliderValue)}/> */}
-                        <input type="range" min="0" max="10000" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>
-                        </div>
                     {/* <div > */}
-                        <QuantityCounter/>
+                        <div style={{width:'50%', marginRight:20}}>
+                            <QuantityCounter/>
+                        </div>
+                        <div style={{width: '50%'}}>
+                            <h6 className="text-muted" style={{fontSize: 14}}>GHS{maxPrice.toLocaleString()}</h6>
+                            {/* <Slider min={0} max={20} defaultValue={sliderValue} value={80} onChange={(e) => (sliderValue)}/> */}
+                            {/*<input type="range" min="0" max="10000" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>*/}
+                            <Slide min={0} max={10000} step={1000} railStyle={{background: '#f859475e', height: '6px'}}
+                                   trackStyle={[{background: 'orangered', height: '6px'}]} handleStyle={[{background: 'white', marginTop: '-5px', borderColor: 'orangered'}]} onChange={(e) => setMaxPrice(e)}/>
+                        </div>
                     {/* </div> */}
                     <div style={{marginLeft:10}}>
                         <Link to='/filterprops'>
@@ -179,38 +243,38 @@ const StartBooking = () => {
             </div >
             </div>
             </Container>
-            
-<Modal show={newUserModal} onHide={() => setNewUserModal(false)} centered size='lg' style={{borderRadius:10}}>
-    
-        <div style={newModal} className="newmodal">
-            <div style={{display:'flex', flexDirection:'row-reverse', margin:20}}>
-            <FaTimes onClick={() => setNewUserModal(false)} color="white"/>
-            </div>
-        <h4 style={{textAlign:'center', marginTop:'10vh', marginBottom:'10vh', color:'white'}}><b>Find The Perfect Space</b></h4>
-    <Container>
-        {/* <Link to="/startbooking" style={link}> */}
-            <div style={modalBar} onClick={() => setNewUserModal(false)} >
-                <FaCalendarAlt size={28} color='red' style={{marginTop:'auto', marginBottom:'auto'}}/>
-                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Want to find a space on SPACIA?</b></h5>
-                <div style={{padding:10, borderRadius:5, backgroundColor:'red'}}>
-                    <FaArrowRight color="white"/>
-                </div>
-            </div>
-        {/* </Link> */}
 
-        <Link to="/listproperty" style={link}>
-            <div style={modalBar}>
-                <FaHome size={28} color='red' style={{marginTop:'auto', marginBottom:'auto'}}/>
-                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Want to add a listing on SPACIA?</b></h5>
-                <div style={{padding:10, borderRadius:5, backgroundColor:'red'}}>
-                    <FaArrowRight color="white"/>
-                </div>
-            </div>
-        </Link>
+{/*<Modal show={newUserModal} onHide={() => setNewUserModal(false)} centered size='lg' style={{borderRadius:10}}>*/}
+{/*    */}
+{/*        <div style={newModal} className="newmodal">*/}
+{/*            <div style={{display:'flex', flexDirection:'row-reverse', margin:20}}>*/}
+{/*            <FaTimes onClick={() => setNewUserModal(false)} color="white"/>*/}
+{/*            </div>*/}
+{/*        <h4 style={{textAlign:'center', marginTop:'10vh', marginBottom:'10vh', color:'white'}}><b>Find The Perfect Space</b></h4>*/}
+{/*    <Container>*/}
+{/*        /!* <Link to="/startbooking" style={link}> *!/*/}
+{/*            <div style={modalBar} onClick={() => setNewUserModal(false)} >*/}
+{/*                <FaCalendarAlt size={28} color='red' style={{marginTop:'auto', marginBottom:'auto'}}/>*/}
+{/*                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Want to find a space on SPACIA?</b></h5>*/}
+{/*                <div style={{padding:10, borderRadius:5, backgroundColor:'red'}}>*/}
+{/*                    <FaArrowRight color="white"/>*/}
+{/*                </div>*/}
+{/*            </div>*/}
+{/*        /!* </Link> *!/*/}
 
-    </Container>
-    </div>
-</Modal>
+{/*        <Link to="/listproperty" style={link}>*/}
+{/*            <div style={modalBar}>*/}
+{/*                <FaHome size={28} color='red' style={{marginTop:'auto', marginBottom:'auto'}}/>*/}
+{/*                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Want to add a listing on SPACIA?</b></h5>*/}
+{/*                <div style={{padding:10, borderRadius:5, backgroundColor:'red'}}>*/}
+{/*                    <FaArrowRight color="white"/>*/}
+{/*                </div>*/}
+{/*            </div>*/}
+{/*        </Link>*/}
+
+{/*    </Container>*/}
+{/*    </div>*/}
+{/*</Modal>*/}
         </div>
     )
 }

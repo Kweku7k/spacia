@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Container, Table, Dropdown, Toast } from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Demo.png'
 import TableRow from '../components/TableRow'
@@ -6,10 +6,17 @@ import BookingTableRow from '../components/BookingTableRow'
 import prop2 from '../img/Web/Spacia/prop2.png'
 import prop3 from '../img/Web/Spacia/prop3.png'
 import {FaCaretDown, FaCircle, FaEllipsisV, FaEllipsisH} from 'react-icons/fa'
-import {Link} from 'react-router-dom' 
+import {Link} from 'react-router-dom'
+import axios from "axios";
 
 
 const Booking = () => {
+
+    const filterOptionsUrl = "https://spacia.page/booking/api/v1/listings/filter/options";
+    useEffect(() => {
+        axios.get(filterOptionsUrl).then(res => console.log(res));
+    }, []);
+
     const edit ={
         backgroundColor:"transparent",
         border:'none'

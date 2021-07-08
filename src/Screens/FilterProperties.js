@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Table, Dropdown, Toast, Modal, Row } from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Rectangle 66.png'
 import demo2 from '../img/Web/Spacia/Demo.png'
@@ -25,6 +25,9 @@ import home4 from '../img/homes/home4.jpeg'
 import home5 from '../img/homes/home5.jpeg'
 import home6 from '../img/homes/home6.jpeg' 
 import home7 from '../img/homes/home6.jpeg'
+import axios from "axios";
+import Slide from "rc-slider";
+import moment from 'moment';
 
 
 const FilterProperties = (onAddToCart) => {
@@ -35,7 +38,23 @@ const FilterProperties = (onAddToCart) => {
 
     const [info, setInfo] = useState("")
     const [status, setStatus] = useState("Pending")
-    const [price, setPrice] = useState('')
+    const [price, setPrice] = useState('');
+    const [filterOptions, setFilterOptions] = useState({});
+    const [propertyType, setPropertyType] = useState('');
+    const [location, setLocation] = useState({});
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+    const [capacity, setCapacity] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(0);
+
+    const filterOptionsUrl = "https://spacia.page/booking/api/v1/listings/filter/options";
+    useEffect(() => {
+        axios.get(filterOptionsUrl).then(res => {
+            const resData = (res.data) ? res.data.data : {};
+            setFilterOptions(resData);
+            console.log(res.data.data)
+        });
+    }, []);
 
 
     const edit ={
@@ -127,7 +146,7 @@ const FilterProperties = (onAddToCart) => {
 
     const onAdd = (property) => {
         console.log(property)
-        setproperties([...properties, property])
+        setProperties([...properties, property])
     }
 
     const closeFormModal = ()  => {
@@ -153,28 +172,7 @@ const FilterProperties = (onAddToCart) => {
         setInfo('')
     }
 
-    const [properties, setproperties] = useState([
-        {
-            id:1,
-            photo: {demo},
-            info: "COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION",
-            added: "1st June 2021",
-            status: "active",
-            price: '30',
-            beds: '2',
-            baths: '3'
-        },
-        {
-            id:2,
-            photo: "{demo}",
-            info: "COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION",
-            added: "1st June 2021",
-            status: "active",
-            price: '30',
-            beds: '3',
-            baths: '3'
-        }
-    ])
+    const [properties, setProperties] = useState([])
 
     const fit = {
         display:'flex',
@@ -194,7 +192,49 @@ const FilterProperties = (onAddToCart) => {
 
     const [showDeleteModal, setshowDeleteModal] = useState(false)
     const deleteProperty = (id) =>{
-        setproperties(properties.filter((property) => property.id !== id))
+        setProperties(properties.filter((property) => property.id !== id))
+    }
+
+    const convertType = (type) => {
+        switch (type) {
+            case 'Work':
+                return 'Office';
+
+            case 'Stay':
+                return 'Residential';
+
+            case 'Concierge':
+                return 'Service';
+        }
+    }
+
+    const a = (location) => {
+        const city = location.city;
+        const country = location.country;
+
+        let label = (country) ? country.label : '';
+        label = label.charAt(0).toUpperCase() + label.slice(1);
+
+        return `${city}, ${label}`;
+    }
+
+    const searchForProperties = () => {
+        const searchUrl = 'https://spacia.page/booking/api/v1/listings/search';
+        axios.post(searchUrl,
+            {
+                "cost": maxPrice,
+                "location": {
+                    "city": "Accra",
+                    "country": "gh"
+                },
+                "propertyType": "OFFICE_SPACE",
+                "userId": 2
+            }).then(res => {
+                const searchBasedOnFilters = res.data['data'];
+
+                setProperties((searchBasedOnFilters) ? searchBasedOnFilters : []);
+            console.log(res.data.data);
+        }).catch(err=>(console.log(err)))
     }
 
     return (
@@ -204,10 +244,10 @@ const FilterProperties = (onAddToCart) => {
                     <h4><b>Search Results</b></h4>
                 </div>
                 <div style={{display:'flex', justifyContent:'space-between'}}>
-                <form class="form-inline my-2 my-xl-0" style={{width:"30vw"}}>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                <form className="form-inline my-2 my-xl-0" style={{width:"30vw"}}>
+                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                     </form>
-                    <div class="dropdown" style={{margin:'auto 30px'}}>
+                    <div className="dropdown" style={{margin:'auto 30px'}}>
                             <Dropdown>
                             <Dropdown.Toggle style={{backgroundColor:'#ECECEC', border:'none', color:'#848484'}} variant="success" id="dropdown-basic">
                                 All Properties 
@@ -233,37 +273,59 @@ const FilterProperties = (onAddToCart) => {
             <Toast style={{width:'90%', padding:10, borderRadius:10, margin:'auto', marginBottom:10}}>
                 {/* <Filter /> */}
                 <Row>
-                    <div class="col-md-2">
-                        <input type="email" placeholder="Type of service" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
+                    <div className="col-md-2">
+                        {/*<input type="email" placeholder="Type of service" className="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />*/}
+                        <select className="form-select" aria-label="Property Type">
+                            <option selected>Type of service</option>
+                            {
+                                (filterOptions['propertyTypes']) &&
+                                filterOptions['propertyTypes'].map((type) => <option value={type.value}>{convertType(type.label)}</option>)
+                            }
+                        </select>
                     </div>
-                    <div class="col-md-2">
-                        <input type="email" placeholder="Location" class="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />
+                    <div className="col-md-2">
+                        {/*<input type="email" placeholder="Location" className="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />*/}
+                        <select className="form-select" aria-label="Location">
+                            <option selected>Location</option>
+                            {
+                                (filterOptions['location']) &&
+                                filterOptions['location'].map((type) => <option value={type.city}>{a(type)}</option>)
+                            }
+                        </select>
                     </div>
-                    <div class="col-md-2">
+                    <div className="col-md-2">
                         <DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />
 
                     </div>
-                    <div class="col-md-2">
+                    <div className="col-md-2">
 
                         <DatePicker style={{fontSize:100}} showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
                         
                     </div>
 
-                    <div style={{display:'flex', justifyContent:'space-between'}} class="col-md-4">
+                    <div style={{display:'flex', justifyContent:'space-between'}} className="col-md-4">
                         <div>
-                        <h6 class="text-muted" style={{fontSize:10}}>GHS{sliderValue}000</h6>
+                        {/*<h6 className="text-muted" style={{fontSize:10}}>GHS{sliderValue}000</h6>*/}
 
-                        {/* <Slider min={0} max={20} defaultValue={sliderValue} value={80} onChange={(e) => (sliderValue)}/> */}
-                        <input type="range" min="100" max="10000" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>
+                        {/*/!* <Slider min={0} max={20} defaultValue={sliderValue} value={80} onChange={(e) => (sliderValue)}/> *!/*/}
+                        {/*<input type="range" min="100" max="10000" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>*/}
+
+                            <h6 className="text-muted" style={{fontSize: 14}}>GHS{maxPrice.toLocaleString()}</h6>
+                            {/* <Slider min={0} max={20} defaultValue={sliderValue} value={80} onChange={(e) => (sliderValue)}/> */}
+                            {/*<input type="range" min="0" max="10000" value={sliderValue} name='val_blur' onChange={(e) => {handleChange(e)}}/>*/}
+                            <Slide min={0} max={10000} step={1000} railStyle={{background: '#f859475e', height: '6px'}}
+                                   trackStyle={[{background: 'orangered', height: '6px'}]} handleStyle={[{background: 'white', marginTop: '-5px', borderColor: 'orangered'}]} onChange={(e) => setMaxPrice(e)}/>
+
 
                         </div>
                     <div >
                         <QuantityCounter/>
                     </div>
-                    <div >
-                        <Link to='/filterprops'>
-                            <button className="button">Search</button>
-                        </Link>
+                    <div>
+                        <button className="button" onClick={searchForProperties}>Search</button>
+                        {/*<Link to='/filterprops'>*/}
+                        {/*    <button className="button">Search</button>*/}
+                        {/*</Link>*/}
                     </div>
                     </div>
                 </Row>
@@ -274,13 +336,13 @@ const FilterProperties = (onAddToCart) => {
 
 <Container>
             <Table>
-                <tr>
-                   <td>Photo</td> 
-                   <td>Property Info</td> 
-                   <td>Added on</td> 
-                   <td>Property Status</td> 
-                   <td>Status</td> 
-                   <td>Price</td> 
+                <tr style={{height: '60px', background: '#f7f7f7'}}>
+                    <td>Photo</td>
+                    <td>Property Info</td>
+                    <td>Added on</td>
+                    <td>Property Status</td>
+                    <td>Status</td>
+                    <td>Price</td>
                 </tr>
 
 
@@ -288,82 +350,130 @@ const FilterProperties = (onAddToCart) => {
                 {/* {properties.map((property) => (
                     <TableRow onDelete={() => deleteModal(property.id)} image={demo} info={property.info} added={property.added} beds={property.beds} showers={property.baths} status='FOR RENT' price={property.price}></TableRow>
                     ))} */}
-                    <FilterTableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></FilterTableRow>
-                    <FilterTableRow image={home1} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onClick={showViewModal} onView={showViewModal} onAddToCart={onAddToCart}></FilterTableRow>
-                    <FilterTableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></FilterTableRow>
+                {
+                    properties.map(listing => {
+                        let status = listing.propertyStatus;
+
+                        // get property price
+                        const propertyPrice = listing.propertyPrice;
+                        const price = propertyPrice && propertyPrice.price;
+                        const billingPeriod = propertyPrice && propertyPrice.billingPeriod;
+
+                        let overall = undefined;
+                        if (price && billingPeriod) {
+                            let period = null;
+                            switch (billingPeriod) {
+                                case 'HOURLY':
+                                    period = 'hour';
+                                    break;
+
+                                case 'MONTHLY':
+                                    period = 'month';
+                                    break;
+
+                                case 'DAILY':
+                                    period = 'day';
+                                    break;
+
+                                default:
+                                    period = 'year';
+                            }
+
+                            overall = `${price.toLocaleString()}/${period}`;
+                        } else if (price) {
+                            overall = price;
+                        } else {
+                            overall = 'N/A';
+                        }
+
+                        return <FilterTableRow
+                            key={listing.id}
+                            image={demo}
+                            info={listing['description'].toUpperCase()}
+                            added={moment(listing.createdOn).format('DD-MMM-YYYY')}
+                            size={listing['listingDetails'] ? listing['listingDetails']['propertySize'] : ''}
+                            capacity={listing['listingDetails'] ? listing['listingDetails']['capacity'] : ''}
+                            status='AVAILABLE'
+                            propertyStatus={status && status.label} price={`GHS ${overall}`} />
+
+                    }) }
+                        {/*  <FilterTableRow image={home1} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onClick={showViewModal} onView={showViewModal} onAddToCart={onAddToCart}></FilterTableRow>*/}
+                        {/*<FilterTableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></FilterTableRow>*/}
+
             </Table>
+
 </Container>
 
 
 {/* View Property Modal  */}
 
 
-<Modal show={viewModal} onHide={closeViewModal} size="lg" >
-       <div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>
-        <FaTimes onClick={closeViewModal} />
-       </div>
-        <div style={{textAlign:'center', padding:30}}>
-            <h6><b>COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION</b></h6>
-            <br/>
-            <img src={image} alt="img" style={{width:'40%'}}/>
-            <div style={fit}>
-                <div>
-                    <img onClick={changeImage} src={home1} style={imgholder} alt="placeholder" />
-                </div>
-                <div>
-                    <img onClick={changeImage} src={home2} style={imgholder} alt="placeholder" />
-                </div>
-                <div>
-                    <img onClick={changeImage} src={home3} style={imgholder} alt="placeholder" />
-                </div>
-                <div>
-                    <img onClick={changeImage} src={home4} style={imgholder} alt="placeholder" />
-                </div>
-                <div>
-                    <img onClick={changeImage} src={home5} style={imgholder} alt="placeholder" />
-                </div>
-                <div>
-                    <img onClick={changeImage} src={home6} style={imgholder} alt="placeholder" />
-                </div>
-            </div>
-            <div>
-            <br/>
-                <Row style={{paddingLeft:40,paddingRight:40}}>
-                    <div className="col" style={{textAlign:'left'}}>
-                        <h5 style={{color:'#066875', fontWeight:'bold'}}>FOR SALE <span style={{color:'#393939', fontWeight:'normal'}}>GHC 560,000</span></h5>
-                        <br/>
-                        <h6 ><b>Description</b>
-                            <span style={{display:'flex'}}>
-                                <img src={bed} style={{ width:20, height:20, marginRight:10}} alt="bed"/>
-                                <h6>0</h6>
-                                <img src={bath} style={{ width:20, height:20, marginLeft:10, marginRight:10}} alt="bed"/>
-                                <h6>0</h6>
-                            </span>
-                        </h6>
-                    </div>
-                    <div className="col" style={{textAlign:'right'}}>
-                        <button className="button" style={{width:200}} onClick={closeViewModal} >Add To Cart</button>
-                        <br/>
-                        <h6 style={{fontSize:'small', color:'#2B86FF', marginTop:10}}><FaLandmark /> Ashaley Botwe school junction</h6>
-                    </div>
-                    <br/>
-                </Row>
-            </div>
-            <div className="description" style={{padding:10}}>
+{/*<Modal show={viewModal} onHide={closeViewModal} size="lg" >*/}
+{/*       <div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>*/}
+{/*        <FaTimes onClick={closeViewModal} />*/}
+{/*       </div>*/}
+{/*        <div style={{textAlign:'center', padding:30}}>*/}
+{/*            <h6><b>COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION</b></h6>*/}
+{/*            <br/>*/}
+{/*            <img src={image} alt="img" style={{width:'40%'}}/>*/}
+{/*            <div style={fit}>*/}
+{/*                <div>*/}
+{/*                    <img onClick={changeImage} src={home1} style={imgholder} alt="placeholder" />*/}
+{/*                </div>*/}
+{/*                <div>*/}
+{/*                    <img onClick={changeImage} src={home2} style={imgholder} alt="placeholder" />*/}
+{/*                </div>*/}
+{/*                <div>*/}
+{/*                    <img onClick={changeImage} src={home3} style={imgholder} alt="placeholder" />*/}
+{/*                </div>*/}
+{/*                <div>*/}
+{/*                    <img onClick={changeImage} src={home4} style={imgholder} alt="placeholder" />*/}
+{/*                </div>*/}
+{/*                <div>*/}
+{/*                    <img onClick={changeImage} src={home5} style={imgholder} alt="placeholder" />*/}
+{/*                </div>*/}
+{/*                <div>*/}
+{/*                    <img onClick={changeImage} src={home6} style={imgholder} alt="placeholder" />*/}
+{/*                </div>*/}
+{/*            </div>*/}
+{/*            <div>*/}
+{/*            <br/>*/}
+{/*                <Row style={{paddingLeft:40,paddingRight:40}}>*/}
+{/*                    <div className="col" style={{textAlign:'left'}}>*/}
+{/*                        <h5 style={{color:'#066875', fontWeight:'bold'}}>FOR SALE <span style={{color:'#393939', fontWeight:'normal'}}>GHC 560,000</span></h5>*/}
+{/*                        <br/>*/}
+{/*                        <h6 ><b>Description</b>*/}
+{/*                            <span style={{display:'flex'}}>*/}
+{/*                                <img src={bed} style={{ width:20, height:20, marginRight:10}} alt="bed"/>*/}
+{/*                                <h6>0</h6>*/}
+{/*                                <img src={bath} style={{ width:20, height:20, marginLeft:10, marginRight:10}} alt="bed"/>*/}
+{/*                                <h6>0</h6>*/}
+{/*                            </span>*/}
+{/*                        </h6>*/}
+{/*                    </div>*/}
+{/*                    <div className="col" style={{textAlign:'right'}}>*/}
+{/*                        <button className="button" style={{width:200}} onClick={closeViewModal} >Add To Cart</button>*/}
+{/*                        <br/>*/}
+{/*                        <h6 style={{fontSize:'small', color:'#2B86FF', marginTop:10}}><FaLandmark /> Ashaley Botwe school junction</h6>*/}
+{/*                    </div>*/}
+{/*                    <br/>*/}
+{/*                </Row>*/}
+{/*            </div>*/}
+{/*            <div className="description" style={{padding:10}}>*/}
 
-                <h6 style={{fontSize:'small', textAlign:'left', lineHeight:2 }} className="text-muted">
+{/*                <h6 style={{fontSize:'small', textAlign:'left', lineHeight:2 }} className="text-muted">*/}
 
-            Just steps away from QM2 express bus to Manhattan and local buses; only minutes from the LIRR. Walking distance to the Bay Terrace Shopping Center, Baybridge Commons Shopping Center, pool clubs, movie theaters and tennis courts. 1.5 blocks away from elementary school PS 169 and Bell Academy middle school in the award-winning District 25. Don’t miss this opportunity!
-                </h6>
+{/*            Just steps away from QM2 express bus to Manhattan and local buses; only minutes from the LIRR. Walking distance to the Bay Terrace Shopping Center, Baybridge Commons Shopping Center, pool clubs, movie theaters and tennis courts. 1.5 blocks away from elementary school PS 169 and Bell Academy middle school in the award-winning District 25. Don’t miss this opportunity!*/}
+{/*                </h6>*/}
 
-            </div>
-        </div>
-       
-        </Modal>
+{/*            </div>*/}
+{/*        </div>*/}
+{/*       */}
+{/*        </Modal>*/}
 
-    <Modal show='true'>
-<h4>Show Modal</h4>
-    </Modal>
+{/*    <Modal show='true'>*/}
+{/*<h4>Show Modal</h4>*/}
+{/*    </Modal>*/}
 
 
 {/* doneButton={() => deleteProperty()} */}
