@@ -326,6 +326,7 @@ const imgholderActive = {
             
             <Container>
             <Tabs
+          fill
           id="controlled-tab-example"
           activeKey={key}
           onSelect={(k) => setKey(k)}
