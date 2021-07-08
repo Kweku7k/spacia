@@ -81,7 +81,11 @@ const SignIn = () => {
     const loadurl = 'https://spacia.page/users/api/v1/login'
 
     const signInfunc = () =>{
-        axios.post(loadurl).then((res)=>{
+        axios.post(loadurl,{
+            'password':password,
+            'username':email,
+            'companyId':1
+        }).then((res)=>{
             localStorage.setItem('currentUser',res.data)
         })
     }
