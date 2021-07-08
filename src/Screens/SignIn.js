@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Container, Row } from 'react-bootstrap'
 import bg from '../img/spacia/web/Background.png'
 import logo from '../img/spacia/web/logo.png'
 import googleLogo from '../img/Web/Spacia/spacia/web/google 1.png'
 import {Link, useLocation} from 'react-router-dom'
 import queryString from "query-string";
+import axios from 'axios'
 const SignIn = () => {
 
 
@@ -47,6 +48,8 @@ const SignIn = () => {
         backgroundColor:'white'
     }
 
+    
+
     const isValidJSON = str => {
         try {
             JSON.parse(str);
@@ -56,6 +59,8 @@ const SignIn = () => {
         }
     };
 
+
+   
     const location = useLocation();
     const search = queryString.parse(location.search);
     const params = (search && search.payload) ? search.payload : '';
@@ -63,11 +68,23 @@ const SignIn = () => {
     let payload = null;
     if (isValidJSON(params)) {
         payload = JSON.parse(atob(params));
+        localStorage.setItem('payload',payload)
     }
 
     useEffect(() => {
         console.log(payload);
     }, []);
+
+    const [email, setemail] = useState('')
+    const [password, setpassword] = useState('')
+
+    const loadurl = 'https://spacia.page/users/api/v1/login'
+
+    const signInfunc = () =>{
+        axios.post(loadurl).then((res)=>{
+            localStorage.setItem('currentUser',res.data)
+        })
+    }
 
     return (
         <Row style={bgImage}>
@@ -90,13 +107,14 @@ const SignIn = () => {
                         <hr/>
 
                         <div class="form-group">
-                          <label for="">Email</label>
-                          <input type="email" class="form-control" placeholder="" name="" id="" aria-describedby="emailHelpId" />
+                          <label for="">Email</label> 
+                          {/* onChange={(e) => setpropertyTitle(e.target.value)} */}
+                          <input type="email" class="form-control" placeholder="" name="" id="" value={email} onChange={(e) => setemail(e.target.value)} aria-describedby="emailHelpId" />
                         </div>
                         <br/>
                         <div class="form-group">
                           <label for="">Password</label>
-                          <input type="email" class="form-control" placeholder="Password" name="" id="" aria-describedby="emailHelpId" />
+                          <input type="email" class="form-control" placeholder="Password" name="" value={password} onChange={(e) => setpassword(e.target.value)} id="" aria-describedby="emailHelpId" />
                         </div>
                         <br/>
 
@@ -120,7 +138,8 @@ const SignIn = () => {
 
                         <Link to="/">
                             <div style={{margin:'auto', textAlign:'center'}}>
-                            <button className="button" style={{width:'100%', margin:'auto'}}>Sign in</button>
+
+                            <button className="button" onClick={signInfunc} style={{width:'100%', margin:'auto'}}>Sign in</button>
                             </div>
                         </Link>
                         <br/>

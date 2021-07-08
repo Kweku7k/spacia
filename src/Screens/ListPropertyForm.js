@@ -187,6 +187,7 @@ const ListPropertyForm = () => {
   // }
   {
     "additionalSpec": "HOT_HOUR",
+    // text limit: 
     "description": description,
     "details": {
       "capacity": capacity,
@@ -196,7 +197,7 @@ const ListPropertyForm = () => {
     "location": {
       "address": address,
       "city": city,
-      "country": country,
+      "country": 'gh',
       "latitude": latitude,
       "longitude": longitude,
       "streetName": streetname

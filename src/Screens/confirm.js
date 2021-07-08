@@ -5,7 +5,7 @@ import logo from '../img/spacia/web/logo.png'
 import googleLogo from '../img/Web/Spacia/spacia/web/google 1.png'
 import {Link, useHistory} from 'react-router-dom'
 import axios from 'axios'
-const Signup = () => {
+const Confirm = () => {
 
 
     const history = useHistory();
@@ -78,7 +78,7 @@ const Signup = () => {
             // submitSignup(res)
             // Tenary
             (res.status = 201 ? (
-                history.push("/confirm"),
+                history.push("/startbooking"),
                 console.log("201 dey work"),
                 localStorage.setItem('currentUser',res.data.data[0].username)
             ):
@@ -170,75 +170,24 @@ const Signup = () => {
                 </div>
                 <div style={formCard}>
                     <Container>
-                        <h5>Register a new account</h5>
-                        <br/>
-                        <button style={googleButton}>
+                        <h5>Thank You</h5>
+                        {/* <br/> */}
+                        {/* <button style={googleButton}>
                             <img src={googleLogo} alt="G"/>
                             <div style={{margin:'auto'}}>
 
                             <h6 style={{textAlign:'center', marginBottom:0}}>Sign Up With Google</h6>
                             </div>
-                        </button>
+                        </button> */}
 
                         <hr/>
-
-                        <div class="form-group">
-                          <label for="">First Name</label>
-                          <input type="text" class="form-control"  value={firstName} onChange={(e) => setfirstName(e.target.value)}  placeholder="Full Name" name="" id="" aria-describedby="emailHelpId" />
-                            {firstNameError && 
-                          <small id="emailHelpId" class="form-text" style={{color:'red'}}>{firstNameError}</small>
-                            }
-
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                          <label for="">Last Name</label>
-                          <input type="text" class="form-control"  value={lastName} onChange={(e) => setlastName(e.target.value)}  placeholder="Full Name" name="" id="" aria-describedby="emailHelpId" />
-                          {lastNameError && 
-                          <small id="emailHelpId" class="form-text" style={{color:'red'}}>{lastNameError}</small>
-                            }
                         
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                          <label for="">Email</label>
-                            <input type="email" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Eg. lindaantwi@gmail.com" name="" id="" aria-describedby="emailHelpId" />
-                            {emailError && 
-                          <small id="emailHelpId" class="form-text" style={{color:'red'}}>{emailError}</small>
-                            }
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                          <label for="">Phone Number</label>
-                          <input type="string" class="form-control" value={phone} max="999" onChange={(e) => setphone(e.target.value)} name="" id="" aria-describedby="emailHelpId" placeholder="+233" />
-                          {phoneError && 
-                          <small id="emailHelpId" class="form-text" style={{color:'red'}}>{phoneError}</small>
-                            }
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                          <label for="">Password</label>
-                          <input type="password" class="form-control" value={password} onChange={(e) => setPassword(e.target.value)} name="" id="" aria-describedby="emailHelpId" placeholder="" />
-                          {passwordError && 
-                          <small id="emailHelpId" class="form-text" style={{color:'red'}}>{passwordError}</small>
-                            }
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                          <label for="">Confirm Password</label>
-                          <input type="password" class="form-control" value={confirmpassword} onChange={(e) => setconfirmpassword(e.target.value)} name="" id="" aria-describedby="emailHelpId" placeholder="" />
-                        </div>
-                        <br/>
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="" id="" value="checkedValue"/><h6 style={{fontSize:'smaller'}}> I agree to the Terms of Conditions and Privacy Policy</h6>
-                            </label>
-                        </div>
+                        <h6>Please check your email to complete your signup.</h6>
                         {/* <Link to="/signin"> */}
 
-                        <div style={{margin:'auto', textAlign:'center'}}>
+                        {/* <div style={{margin:'auto', textAlign:'center'}}>
                         <button onClick={submitSignup} className="button" style={{width:'100%'}}>Activate Account</button>
-                        </div>
+                        </div> */}
                         {/* </Link> */}
                     </Container>
                 </div>
@@ -247,4 +196,4 @@ const Signup = () => {
     )
 }
 
-export default Signup
+export default Confirm
