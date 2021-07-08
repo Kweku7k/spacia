@@ -4,12 +4,13 @@ import { Container, Tabs, Tab, Row, Dropdown, Form } from 'react-bootstrap';
 import uploadButton from '../img/Web/Spacia/Group 426.png'
 import imgplaceholder from '../img/Web/Spacia/imgplaceholder.png'
 import axios from 'axios'
+import {useHistory } from 'react-router-dom'
 
 const ListPropertyForm = () => {
   const [dropdown1, setdropdown1] = useState("Published")
   const [dropdown2, setdropdown2] = useState("Hourly")
 
-
+  
   // For Blob
   const fileToDataUri = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -133,11 +134,15 @@ const ListPropertyForm = () => {
   //   docume
   // }
 
+  let history = useHistory();
+
+
   const submitForm = (e) => {
     // e.preventDefault()
     setform(1)
     console.log(description)
     submit()
+    history.push("/properties")
   }
 // AXIOS POST REQUEST FOR FORM
 
@@ -825,10 +830,11 @@ const imgholderActive = {
             </div>
 
             </Row>
-
+<br/>
+<br/>
             <div style={{display:'flex'}}>
               <button className="button-calm">Back</button>
-              <button style={{marginLeft:20}} onClick={submitForm} className="button">Next Step</button>
+              <button style={{marginLeft:20, width:'auto'}} onClick={submitForm} className="button">Submit Property</button>
             </div>
             </div>
           </Tab>
