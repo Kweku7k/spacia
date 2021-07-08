@@ -56,17 +56,17 @@ const Signup = () => {
             {
                 "avatar": "https://www.google.com?avatar.jpg",
                 "companyId": 1,
-                "confirmPassword": "12345",
+                "confirmPassword": confirmpassword,
                 "contacts": [{
                     "isContactable": true,
                     "isPrimary": true,
                     "type": "mobile",
-                    "value": "+233555452772"
+                    "value": phone
                   }],
-                "firstName": "Nick",
-                "lastName": "Lynx",
-                "password": "12345",
-                "username": "nicholas.akorful68123@gmail.com",
+                "firstName": firstName,
+                "lastName": lastName,
+                "password": password,
+                "username": email,
                 "role": "ROLE_ADMINISTRATOR"
               }
 
