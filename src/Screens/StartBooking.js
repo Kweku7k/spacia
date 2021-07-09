@@ -23,17 +23,15 @@ import calendar from '../img/Web/Spacia/calendar-2 9.png'
 import axios from "axios";
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import {saveFilterOptions} from "../redux/actions/dashboard";
+import {useDispatch, useSelector} from "react-redux";
 
 const StartBooking = () => {
     const [filterOptions, setFilterOptions] = useState({});
+    const filters = useSelector(state => state.dashboard.selectedFilters);
 
-    const filterOptionsUrl = "https://spacia.page/booking/api/v1/listings/filter/options";
     useEffect(() => {
-        axios.get(filterOptionsUrl).then(res => {
-            const resData = (res.data) ? res.data.data : {};
-            setFilterOptions(resData);
-            console.log(res.data.data)
-        });
+        setFilterOptions(filters);
     }, []);
 
     //useState handling counter
@@ -127,6 +125,11 @@ const StartBooking = () => {
     const [time, setTime] = useState('');
     const [capacity, setCapacity] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
+    const [city, setCity] = useState('');
+    const [country, setCountry] = useState('');
+    const [listingTypeVal, setListingTypeVal] = useState('');
+
+    const dispatch = useDispatch();
 
     const convertType = (type) => {
         switch (type) {
@@ -141,14 +144,26 @@ const StartBooking = () => {
         }
     }
 
-    const a = (location) => {
+    const dispatchFilters = () => {
+        const a = {
+            "cost": maxPrice,
+            "location": { city,country },
+            "propertyType": listingTypeVal
+        }
+
+        dispatch(saveFilterOptions(a));
+
+        console.log('Inside dispatchFilters method');
+    }
+
+    const formatLocation = (location) => {
         const city = location.city;
         const country = location.country;
 
         let label = (country) ? country.label : '';
         label = label.charAt(0).toUpperCase() + label.slice(1);
 
-        return `${city}, ${label}`;
+        return `${city}, ${label.toUpperCase()}`;
     }
 
     const [value, onChange] = useState(new Date());
@@ -161,18 +176,34 @@ const StartBooking = () => {
 
     const showBooking = false
 
+    const handleSelectChange = (e) => {
+        if (e.target.value !== 'Type of service')
+            setListingTypeVal(e.target.value);
+    }
+
+    const handleSecondSelect = (e) => {
+        const value = e.target.value;
+        console.log(value);
+
+        const cityAndCountry = value.split(',');
+
+        setCity(cityAndCountry[0]);
+        setCountry(cityAndCountry[1]);
+
+        console.log('city', city, 'country', country);
+    }
+
     return (
         <div>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
                 <div>
                     <h4><b>Find a Space</b></h4>
                 </div>
-{/* 
+{/*
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" /></form>
                     */}
                     <button className="button" style={{backgroundColor:'transparent'}}>Add New Property </button>
-
 
             </div>
             <Container >
@@ -183,13 +214,20 @@ const StartBooking = () => {
                 <br/>
             <div style={bar}>
             {/* <Slider /> */}
-            
+
                 <Row>
                     <div style={{display:'flex', alignItems: 'center'}}>
                     {/*<input type="email" style={{width:'15%', marginRight:20}} placeholder="Type of service" className="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />*/}
                         <div style={{width:'100%', marginRight:20, padding:0}}>
-                            <select className="form-select" aria-label="Property Type">
+                            <select className="form-select" aria-label="Property Type" onChange={handleSelectChange}>
                                 <option selected>Type of service</option>
+                                {/*{*/}
+                                {/*    filterOptions['propertyTypes'].map((type) => {*/}
+                                {/*        setListingTypeVal(type.value);*/}
+
+                                {/*        return <option key={type.value} value={type.value}>{convertType(type.label)}</option>*/}
+                                {/*    })*/}
+                                {/*}*/}
                                 {
                                     (filterOptions['propertyTypes']) &&
                                     filterOptions['propertyTypes'].map((type) => <option value={type.value}>{convertType(type.label)}</option>)
@@ -198,20 +236,22 @@ const StartBooking = () => {
                         </div>
                     {/*<input type="email" style={{width:'10%', marginRight:20}} placeholder="Location" className="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />*/}
                         <div style={{width:'100%', marginRight:20, padding:0}}>
-                            <select className="form-select" aria-label="Location">
+                            <select className="form-select" aria-label="Location" onChange={handleSecondSelect}>
                                 <option selected>Location</option>
                                 {
                                     (filterOptions['location']) &&
-                                    filterOptions['location'].map((type) => <option value={type.city}>{a(type)}</option>)
+                                    filterOptions['location'].map((type) => <option value={`${type.city},${type.country.value}`}>{formatLocation(type)}</option>)
                                 }
                             </select>
                         </div>
                     <div style={{width:'100%', marginRight:20, padding:0}}>
-                        <DatePicker style={{height:'100%',width:'100%', marginRight:20, padding:10 }}  showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />
+                        <input type="text" className='form-control' placeholder='Date'/>
+                        {/*<DatePicker style={{height:'100%',width:'100%', marginRight:20, padding:10 }}  showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />*/}
                     </div>
                     <div style={{width:'100%', marginRight:20}}>
                         {/* <DateTimePicker style={{fontSize:20}} onChange={onChange} value={value}  /> */}
-                        <DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
+                        {/*<DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />*/}
+                        <input type="text" className='form-control' placeholder='Time'/>
                     </div>
 
 
@@ -234,7 +274,7 @@ const StartBooking = () => {
                     {/* </div> */}
                     <div style={{marginLeft:10}}>
                         <Link to='/filterprops'>
-                            <button className="button">Search</button>
+                            <button className="button" onClick={dispatchFilters}>Search</button>
                         </Link>
                     </div>
                     </div>
@@ -244,37 +284,37 @@ const StartBooking = () => {
             </div>
             </Container>
 
-{/*<Modal show={newUserModal} onHide={() => setNewUserModal(false)} centered size='lg' style={{borderRadius:10}}>*/}
-{/*    */}
-{/*        <div style={newModal} className="newmodal">*/}
-{/*            <div style={{display:'flex', flexDirection:'row-reverse', margin:20}}>*/}
-{/*            <FaTimes onClick={() => setNewUserModal(false)} color="white"/>*/}
-{/*            </div>*/}
-{/*        <h4 style={{textAlign:'center', marginTop:'10vh', marginBottom:'10vh', color:'white'}}><b>Find The Perfect Space</b></h4>*/}
-{/*    <Container>*/}
-{/*        /!* <Link to="/startbooking" style={link}> *!/*/}
-{/*            <div style={modalBar} onClick={() => setNewUserModal(false)} >*/}
-{/*                <FaCalendarAlt size={28} color='red' style={{marginTop:'auto', marginBottom:'auto'}}/>*/}
-{/*                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Want to find a space on SPACIA?</b></h5>*/}
-{/*                <div style={{padding:10, borderRadius:5, backgroundColor:'red'}}>*/}
-{/*                    <FaArrowRight color="white"/>*/}
-{/*                </div>*/}
-{/*            </div>*/}
-{/*        /!* </Link> *!/*/}
+<Modal show={newUserModal} onHide={() => setNewUserModal(false)} centered size='lg' style={{borderRadius:10}}>
 
-{/*        <Link to="/listproperty" style={link}>*/}
-{/*            <div style={modalBar}>*/}
-{/*                <FaHome size={28} color='red' style={{marginTop:'auto', marginBottom:'auto'}}/>*/}
-{/*                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Want to add a listing on SPACIA?</b></h5>*/}
-{/*                <div style={{padding:10, borderRadius:5, backgroundColor:'red'}}>*/}
-{/*                    <FaArrowRight color="white"/>*/}
-{/*                </div>*/}
-{/*            </div>*/}
-{/*        </Link>*/}
+        <div style={newModal} className="newmodal">
+            <div style={{display:'flex', flexDirection:'row-reverse', margin:20}}>
+            <FaTimes onClick={() => setNewUserModal(false)} color="white"/>
+            </div>
+        <h4 style={{textAlign:'center', marginTop:'10vh', marginBottom:'10vh', color:'white'}}><b>Find The Perfect Space</b></h4>
+    <Container>
+        {/* <Link to="/startbooking" style={link}> */}
+            <div style={modalBar} onClick={() => setNewUserModal(false)} >
+                <FaCalendarAlt size={28} color='red' style={{marginTop:'auto', marginBottom:'auto'}}/>
+                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Want to find a space on SPACIA?</b></h5>
+                <div style={{padding:10, borderRadius:5, backgroundColor:'red'}}>
+                    <FaArrowRight color="white"/>
+                </div>
+            </div>
+        {/* </Link> */}
 
-{/*    </Container>*/}
-{/*    </div>*/}
-{/*</Modal>*/}
+        <Link to="/listproperty" style={link}>
+            <div style={modalBar}>
+                <FaHome size={28} color='red' style={{marginTop:'auto', marginBottom:'auto'}}/>
+                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Want to add a listing on SPACIA?</b></h5>
+                <div style={{padding:10, borderRadius:5, backgroundColor:'red'}}>
+                    <FaArrowRight color="white"/>
+                </div>
+            </div>
+        </Link>
+
+    </Container>
+    </div>
+</Modal>
         </div>
     )
 }

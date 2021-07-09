@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { FaCaretDown, FaBell } from 'react-icons/fa'
 import profile from '../img/Web/Spacia/navbar/Mask.png'
 import bellIcon from '../img/Web/Spacia/settings/navbar/bell 1.png'
@@ -22,21 +22,43 @@ import Cart from "../Screens/Cart"
 import FilterProperties from '../Screens/FilterProperties'
 import ListProperty from '../Screens/ListProperty'
 import Confirm from '../Screens/confirm'
-import ListPropertyForm from '../Screens/ListPropertyForm'
+import ListPropertyForm from '../Screens/ListPropertyForm';
+import SERVICES from '../services';
+import axios from "axios";
+import {useDispatch} from "react-redux";
+import { saveFilterOptions } from "../redux/actions/dashboard";
 
 // /Users/kweku/Documents/Projects/ReactProjects/spacia/src/img/Web/Spacia/settings/navbar/bell.png
 const Nav = () => {
-
-    const currentUser = localStorage.getItem('currentUser');
     const username = "Nana Kweku" 
     // const userPicture = "Nana Kweku"
     // const cart = true
-    const [cart, setcart] = useState(false)
+    const [cart, setcart] = useState(false);
+    const [currentUser, setCurrentUser] = useState({});
     
     const onAddToCart = () => {
         console.log("Added To Cart")
         setcart (true)
     }
+
+    const dispatch = useDispatch();
+
+    const filterOptionsUrl = "https://spacia.page/booking/api/v1/listings/filter/options";
+    // useEffect(() => {
+    //     axios.get(filterOptionsUrl).then(res => {
+    //         const resData = (res.data) ? res.data.data : {};
+    //         dispatch(saveFilterOptions(resData));
+    //         console.log(res.data.data)
+    //     });
+    // }, []);
+
+    useEffect(() => {
+        console.log('Inside Nav');
+        console.log(SERVICES.getUser());
+
+        setCurrentUser(SERVICES.getUser());
+    }, []);
+
     return (
 <>
 {/* <MainPage /> */}
@@ -47,7 +69,7 @@ const Nav = () => {
     {/* <img src={userPicture}  /> */}
     <FaCaretDown style={{marginTop:'auto', marginBottom:'auto'}} />
     
-    <h6 style={{marginTop:'auto'}}>{currentUser}</h6>
+    <h6 style={{marginTop:'7px'}}>{currentUser ? `${currentUser.firstName} ${currentUser.lastName}` : 'N/A'}</h6>
     <img src={profile} alt="img" style={{ width:30, height:30, borderRadius:'50%', marginRight:10 }} />
     <Link to ="/cart">
    <div style={{marginRight:40}}>
@@ -71,7 +93,7 @@ const Nav = () => {
                     <Route path="/properties">
                         <Properties />
                     </Route>
-                    <Route path="/user-management">
+                    <Route path="/users">
                         <UserManagement />
                     </Route>
                     <Route path="/settings">

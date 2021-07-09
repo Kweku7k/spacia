@@ -5,7 +5,12 @@ import logo from '../img/spacia/web/logo.png'
 import googleLogo from '../img/Web/Spacia/spacia/web/google 1.png'
 import {Link, useLocation} from 'react-router-dom'
 import queryString from "query-string";
-import axios from 'axios'
+import axios from 'axios';
+import SERVICES from '../services';
+import {useDispatch} from "react-redux";
+import {saveSelectedFilters} from "../redux/actions/dashboard";
+
+
 const SignIn = () => {
 
 
@@ -66,10 +71,23 @@ const SignIn = () => {
     const params = (search && search.payload) ? search.payload : '';
 
     let payload = null;
-    if (isValidJSON(params)) {
-        payload = JSON.parse(atob(params));
-        localStorage.setItem('payload',payload)
+    const decodedString = atob(params);
+    if (isValidJSON(decodedString)) {
+        payload = JSON.parse(decodedString);
+        // localStorage.setItem('payload',payload)
+        SERVICES.saveUser(payload);
     }
+
+    const dispatch = useDispatch();
+
+    const filterOptionsUrl = "https://spacia.page/booking/api/v1/listings/filter/options";
+    useEffect(() => {
+        axios.get(filterOptionsUrl).then(res => {
+            const resData = (res.data) ? res.data.data : {};
+            dispatch(saveSelectedFilters(resData));
+            console.log(res.data.data)
+        });
+    }, []);
 
     useEffect(() => {
         console.log(payload);
@@ -78,15 +96,19 @@ const SignIn = () => {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
 
-    const loadurl = 'https://spacia.page/users/api/v1/login'
+    const loadurl = 'https://spacia.page/users/api/v1/login';
 
-    const signInfunc = () =>{
+
+    const signInfunc = () => {
+        // const user = SERVICES.getUser();
+        // console.log('user data:' + user);
         axios.post(loadurl,{
             'password':password,
             'username':email,
             'companyId':1
         }).then((res)=>{
-            localStorage.setItem('currentUser',res.data)
+            console.log(res.data.data[0]);
+            SERVICES.saveUser(res.data.data[0])
         })
     }
 
@@ -110,23 +132,23 @@ const SignIn = () => {
 
                         <hr/>
 
-                        <div class="form-group">
-                          <label for="">Email</label> 
+                        <div className="form-group">
+                          <label htmlFor="">Email</label>
                           {/* onChange={(e) => setpropertyTitle(e.target.value)} */}
-                          <input type="email" class="form-control" placeholder="" name="" id="" value={email} onChange={(e) => setemail(e.target.value)} aria-describedby="emailHelpId" />
+                          <input type="email" className="form-control" placeholder="" name="" id="" value={email} onChange={(e) => setemail(e.target.value)} aria-describedby="emailHelpId" />
                         </div>
                         <br/>
-                        <div class="form-group">
-                          <label for="">Password</label>
-                          <input type="email" class="form-control" placeholder="Password" name="" value={password} onChange={(e) => setpassword(e.target.value)} id="" aria-describedby="emailHelpId" />
+                        <div className="form-group">
+                          <label htmlFor="">Password</label>
+                          <input type="password" className="form-control" placeholder="Password" name="" value={password} onChange={(e) => setpassword(e.target.value)} id="" aria-describedby="emailHelpId" />
                         </div>
                         <br/>
 
                         {/* Functions */}
                         <div style={{display:'flex', justifyContent:'space-between'}}>
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input style={{marginTop:0}} class="form-check-input" type="checkbox" name="" id="" value="checkedValue"/><h6 style={{fontSize:'smaller'}}> Remember Me</h6>
+                        <div className="form-check form-check-inline">
+                            <label className="form-check-label">
+                                <input style={{marginTop:0}} className="form-check-input" type="checkbox" name="" id="" value="checkedValue"/><h6 style={{fontSize:'smaller'}}> Remember Me</h6>
                             </label>
                         </div>
                             
@@ -147,7 +169,7 @@ const SignIn = () => {
                             </div>
                         </Link>
                         <br/>
-                        <h6 class="text-muted">Do no have an account? <span><Link to="/signup" style={{color:'blue',fontSize:'smaller'}}>Sign Up</Link></span></h6>
+                        <h6 className="text-muted">Do no have an account? <span><Link to="/signup" style={{color:'blue',fontSize:'smaller'}}>Sign Up</Link></span></h6>
                         
                         
                     </Container>

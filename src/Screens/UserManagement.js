@@ -7,6 +7,7 @@ import img from '../img/Web/Spacia/Ellipse.png'
 import peter from '../img/Web/Spacia/Peter.png'
 import profile from '../img/Web/Spacia/profile.png'
 import profile3 from '../img/Web/Spacia/profile3.png'
+import SERVICES from '../services'
 
 
 import LoadingPage from '../components/LoadingPage'
@@ -194,15 +195,17 @@ const UserManagement = () => {
 
     let localUrl = 'https://spacia.page/users/api/v1/users/invite';
     const inviteUser = () => {
-        const pay = localStorage.getItem('payload');
-        console.log(pay);
+        const user = SERVICES.getUser();
         console.log(state);
+
+        const inviterId = user ? user.id : 0;
+
+        console.log('inviterId', inviterId);
 
         axios.post(localUrl,
             {
                 "emailsOfInvitees": state,
-                "invitationId": 1,
-                "inviterId": 42,
+                inviterId,
                 "role": "ROLE_SUBSCRIBER_APPROVER"
             }).then(res => {
             console.log(res);

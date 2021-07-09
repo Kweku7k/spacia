@@ -28,6 +28,9 @@ import home7 from '../img/homes/home6.jpeg'
 import axios from "axios";
 import Slide from "rc-slider";
 import moment from 'moment';
+import {useDispatch, useSelector} from "react-redux";
+import {saveFilterOptions} from "../redux/actions/dashboard";
+import SERVICES from '../services';
 
 
 const FilterProperties = (onAddToCart) => {
@@ -39,21 +42,19 @@ const FilterProperties = (onAddToCart) => {
     const [info, setInfo] = useState("")
     const [status, setStatus] = useState("Pending")
     const [price, setPrice] = useState('');
-    const [filterOptions, setFilterOptions] = useState({});
     const [propertyType, setPropertyType] = useState('');
     const [location, setLocation] = useState({});
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [capacity, setCapacity] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
+    const [filterOptions, setFilterOptions] = useState({});
 
-    const filterOptionsUrl = "https://spacia.page/booking/api/v1/listings/filter/options";
+    // const filterOptionsUrl = "https://spacia.page/booking/api/v1/listings/filter/options";
+    const filters = useSelector(state => state.dashboard.selectedFilters);
+
     useEffect(() => {
-        axios.get(filterOptionsUrl).then(res => {
-            const resData = (res.data) ? res.data.data : {};
-            setFilterOptions(resData);
-            console.log(res.data.data)
-        });
+        setFilterOptions(filters);
     }, []);
 
 
@@ -195,6 +196,13 @@ const FilterProperties = (onAddToCart) => {
         setProperties(properties.filter((property) => property.id !== id))
     }
 
+    const selectedFilters = useSelector(state => state.dashboard.filterOptions);
+
+    useEffect(() => {
+        console.log('Inside filter properties');
+        console.log(selectedFilters);
+    }, []);
+
     const convertType = (type) => {
         switch (type) {
             case 'Work':
@@ -208,7 +216,7 @@ const FilterProperties = (onAddToCart) => {
         }
     }
 
-    const a = (location) => {
+    const formatLocation = (location) => {
         const city = location.city;
         const country = location.country;
 
@@ -218,23 +226,94 @@ const FilterProperties = (onAddToCart) => {
         return `${city}, ${label}`;
     }
 
+    const dispatch = useDispatch();
+
+    const [city, setCity] = useState('');
+    const [country, setCountry] = useState('');
+    const [listingTypeVal, setListingTypeVal] = useState('');
+
+    const handleSecondSelect = (e) => {
+        const value = e.target.value;
+        console.log(value);
+
+        const cityAndCountry = value.split(',');
+
+        setCity(cityAndCountry[0]);
+        setCountry(cityAndCountry[1]);
+
+        console.log('city', city, 'country', country);
+    }
+
+    const handleSelectChange = (e) => {
+        if (e.target.value !== 'Type of service')
+            setListingTypeVal(e.target.value);
+    }
+
+    const dispatchFilters = () => {
+        const a = {
+            "cost": maxPrice,
+            "location": { city,country },
+            "propertyType": listingTypeVal
+        }
+
+        dispatch(saveFilterOptions(a));
+
+        console.log('Inside dispatchFilters method');
+    }
+
+    useEffect(() => {
+        const currentUser = SERVICES.getUser();
+
+        const userId = currentUser ? currentUser.id : 0;
+
+        const searchUrl = 'https://spacia.page/booking/api/v1/listings/search';
+        axios.post(searchUrl,
+            {
+                "cost": selectedFilters.cost,
+                "location": {
+                    "city": selectedFilters.location.city,
+                    "country": selectedFilters.location.country
+                },
+                "propertyType": selectedFilters.propertyType,
+                "userId": userId
+            }).then(res => {
+            const searchBasedOnFilters = res.data['data'];
+
+            setProperties((searchBasedOnFilters) ? searchBasedOnFilters : []);
+            console.log(res.data.data);
+        }).catch(err=>(console.log(err)))
+    }, []);
+
     const searchForProperties = () => {
+        const currentUser = SERVICES.getUser();
+
+        const userId = currentUser ? currentUser.id : 0;
+
         const searchUrl = 'https://spacia.page/booking/api/v1/listings/search';
         axios.post(searchUrl,
             {
                 "cost": maxPrice,
                 "location": {
-                    "city": "Accra",
-                    "country": "gh"
+                    "city": city,
+                    "country": country
                 },
-                "propertyType": "OFFICE_SPACE",
-                "userId": 2
+                "propertyType": listingTypeVal,
+                "userId": userId
             }).then(res => {
                 const searchBasedOnFilters = res.data['data'];
 
-                setProperties((searchBasedOnFilters) ? searchBasedOnFilters : []);
+                if (res.status === 200) {
+                    setProperties((searchBasedOnFilters) ? searchBasedOnFilters : []);
+                } else {
+                    setProperties([]);
+                }
+
             console.log(res.data.data);
-        }).catch(err=>(console.log(err)))
+            console.log(res);
+        }).catch(err => {
+            setProperties([]);
+            (console.log(err))
+        })
     }
 
     return (
@@ -275,7 +354,7 @@ const FilterProperties = (onAddToCart) => {
                 <Row>
                     <div className="col-md-2">
                         {/*<input type="email" placeholder="Type of service" className="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />*/}
-                        <select className="form-select" aria-label="Property Type">
+                        <select className="form-select" aria-label="Property Type" onChange={handleSelectChange}>
                             <option selected>Type of service</option>
                             {
                                 (filterOptions['propertyTypes']) &&
@@ -285,26 +364,27 @@ const FilterProperties = (onAddToCart) => {
                     </div>
                     <div className="col-md-2">
                         {/*<input type="email" placeholder="Location" className="form-control col-md-1" name="" id="" aria-describedby="emailHelpId" />*/}
-                        <select className="form-select" aria-label="Location">
+                        <select className="form-select" aria-label="Location" onChange={handleSecondSelect}>
                             <option selected>Location</option>
                             {
                                 (filterOptions['location']) &&
-                                filterOptions['location'].map((type) => <option value={type.city}>{a(type)}</option>)
+                                filterOptions['location'].map((type) => <option value={type.city}>{formatLocation(type)}</option>)
                             }
                         </select>
                     </div>
                     <div className="col-md-2">
-                        <DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />
+                        <input type="text" className='form-control' placeholder='Date'/>
+                        {/*<DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />*/}
 
                     </div>
                     <div className="col-md-2">
 
-                        <DatePicker style={{fontSize:100}} showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
-                        
+                        {/*<DatePicker style={{fontSize:100}} showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />*/}
+                        <input type="text" className='form-control' placeholder='Time'/>
                     </div>
 
                     <div style={{display:'flex', justifyContent:'space-between'}} className="col-md-4">
-                        <div>
+                        <div style={{width: '100%', marginRight: '20px'}}>
                         {/*<h6 className="text-muted" style={{fontSize:10}}>GHS{sliderValue}000</h6>*/}
 
                         {/*/!* <Slider min={0} max={20} defaultValue={sliderValue} value={80} onChange={(e) => (sliderValue)}/> *!/*/}
@@ -318,7 +398,7 @@ const FilterProperties = (onAddToCart) => {
 
 
                         </div>
-                    <div >
+                    <div style={{marginRight: '10px'}}>
                         <QuantityCounter/>
                     </div>
                     <div>
