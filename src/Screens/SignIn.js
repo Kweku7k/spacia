@@ -107,11 +107,15 @@ const SignIn = () => {
             'username':email,
             'companyId':1
         }).then((res)=>{
-            console.log(res.data.data[0]);
+            console.log(res.data);
             SERVICES.saveUser(res.data.data[0])
+            loginlogic(res)
         })
     }
 
+    const loginlogic = (res) =>{
+            // if res.data.role ==  
+    }
     return (
         <Row style={bgImage}>
             {/* <div > */}
@@ -162,12 +166,12 @@ const SignIn = () => {
                         <br/>
                         <br/>
 
-                        <Link to="/">
+                        {/* <Link to="/"> */}
                             <div style={{margin:'auto', textAlign:'center'}}>
 
                             <button className="button" onClick={signInfunc} style={{width:'100%', margin:'auto'}}>Sign in</button>
                             </div>
-                        </Link>
+                        {/* </Link> */}
                         <br/>
                         <h6 className="text-muted">Do no have an account? <span><Link to="/signup" style={{color:'blue',fontSize:'smaller'}}>Sign Up</Link></span></h6>
                         

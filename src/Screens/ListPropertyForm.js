@@ -23,8 +23,15 @@ const ListPropertyForm = () => {
 
   const [dataUri, setDataUri] = useState(imgplaceholder)
 
+  const [filesArray, setfilesArray] = useState([])
+
   const onChangePlace = (file) => {
+    console.log(file)
+
+    console.log(filesArray)
+    console.log(filesArray)
     
+
     if(!file) {
       setDataUri('');
       return;
@@ -48,12 +55,12 @@ const ListPropertyForm = () => {
     //   )
     // }
 
-    
     fileToDataUri(file)
       .then(dataUri => {
         setDataUri(dataUri)
       })
-    
+
+    setfilesArray([...filesArray, file]) 
   }
 
   const [image, setImage] = useState(imgplaceholder)
@@ -61,6 +68,13 @@ const ListPropertyForm = () => {
   const button = () =>{
     const thebutton = document.getElementById('filepicker')
     console.log(thebutton)
+  }
+
+  const submitMedia = () =>{
+    console.log(filesArray)
+    console.log("To Heroku")
+    axios.post('https://spacia.page/booking/api/v1/listings/media',{filesArray}).then((res) => (console.log(res)))
+
   }
 
 
@@ -314,11 +328,6 @@ const imgholderActive = {
 
     const [key, setKey] = useState('1.Description');
 
-    const submitMedia = () => {
-      setKey('3.Location')
-
-      // axios.post() media
-    }
     return (
         <div>
           <div style={{display:'flex'}}>
@@ -425,7 +434,7 @@ const imgholderActive = {
                 <div className="selectCard" style={{width:'100%',padding:'5px'}}>
                   {/* Property Status picks from this dropdown */}
                     <h6 className="flatText">{dropdown1}</h6>
-                    <Dropdown>
+              <Dropdown>
                 <Dropdown.Toggle style={{backgroundColor:'transparent', color:'black', border:'none'}} id="dropdown-basic">
                 </Dropdown.Toggle>
 
@@ -433,7 +442,7 @@ const imgholderActive = {
                     <Dropdown.Item onClick={()=>setdropdown1("Published")} href="#/action-2">Published</Dropdown.Item>
                     <Dropdown.Item onClick={()=>setdropdown1("Not Published")} href="#/action-3">Not Published</Dropdown.Item>
                 </Dropdown.Menu>
-                </Dropdown>
+              </Dropdown>
                 </div>
             </div>
 
