@@ -11,6 +11,7 @@ const ListPropertyForm = () => {
   const [dropdown2, setdropdown2] = useState("Hourly")
 
   
+  
   // For Blob
   const fileToDataUri = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -18,7 +19,7 @@ const ListPropertyForm = () => {
       resolve(event.target.result)
       console.log(event.target.result)
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file.files[0]);
     })
 
   const [dataUri, setDataUri] = useState(imgplaceholder)
@@ -26,10 +27,9 @@ const ListPropertyForm = () => {
   const [filesArray, setfilesArray] = useState([])
 
   const onChangePlace = (file) => {
-    console.log(file)
-
-    console.log(filesArray)
-    console.log(filesArray)
+    // console.log(file.files[0])
+    console.log(file.files[0])
+    console.log( filesArray.length )
     
 
     if(!file) {
@@ -60,7 +60,11 @@ const ListPropertyForm = () => {
         setDataUri(dataUri)
       })
 
-    setfilesArray([...filesArray, file]) 
+    console.log(file)
+    setfilesArray([...filesArray, {
+      "file":file.files[0],
+      "blob":dataUri
+    }]) 
   }
 
   const [image, setImage] = useState(imgplaceholder)
@@ -74,7 +78,6 @@ const ListPropertyForm = () => {
     console.log(filesArray)
     console.log("To Heroku")
     axios.post('https://spacia.page/booking/api/v1/listings/media',{filesArray}).then((res) => (console.log(res)))
-
   }
 
 
@@ -319,7 +322,8 @@ const label = {
 const imgholder = {
   width:100,
   height:100,
-  objectFit:'cover'
+  objectFit:'cover',
+  marginRight:10
 }
 
 const imgholderActive = {
@@ -472,7 +476,7 @@ const imgholderActive = {
             } className="uploadButton" style={{color:'#FFA197'}}>Select Media</button> */}
 
             {/* Input field */}
-            <input type="file"  multiple="multiple" style={{color:'#FFCBC6'}} onChange={(event) => onChangePlace(event.target.files[0] || null)}  className="uploadButton"/>
+            <input type="file"  multiple="multiple" style={{color:'#FFCBC6'}} onChange={(event) => onChangePlace(event.target || null)}  className="uploadButton"/>
 
 {/* <input type="file" id="selectedFile"/>
 <input type="button" value="Browse..." onClick="document.getElementById('selectedFile').click();" /> */}
@@ -485,9 +489,13 @@ const imgholderActive = {
             {/* placeholders */}
 
 <div style={fit} className='fitImage'>
+                
+  {filesArray.map((file)=>(
+                // <Task key={task.id} task={task} onDelete={onDelete} onToggle={onToggle}/>
                 <div>
-                    <img onClick={changeImage} src={dataUri} style={imgholder} alt="placeholder" />
+                    <img onClick={changeImage} src={file.blob} style={imgholder} alt={file.blob} />
                 </div>
+            ))}
                
             </div>
 
