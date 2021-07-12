@@ -5,6 +5,7 @@ import bathtub from '../img/Web/Spacia/bathtub.png'
 import view from '../img/Web/Spacia/view.png'
 import { FaEdit, FaEye, FaHome, FaPencilAlt, FaRegEye, FaTimes, FaUser } from 'react-icons/fa'
 import {Row} from 'react-bootstrap'
+import Moment from 'moment'
 import '../css/Table.css'
 
 
@@ -18,9 +19,9 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
         border:'none',
         fontWeight:'bold', 
         borderRadius:5, 
-        paddingTop:4, 
-        paddingBottom:4, 
-        paddingLeft:20, 
+        paddingTop:4,
+        paddingBottom:4,
+        paddingLeft:20,
         paddingRight:20
     }
 
@@ -55,6 +56,7 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
                     <td style={{verticalAlign:'top', paddingTop:5}}>
                         <div style={{textAlign:'right'}}>
                             <b>Ghc {price} / month</b>
+                            {/* <Moment>{price}</Moment> */}
                             <br/>
                             <br/>
                             {/* <br/> */}

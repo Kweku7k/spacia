@@ -275,7 +275,7 @@ const Properties = () => {
 
                 {/* From Source */}
                 {allproperties.map((property) => (
-                    <TableRow key={property.id} onDelete={() => deleteModal(property.id)} image={demo} info={property.name} added={moment(property.propertyPrice.createdOn)} beds={property.listingDetails.capacity} showers={property.listingDetails.propertySize} status='FOR RENT' price={property.propertyPrice.price} onView={() => {showViewModal(property)}} ></TableRow>
+                    <TableRow key={property.id} onDelete={() => deleteModal(property.id)} image={demo} info={property.name} added={property.propertyPrice.createdOn} beds={property.listingDetails.capacity} showers={property.listingDetails.propertySize} status='FOR RENT' price={property.propertyPrice.price} onView={() => {showViewModal(property)}} ></TableRow>
                     ))}
 
                     <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="2" showers='25 sq ft' status='FOR RENT' price="600" onView={showViewModal}></TableRow>
@@ -317,9 +317,12 @@ const Properties = () => {
                 <Row style={{paddingLeft:40,paddingRight:40}}>
                     <div className="col" style={{textAlign:'left'}}>
                         <h5 style={{color:'#066875', fontWeight:'bold'}}>FOR SALE <span style={{color:'#393939', fontWeight:'normal'}}>GHC 560,000</span></h5>
+                        <h6 style={{fontSize:'small', color:'#2B86FF', marginTop:10}}><FaLandmark /> Ashaley Botwe school junction</h6>
+                        
                         <br/>
-                        <h6 ><b>Description</b>
+                        <h6 >
                             <span style={{display:'flex'}}>
+                            <b style={{marginRight:20}}>Description</b>
                                 <img src={bed} style={{ width:20, height:20, marginRight:10}} alt="bed"/>
                                 <h6>{ModalProp.listingDetails.propertySize}</h6>
                                 <img src={bath} style={{ width:20, height:20, marginLeft:10, marginRight:10}} alt="bed"/>
@@ -328,14 +331,12 @@ const Properties = () => {
                         </h6>
                     </div>
                     <div className="col" style={{textAlign:'right'}}>
-                        <button className="button" style={{width:200}} onClick={closeViewModal} >Add To Cart</button>
+                        {/* <button className="button" style={{width:200}} onClick={closeViewModal} >Add To Cart</button> */}
                         <br/>
-                        <h6 style={{fontSize:'small', color:'#2B86FF', marginTop:10}}><FaLandmark /> Ashaley Botwe school junction</h6>
+                        {/* <h6 style={{fontSize:'small', color:'#2B86FF', marginTop:10}}><FaLandmark /> Ashaley Botwe school junction</h6> */}
                     </div>
                     <br/>
-                </Row>
-            </div>
-            <div className="description" style={{padding:10}}>
+                    <div className="description" style={{padding:10}}>
 
                 <h6 style={{fontSize:'small', textAlign:'left', lineHeight:2 }} className="text-muted">
 
@@ -343,6 +344,9 @@ const Properties = () => {
                 </h6>
 
             </div>
+                </Row>
+            </div>
+            
         </div>
        
         </Modal>
