@@ -22,8 +22,8 @@ import home5 from '../img/homes/home5.jpeg'
 import home6 from '../img/homes/home6.jpeg' 
 import home7 from '../img/homes/home6.jpeg'
 import axios from 'axios'
-
-
+import moment from 'moment';
+import InformationModal from '../components/informationModal'
 
 <tr>
 <td>Photo</td> 
@@ -36,6 +36,7 @@ import axios from 'axios'
 
 const Properties = () => {
 
+    const [deleteItem, setdeleteItem] = useState(false)
     const [allproperties, setallproperties]=useState([])
 
     const localurl = 'https://spacia.page/booking/api/v1/listings'
@@ -143,8 +144,10 @@ const Properties = () => {
 
     const deleteModal = (id) => {
         console.log(id)
-        setshowDeleteModal(true)
-        deleteProperty(id)
+        // setshowDeleteModal(true)
+        setdeleteItem(true)
+        // deleteProperty(id)
+        setViewModal(false)
     }
 
     const closeDeleteModal =() =>{
@@ -221,6 +224,7 @@ const Properties = () => {
     const [showDeleteModal, setshowDeleteModal] = useState(false)
     const deleteProperty = (id) =>{
         setproperties(properties.filter((property) => property.id !== id))
+        setdeleteItem(false)
     }
 
     return (
@@ -271,7 +275,7 @@ const Properties = () => {
 
                 {/* From Source */}
                 {allproperties.map((property) => (
-                    <TableRow key={property.id} onDelete={() => deleteModal(property.id)} image={demo} info={property.name} added={property.propertyPrice.createdOn} beds={property.listingDetails.capacity} showers={property.listingDetails.propertySize} status='FOR RENT' price={property.propertyPrice.price} onView={() => {showViewModal(property)}} ></TableRow>
+                    <TableRow key={property.id} onDelete={() => deleteModal(property.id)} image={demo} info={property.name} added={moment(property.propertyPrice.createdOn)} beds={property.listingDetails.capacity} showers={property.listingDetails.propertySize} status='FOR RENT' price={property.propertyPrice.price} onView={() => {showViewModal(property)}} ></TableRow>
                     ))}
 
                     <TableRow image={demo} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="2" showers='25 sq ft' status='FOR RENT' price="600" onView={showViewModal}></TableRow>
@@ -349,6 +353,11 @@ const Properties = () => {
 <FeedbackModal isClose={closeDeleteModal} doneButton="Okay" isOpen={showDeleteModal} declineButton={closeDeleteModal}  >
 <h6>This property has been deleted</h6>
 </FeedbackModal>
+
+<InformationModal  onSubmit={deleteProperty} acceptButton="Yes" declineButton="No" isOpen={deleteItem} isClose={() => setdeleteItem(false)}>
+Are you sure you want to delete this property
+</InformationModal>
+
         </div>
 
     )

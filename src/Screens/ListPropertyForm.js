@@ -9,8 +9,6 @@ import {useHistory } from 'react-router-dom'
 const ListPropertyForm = () => {
   const [dropdown1, setdropdown1] = useState("Published")
   const [dropdown2, setdropdown2] = useState("Hourly")
-
-  
   
   // For Blob
   const fileToDataUri = (file) => new Promise((resolve, reject) => {

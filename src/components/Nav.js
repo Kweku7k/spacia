@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import { FaCaretDown, FaBell } from 'react-icons/fa'
 import profile from '../img/Web/Spacia/navbar/Mask.png'
+import bkn from '../img/Web/Spacia/calendar-2 4.png'
 import bellIcon from '../img/Web/Spacia/settings/navbar/bell 1.png'
 import cartIcon from '../img/Web/Spacia/cart 3.png'
 import activeCartIcon from '../img/Web/Spacia/activeCart.png'
@@ -26,7 +27,9 @@ import ListPropertyForm from '../Screens/ListPropertyForm';
 import SERVICES from '../services';
 import axios from "axios";
 import {useDispatch} from "react-redux";
-import { saveFilterOptions } from "../redux/actions/dashboard";
+import { logoutUser, saveFilterOptions } from "../redux/actions/dashboard";
+import { Dropdown } from 'react-bootstrap'
+// src/img/Web/Spacia/calendar-2 4.png
 
 // /Users/kweku/Documents/Projects/ReactProjects/spacia/src/img/Web/Spacia/settings/navbar/bell.png
 const Nav = () => {
@@ -67,8 +70,17 @@ const Nav = () => {
 <div  style={{ marginLeft:'20%',width:"90%",justifyContent:"space-between", padding:0, minHeight:'100vh'}}>
 <div style={{display:"flex", flexDirection:'row-reverse', padding:20, backgroundColor:"#F3F3F3", color:'black' }}>
     {/* <img src={userPicture}  /> */}
-    <FaCaretDown style={{marginTop:'auto', marginBottom:'auto'}} />
+    {/* <FaCaretDown style={{marginTop:'auto', marginBottom:'auto'}} /> */}
+    <Dropdown>
+  <Dropdown.Toggle style={{backgroundColor:'transparent', color:'black', border:'none'}}id="dropdown-basic">
+        {/* <FaEllipsisH color="black"/> */}
+  </Dropdown.Toggle>
+
+  <Dropdown.Menu>
+    <Dropdown.Item onClick={()=>{logoutUser()}} href="#/action-1">Logout</Dropdown.Item>
     
+  </Dropdown.Menu>
+</Dropdown>
     <h6 style={{marginTop:'7px'}}>{currentUser ? `${currentUser.firstName} ${currentUser.lastName}` : 'N/A'}</h6>
     <img src={profile} alt="img" style={{ width:30, height:30, borderRadius:'50%', marginRight:10 }} />
     <Link to ="/cart">

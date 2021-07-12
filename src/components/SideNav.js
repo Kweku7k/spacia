@@ -10,12 +10,14 @@ import bill from '../img/Web/Spacia/bill.png';
 import chart from '../img/Web/Spacia/chart.png';
 import dashboard from '../img/Web/Spacia/dashboard.png';
 import dash from '../img/Web/Spacia/dash.png';
-import property from '../img/Web/Spacia/property.png';
-import profile from '../img/Web/Spacia/profile.png';
+import property from '../img/Web/Spacia/property-location 1.png';
+// import profile from '../img/Web/Spacia/profile.png';
+import profile from '../img/Web/Spacia/calendar-2 4.png';
+// img/Web/Spacia/calendar-2 4.png
 import users from '../img/Web/Spacia/users.png';
 import settings from '../img/Web/Spacia/settings.png';
 import report from '../img/Web/Spacia/chart.png';
-
+// src/img/Web/Spacia/property-location 1.png
 
 // import dashboard from '../img/Web/Spacia/dashboard.png'
 
@@ -77,7 +79,7 @@ const SideNav = () => {
             <Link className="link" to="/properties" onClick={closeToggle}>
                 <div className={` ${location.pathname === "/properties" ? "navItem-active" : "navItem" }`}>
                     <div>
-                    <img src={dashboard} alt="dashboard"/>
+                    <img src={property} alt="dashboard"/>
                     </div>
                     <h6 style={navItem}> Properties</h6>
                 </div> 

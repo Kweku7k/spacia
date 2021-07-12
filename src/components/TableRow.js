@@ -30,7 +30,7 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
         color:'#737373'
     }
     return (
-            <tr onClick={onView} style={{borderBottom:"1px dashed black"}} >
+            <tr onClick={() => console.log("open")} style={{borderBottom:"1px dashed black"}} >
                     <td style={{tableCell}}><img src={image} width={100} alt="demo"/></td>
                     <td style={{width:200,verticalAlign:'top',paddingTop:10, color:'#737373'}}>
                         <div>
@@ -72,9 +72,9 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
                             <FaRegEye color="black" style={{margin:'auto'}}/><h6 style={{margin:0, paddingLeft:5}}> View</h6>
                             </div>
 
-                            <div onClick={onEditProperty} style={{display:'flex', cursor:'pointer', color:'grey', margin:"auto"}}>
+                            {/* <div onClick={onEditProperty} style={{display:'flex', cursor:'pointer', color:'grey', margin:"auto"}}>
                             <FaPencilAlt color="black" style={{margin:'auto'}}/><h6 style={{margin:0, paddingLeft:5}}> Edit</h6>
-                            </div>
+                            </div> */}
                             
                             <div onClick={onDelete} style={{display:'flex', cursor:'pointer', color:'grey', margin:"auto"}}>
                             <FaTimes color="black" style={{margin:'auto'}}/><h6 style={{margin:0, paddingLeft:5}}> Delete</h6>
