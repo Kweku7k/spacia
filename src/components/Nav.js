@@ -60,7 +60,11 @@ const Nav = () => {
     useEffect(() => {
         console.log('Inside Nav');
         console.log(SERVICES.getUser());
-        {SERVICES.getUser() ? console.log(SERVICES) : history.push("/signin")}
+        {
+            SERVICES.getUser() ? console.log(SERVICES)
+             : 
+             history.push("/signin");
+        }
         setCurrentUser(SERVICES.getUser());
     }, []);
 

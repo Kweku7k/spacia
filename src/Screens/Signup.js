@@ -75,7 +75,6 @@ const Signup = () => {
                 "role": "ROLE_ADMINISTRATOR"
               }
 
-
         )
         .then(res=>(
 

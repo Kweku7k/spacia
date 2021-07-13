@@ -38,13 +38,9 @@ const UserManagement = () => {
         setusers([...Users, newuser ])
     }
 
-
     const [name, setName] = useState('Nana Kweku')
     const [email, setEmail] = useState('mr.adumatta@gmail.com')
     const [phone, setPhone] = useState('0545977791')
-   
-
-    
 
     // STYLES
     const admin = {
