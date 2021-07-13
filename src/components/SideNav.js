@@ -59,7 +59,7 @@ const SideNav = () => {
     }
     
     return (
-        <div style={{width:'20%'}} className="sideNav" >
+        <div style={{width:'13%'}} className="sideNav" >
 
             <div >
                 <img src={logo} width={120} style={{margin:35, marginBottom:10}}alt="LOGO"/>

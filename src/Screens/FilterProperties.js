@@ -1,36 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import { Container, Table, Dropdown, Toast, Modal, Row } from 'react-bootstrap'
+import React, {useEffect, useState} from 'react'
+import {Container, Dropdown, Row, Table, Toast} from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Rectangle 66.png'
-import demo2 from '../img/Web/Spacia/Demo.png'
-import TableRow from '../components/TableRow'
 import FilterTableRow from '../components/FilterTableRow'
-import prop2 from '../img/Web/Spacia/prop2.png'
-import prop3 from '../img/Web/Spacia/prop3.png'
-import {FaCaretDown, FaLandmark, FaTimes} from 'react-icons/fa'
-import bed from '../img/Web/Spacia/bed.png'
-import bath from '../img/Web/Spacia/bathtub.png'
-import imgplaceholder from '../img/Web/Spacia/imgplaceholder.png'
-import holder from '../img/Web/Spacia/thumb.png'
 import FormModal from '../components/NewPropertyModal'
 import FeedbackModal from '../components/FeedbackModall'
-import Filter from '../components/Filter'
-import DatePicker from "react-datepicker";
-import Slider, { Range } from 'rc-slider';
+import Slide from 'rc-slider';
 import {Link} from 'react-router-dom'
 import QuantityCounter from '../components/QuantityCounter'
 import home1 from '../img/homes/home1.jpeg'
-import home2 from '../img/homes/home2.jpeg'
-import home3 from '../img/homes/home3.jpeg'
-import home4 from '../img/homes/home4.jpeg'
-import home5 from '../img/homes/home5.jpeg'
-import home6 from '../img/homes/home6.jpeg' 
-import home7 from '../img/homes/home6.jpeg'
 import axios from "axios";
-import Slide from "rc-slider";
 import moment from 'moment';
 import {useDispatch, useSelector} from "react-redux";
-import {saveFilterOptions} from "../redux/actions/dashboard";
+import {addEntry, saveCartDetails, saveCurrentEntry, saveFilterOptions} from "../redux/actions/dashboard";
 import SERVICES from '../services';
+import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
+import DesktopDatePicker from "@material-ui/lab/DesktopDatePicker";
+import TextField from "@material-ui/core/TextField";
+import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
+import TimePicker from "@material-ui/lab/TimePicker";
+import {FilterPropertiesStyles} from "./FilterPropertiesStyles";
+import {v4 as uuidv4} from 'uuid';
 
 
 const FilterProperties = (onAddToCart) => {
@@ -44,14 +33,14 @@ const FilterProperties = (onAddToCart) => {
     const [price, setPrice] = useState('');
     const [propertyType, setPropertyType] = useState('');
     const [location, setLocation] = useState({});
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
+    const [date, setDate] = useState(new Date());
+    const [time, setTime] = useState(new Date());
     const [capacity, setCapacity] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
     const [filterOptions, setFilterOptions] = useState({});
 
     // const filterOptionsUrl = "https://spacia.page/booking/api/v1/listings/filter/options";
-    const filters = useSelector(state => state.dashboard.selectedFilters);
+    const filters = useSelector(state => state.dashboard.filterOptions);
 
     useEffect(() => {
         setFilterOptions(filters);
@@ -127,8 +116,61 @@ const FilterProperties = (onAddToCart) => {
         setViewModal(true)
     }
 
-    const closeViewModal = () =>{
-        setViewModal(false)
+    const cartDetails = useSelector(state => state.dashboard.cartDetails);
+
+    const addToCart = () => {
+        // const resourceUrl = "https://spacia.page/api/booking/api/v1/order/add-to-cart";
+        const resourceUrl = "http://localhost:9003/api/v1/order/add-to-cart";
+
+        // find out if there is already an existing cart
+        const cartId = (cartDetails) ? cartDetails['cartId'] : null;
+
+        axios.post(resourceUrl,{
+            "endOn": "2021-07-13T01:31:55.954Z",
+            "itemPrice": 250,
+            "listingId": 4,
+            "quantity": 2,
+            "startOn": "2021-07-13T01:31:55.955Z",
+            "subTotal": 500,
+            "userId": 1
+        }, { params: {cartId}}).then((res) => {
+            console.log(res.data.data[0]);
+
+            if (res.status === 200) {
+                const cartDetails = res.data.data[0];
+                dispatch(saveCartDetails(cartDetails));
+
+                const cartEntry = structureEntry(cartDetails);
+                dispatch(addEntry(cartEntry));
+                dispatch(saveCurrentEntry(cartEntry))
+            } else {
+                console.warn('an error occurred while adding item to cart');
+            }
+        })
+    }
+
+    const closeViewModal = () => {
+        addToCart();
+        setViewModal(false);
+    }
+
+    function structureEntry(cartDetails) {
+        return {
+            entryId: cartDetails.entryId,
+            cartId: cartDetails.cartId,
+            owner: {
+                id: cartDetails.id,
+                username: cartDetails.username
+            },
+            price: cartDetails.price,
+            quantity: cartDetails.quantity,
+            subTotal: cartDetails.subTotal,
+            itemInEntry: {
+                description: cartDetails.itemInEntry.description,
+                image: (cartDetails.itemInEntry.media.images && cartDetails.itemInEntry.media.images > 0) ? cartDetails.itemInEntry.media.images[0] : null,
+                imageDescription: cartDetails.itemInEntry.media.description
+            }
+        };
     }
 
     const openFormModal = ()  => {
@@ -192,11 +234,11 @@ const FilterProperties = (onAddToCart) => {
     }
 
     const [showDeleteModal, setshowDeleteModal] = useState(false)
-    const deleteProperty = (id) =>{
+    const deleteProperty = (id) => {
         setProperties(properties.filter((property) => property.id !== id))
     }
 
-    const selectedFilters = useSelector(state => state.dashboard.filterOptions);
+    const selectedFilters = useSelector(state => state.dashboard.selectedFilters);
 
     useEffect(() => {
         console.log('Inside filter properties');
@@ -316,8 +358,23 @@ const FilterProperties = (onAddToCart) => {
         })
     }
 
+    const handleDateChange = (newValue) => {
+        console.log(newValue);
+        // setDate(date);
+        //
+        // console.log(date);
+    };
+
+    const handleTimeChange = (newValue) => {
+        setTime(newValue);
+    }
+
+    const handleHide = () => {
+        console.log('Hide me');
+    }
+
     return (
-        <div>
+        <FilterPropertiesStyles>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
                 <div>
                     <h4><b>Search Results</b></h4>
@@ -358,7 +415,7 @@ const FilterProperties = (onAddToCart) => {
                             <option selected>Type of service</option>
                             {
                                 (filterOptions['propertyTypes']) &&
-                                filterOptions['propertyTypes'].map((type) => <option value={type.value}>{convertType(type.label)}</option>)
+                                filterOptions['propertyTypes'].map((type) => <option key={uuidv4()} value={type.value}>{type.label}</option>)
                             }
                         </select>
                     </div>
@@ -368,19 +425,35 @@ const FilterProperties = (onAddToCart) => {
                             <option selected>Location</option>
                             {
                                 (filterOptions['location']) &&
-                                filterOptions['location'].map((type) => <option value={type.city}>{formatLocation(type)}</option>)
+                                filterOptions['location'].map((type) => <option key={uuidv4()} value={type.city}>{formatLocation(type)}</option>)
                             }
                         </select>
                     </div>
                     <div className="col-md-2">
-                        <input type="text" className='form-control' placeholder='Date'/>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DesktopDatePicker className='form-control'
+                                               inputFormat="MM/dd/yyyy"
+                                // inputFormat="yyyy-MM-dd"
+                                               value={date}
+                                               onChange={handleDateChange}
+                                               renderInput={(params) => <TextField {...params} />}
+                            />
+                        </LocalizationProvider>
+                        {/*<input type="text" className='form-control' placeholder='Date'/>*/}
                         {/*<DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />*/}
 
                     </div>
                     <div className="col-md-2">
 
                         {/*<DatePicker style={{fontSize:100}} showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />*/}
-                        <input type="text" className='form-control' placeholder='Time'/>
+                        {/*<input type="text" className='form-control' placeholder='Time'/>*/}
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <TimePicker
+                                value={time}
+                                onChange={handleTimeChange}
+                                renderInput={(params) => <TextField {...params} />}
+                            />
+                        </LocalizationProvider>
                     </div>
 
                     <div style={{display:'flex', justifyContent:'space-between'}} className="col-md-4">
@@ -474,10 +547,11 @@ const FilterProperties = (onAddToCart) => {
                             size={listing['listingDetails'] ? listing['listingDetails']['propertySize'] : ''}
                             capacity={listing['listingDetails'] ? listing['listingDetails']['capacity'] : ''}
                             status='AVAILABLE'
-                            propertyStatus={status && status.label} price={`GHS ${overall}`} />
+                            propertyStatus={status && status.label} price={`GHS ${overall}`}
+                            onClick={showViewModal} onView={showViewModal} onAddToCart={onAddToCart}/>
 
                     }) }
-                        {/*  <FilterTableRow image={home1} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onClick={showViewModal} onView={showViewModal} onAddToCart={onAddToCart}></FilterTableRow>*/}
+                          <FilterTableRow image={home1} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onClick={showViewModal} onView={showViewModal} onAddToCart={onAddToCart}></FilterTableRow>
                         {/*<FilterTableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></FilterTableRow>*/}
 
             </Table>
@@ -486,9 +560,11 @@ const FilterProperties = (onAddToCart) => {
 
 
 {/* View Property Modal  */}
-
-
-{/*<Modal show={viewModal} onHide={closeViewModal} size="lg" >*/}
+            <button className="button" style={{width:200}} onClick={closeViewModal}>Add To Cart</button>
+            {/*<Link to='/cart'>*/}
+            {/*    <button className="button" style={{width:200}} onClick={closeViewModal}>Add To Cart</button>*/}
+            {/*</Link>*/}
+{/*<Modal show={true} handleHide={true} size="lg" >*/}
 {/*       <div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>*/}
 {/*        <FaTimes onClick={closeViewModal} />*/}
 {/*       </div>*/}
@@ -532,7 +608,9 @@ const FilterProperties = (onAddToCart) => {
 {/*                        </h6>*/}
 {/*                    </div>*/}
 {/*                    <div className="col" style={{textAlign:'right'}}>*/}
-{/*                        <button className="button" style={{width:200}} onClick={closeViewModal} >Add To Cart</button>*/}
+{/*                        <Link to='/cart'>*/}
+{/*                            <button className="button" style={{width:200}} onClick={closeViewModal} >Add To Cart</button>*/}
+{/*                        </Link>*/}
 {/*                        <br/>*/}
 {/*                        <h6 style={{fontSize:'small', color:'#2B86FF', marginTop:10}}><FaLandmark /> Ashaley Botwe school junction</h6>*/}
 {/*                    </div>*/}
@@ -548,10 +626,10 @@ const FilterProperties = (onAddToCart) => {
 
 {/*            </div>*/}
 {/*        </div>*/}
-{/*       */}
+
 {/*        </Modal>*/}
 
-{/*    <Modal show='true'>*/}
+{/*    <Modal show={true}>*/}
 {/*<h4>Show Modal</h4>*/}
 {/*    </Modal>*/}
 
@@ -561,7 +639,7 @@ const FilterProperties = (onAddToCart) => {
 <FeedbackModal isClose={closeDeleteModal} doneButton="Okay" isOpen={showDeleteModal} declineButton={closeDeleteModal}  >
 <h6>This property has been deleted</h6>
 </FeedbackModal>
-        </div>
+        </FilterPropertiesStyles>
 
     )
 }

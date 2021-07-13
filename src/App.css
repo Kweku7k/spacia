@@ -322,7 +322,7 @@ td {
 	/*font-family: ProximaRegular;*/
 	/*vertical-align: middle;*/
 	/*padding-top: 0;*/
-	padding: 5px !important;
+	/*padding: 5px !important;*/
 }
 .table>:not(caption)>*>* {
 	padding: 0;
