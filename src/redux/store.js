@@ -1,5 +1,8 @@
 export default {
     user:{},
     filterOptions: {},
-    selectedFilters: {}
+    selectedFilters: {},
+    cartDetails: {},
+    entries: [],
+    currentEntry: {}
 };

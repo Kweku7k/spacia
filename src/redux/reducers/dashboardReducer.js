@@ -16,6 +16,24 @@ export default (state = store, {type, payload}) => {
                 selectedFilters: payload
             }
 
+        case actionTypes.SAVE_CART_DETAILS:
+            return {
+                ...state,
+                cartDetails: payload
+            }
+
+        case actionTypes.ADD_ENTRY:
+            return {
+                ...state,
+                entries: [...state.entries, payload]
+            }
+
+        case actionTypes.SAVE_CURRENT_ENTRY:
+            return {
+                ...state,
+                currentEntry: payload
+            }
+
         default:
             return state
     }

@@ -29,13 +29,13 @@ import axios from "axios";
 const UserManagement = () => {
     // Functions
     const deleteUser = (id) =>{
-        setusers(Users.filter((user) => user.id !== id))
+        setInvitedUsers(invitedUsers.filter((user) => user.id !== id))
     }
 
     const addUser = (user) => {
         const id = Math.floor(Math.random() * 10000);
         const newuser = {id, ...user}
-        setusers([...Users, newuser ])
+        setInvitedUsers([...invitedUsers, newuser ])
     }
 
     const [name, setName] = useState('Nana Kweku')
@@ -88,22 +88,8 @@ const UserManagement = () => {
     }
 
 
-    const [Users, setusers] =  useState([
-        {
-            id: 1,
-            name: "Nana Kweku Adumatta",
-            email: "mr.adumatta@gmail.com",
-            status:"Active",
-            role:"Admin"
-        },
-        {
-            id: 2,
-            name: "Nana",
-            email: "mr.adumatta@gmail.com",
-            status:"Active",
-            role:"Admin"
-        }
-])
+    const [invitedUsers, setInvitedUsers] =  useState([])
+
     //set state to toggle invite user 
     const [show, setShow] = useState(false);
 
@@ -119,6 +105,8 @@ const UserManagement = () => {
     //set state to toggle confirm adding user 
     const [confirmUserAddition, setConfirmUserAddition] = useState(false);
     // const [loaded, setLoaded] = useState(false);
+
+    const [role, setRole] = useState('');
     
     const [state, setState] = useState([])
 
@@ -202,15 +190,63 @@ const UserManagement = () => {
             {
                 "emailsOfInvitees": state,
                 inviterId,
-                "role": "ROLE_SUBSCRIBER_APPROVER"
+                "role": role
             }).then(res => {
             console.log(res);
         }).catch(err=>(console.log(err)))
     }
 
-    useEffect(() => {
+    const handleRoleChange = (e) => {
+        setRole(e.target.value);
+    }
 
-    });
+    useEffect(() => {
+        const currentUser = SERVICES.getUser();
+        const ownerId = currentUser ? currentUser.id : 0;
+        const resourceUrl = `https://spacia.page/users/api/v1/users/${ownerId}/sub-accounts`;
+
+        axios.get(resourceUrl, {params: {sortBy: 'createdDate'}})
+            .then(res => {
+                if (res.status === 200) {
+                    console.log(res);
+                    const subAccounts = res.data.data;
+
+                    setInvitedUsers(subAccounts);
+                }
+
+            })
+    }, []);
+
+    const convertRole = (role) => {
+        switch (role) {
+            case "ROLE_SUBSCRIBER_APPROVER":
+                return "APPROVER";
+
+            case "ROLE_SUBSCRIBER_INDIVIDUAL":
+                return "REGULAR";
+
+            case "ROLE_CONTENT_PUBLISHER":
+                return "CONTENT PUBLISHER";
+        }
+    }
+
+    const convertFromVerifiedStatus = (verified) => {
+        if (verified) {
+            return 'Active';
+        } else {
+            return 'Pending';
+        }
+    }
+
+    const inviteUserButton = {
+        backgroundColor: '#f85a47',
+    borderRadius: '5px',
+    padding: '10px 20px',
+    border: 'none',
+    color: 'white',
+    width: '190px'
+    }
+
 
     return (
     <div>
@@ -221,11 +257,11 @@ const UserManagement = () => {
                 <h4><b>User Management</b></h4>
 
             {/* Search Functionality */}
-            <form class="form-inline my-2 my-xl-0" style={{width:"30vw"}}>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+            <form className="form-inline my-2 my-xl-0" style={{width:"30vw"}}>
+                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                     {/* <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
                     </form>
-            <button class="button" onClick={handleShow}>Invite New User </button>
+            <button style={inviteUserButton} onClick={handleShow}>Invite New User </button>
             </div>
         </div>
         {/* End Header */}
@@ -243,8 +279,21 @@ const UserManagement = () => {
             {/* {Users.map((user)=>(
                 <UserTableRow profile={img} name={user.name} email={user.email} status={user.status} statusStyle={active} role="ADMIN" style={admin} onDelete={() => handleDeleteShow(user.id)} onEdit={handleEditShow} />
             ))} */}
-            <UserTableRow profile={img} name="Ronald Richards" email="ronaldrichards02@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/>
-            <UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/>
+            {
+                invitedUsers.length > 0 &&
+                    invitedUsers.map(user => {
+                        return user.verified &&
+                            <UserTableRow
+                                profile={user.avatar}
+                                name={`${user.firstName} ${user.lastName}`}
+                                email={user.username}
+                                statusStyle={inactive}
+                                status={convertFromVerifiedStatus(user.verified)}
+                                role={convertRole(user.role)} style={approver}/>
+                    })
+            }
+            {/*<UserTableRow profile={img} name="Ronald Richards" email="ronaldrichards02@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/>*/}
+            {/*<UserTableRow profile={peter} name="Peter Griffin" email="petergriffin@gmail.com" statusStyle={inactive} status="Inactive - On leave" role="APPROVER" style={approver}/>*/}
         </Table>
     </Toast>
 
@@ -271,13 +320,13 @@ const UserManagement = () => {
     </div> */}
 
     <Toast style={{width:'100%', padding:20}}>
-        <div style={{display:'flex', justifyContent:'space-between'}}>
+        <div style={{display:'flex', justifyContent:'space-between', marginBottom: '30px'}}>
             <Search />
-            <div style={{display:'flex'}}>
-                <h6 className="text-muted" style={{fontSize:'smaller', marginRight:10}}>Sort by:</h6>
-                <h6 style={{fontWeight:'bold', fontSize:'smaller'}}>Status-invited</h6>
-                <FaCaretDown />
-            </div>
+            {/*<div style={{display:'flex'}}>*/}
+            {/*    <h6 className="text-muted" style={{fontSize:'smaller', marginRight:10}}>Sort by:</h6>*/}
+            {/*    <h6 style={{fontWeight:'bold', fontSize:'smaller'}}>Status-invited</h6>*/}
+            {/*    <FaCaretDown />*/}
+            {/*</div>*/}
         </div>
 
         {/* Second Table */}
@@ -290,9 +339,23 @@ const UserManagement = () => {
                 <th>Action</th>
             </tr>
 
-            <UserTableRow profile={peter} name="Floyd Miles" email="petergriffin@gmail.com" status="Active" statusStyle={inactive} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} onDisable={() => handleDisableUser()} onReset={() => setResetPasswordModal(true)} />
-          <UserTableRow profile={img} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} />
-            <UserTableRow profile={profile3} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} />
+            {
+                invitedUsers.length > 0 &&
+                invitedUsers.map(user => {
+                    return !user.verified &&
+                        <UserTableRow
+                            profile={user.avatar}
+                            name={(user.firstName && user.lastName) ? `${user.firstName} ${user.lastName}` : 'N/A'}
+                            email={user.username}
+                            statusStyle={inactive}
+                            status={convertFromVerifiedStatus(user.verified)}
+                            role={convertRole(user.role)} style={approver}/>
+                })
+            }
+
+          {/*  <UserTableRow profile={peter} name="Floyd Miles" email="petergriffin@gmail.com" status="Active" statusStyle={inactive} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} onDisable={() => handleDisableUser()} onReset={() => setResetPasswordModal(true)} />*/}
+          {/*<UserTableRow profile={img} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} />*/}
+          {/*  <UserTableRow profile={profile3} name="Peter Griffin" email="petergriffin@gmail.com" status="Active" statusStyle={active} role="EMPLOYEE"  style={employee} onDelete={handleDeleteShow} onEdit={() => handleEditShow()} />*/}
 
         </Table>
     </Toast>
@@ -331,11 +394,11 @@ Launch demo modal
 
 
 <br/>
- <label style={{fontSize:14}} class="text-muted" for="">Role</label>
- <select class="form-control" name="" id="">
+ <label style={{fontSize:14}} className="text-muted" htmlFor="role">Role</label>
+ <select className="form-control" name="role" id="role" onChange={handleRoleChange}>
    {/*<option>Admin</option>*/}
-   {/*<option>Employee</option>*/}
-   <option>Approver</option>
+   <option value='ROLE_SUBSCRIBER_APPROVER'>Approver</option>
+     <option value='ROLE_SUBSCRIBER_INDIVIDUAL'>Regular</option>
  </select>
 
 <br/>

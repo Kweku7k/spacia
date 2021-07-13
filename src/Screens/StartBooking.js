@@ -23,12 +23,20 @@ import calendar from '../img/Web/Spacia/calendar-2 9.png'
 import axios from "axios";
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import {saveFilterOptions} from "../redux/actions/dashboard";
+import {saveFilterOptions, saveSelectedFilters} from "../redux/actions/dashboard";
 import {useDispatch, useSelector} from "react-redux";
+import Stack from '@material-ui/core/Stack';
+import TextField from '@material-ui/core/TextField';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import TimePicker from '@material-ui/lab/TimePicker';
+import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
+import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
+import {StartBookingStyles} from "./StartBookingStyles";
 
 const StartBooking = () => {
     const [filterOptions, setFilterOptions] = useState({});
-    const filters = useSelector(state => state.dashboard.selectedFilters);
+    const filters = useSelector(state => state.dashboard.filterOptions);
 
     useEffect(() => {
         setFilterOptions(filters);
@@ -121,8 +129,8 @@ const StartBooking = () => {
     const [sliderValue, setSliderValue] = useState(0);
     const [propertyType, setPropertyType] = useState('');
     const [location, setLocation] = useState({});
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
+    const [date, setDate] = useState(new Date());
+    const [time, setTime] = useState(new Date());
     const [capacity, setCapacity] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
     const [city, setCity] = useState('');
@@ -145,13 +153,13 @@ const StartBooking = () => {
     }
 
     const dispatchFilters = () => {
-        const a = {
+        const selectedFilters = {
             "cost": maxPrice,
             "location": { city,country },
             "propertyType": listingTypeVal
         }
 
-        dispatch(saveFilterOptions(a));
+        dispatch(saveSelectedFilters(selectedFilters));
 
         console.log('Inside dispatchFilters method');
     }
@@ -193,8 +201,36 @@ const StartBooking = () => {
         console.log('city', city, 'country', country);
     }
 
+    const getDate = (date) => {
+        return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    }
+
+    const handleDateChange = (newValue) => {
+        const date = getDate(newValue);
+        console.log(date);
+        setDate(newValue);
+        //
+        // console.log(date);
+    };
+
+    const handleTimeChange = (newValue) => {
+        setTime(newValue);
+    }
+
+    useEffect(() => {
+        console.log(time);
+        console.log(time.getTime());
+
+        // console.log("Date: "+date.getDate()+
+        //     "/"+(time.getMonth()+1)+
+        //     "/"+time.getFullYear()+
+        //     " "+time.getHours()+
+        //     ":"+time.getMinutes()+
+        //     ":"+time.getSeconds());
+    }, [time]);
+
     return (
-        <div>
+        <StartBookingStyles>
            <div className="header" style={{display:'flex', justifyContent:'space-between'}}>
                 <div>
                     <h4><b>Find a Space</b></h4>
@@ -230,7 +266,7 @@ const StartBooking = () => {
                                 {/*}*/}
                                 {
                                     (filterOptions['propertyTypes']) &&
-                                    filterOptions['propertyTypes'].map((type) => <option value={type.value}>{convertType(type.label)}</option>)
+                                    filterOptions['propertyTypes'].map((type) => <option value={type.value}>{type.label}</option>)
                                 }
                             </select>
                         </div>
@@ -245,13 +281,29 @@ const StartBooking = () => {
                             </select>
                         </div>
                     <div style={{width:'100%', marginRight:20, padding:0}}>
-                        <input type="text" className='form-control' placeholder='Date'/>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <DesktopDatePicker className='form-control'
+                                    inputFormat="MM/dd/yyyy"
+                                    // inputFormat="yyyy-MM-dd"
+                                    value={date}
+                                    onChange={handleDateChange}
+                                    renderInput={(params) => <TextField {...params} />}
+                                />
+                        </LocalizationProvider>
+                        {/*<input type="text" className='form-control' placeholder='Date'/>*/}
                         {/*<DatePicker style={{height:'100%',width:'100%', marginRight:20, padding:10 }}  showTimeSelect dateFormat="Pp" className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} />*/}
                     </div>
                     <div style={{width:'100%', marginRight:20}}>
                         {/* <DateTimePicker style={{fontSize:20}} onChange={onChange} value={value}  /> */}
                         {/*<DatePicker showTimeSelect dateFormat="Pp" className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />*/}
-                        <input type="text" className='form-control' placeholder='Time'/>
+                        {/*<input type="text" className='form-control' placeholder='Time'/>*/}
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <TimePicker
+                                    value={time}
+                                    onChange={handleTimeChange}
+                                    renderInput={(params) => <TextField {...params} />}
+                                />
+                        </LocalizationProvider>
                     </div>
 
 
@@ -315,7 +367,7 @@ const StartBooking = () => {
     </Container>
     </div>
 </Modal>
-        </div>
+        </StartBookingStyles>
     )
 }
 

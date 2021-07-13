@@ -19,15 +19,16 @@ import EditBooking from '../Screens/EditBooking'
 import StartBooking from '../Screens/StartBooking'
 import AddedProperties from '../Screens/AddedProperties'
 import Checkout from "../components/Settings/Checkout";
-import Cart from "../Screens/Cart"
+import Cart from '../Screens/cart'
 import FilterProperties from '../Screens/FilterProperties'
 import ListProperty from '../Screens/ListProperty'
 import Confirm from '../Screens/confirm'
 import ListPropertyForm from '../Screens/ListPropertyForm';
 import SERVICES from '../services';
 import axios from "axios";
-import {useDispatch} from "react-redux";
-import { logoutUser, saveFilterOptions } from "../redux/actions/dashboard";
+import {useDispatch, useSelector} from "react-redux";
+import {saveFilterOptions, saveSelectedFilters} from "../redux/actions/dashboard";
+import { logoutUser } from "../redux/actions/dashboard";
 import { Dropdown } from 'react-bootstrap'
 // src/img/Web/Spacia/calendar-2 4.png
 
@@ -38,7 +39,13 @@ const Nav = () => {
     // const cart = true
     const [cart, setcart] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
-    
+
+    const allEntries = useSelector(state => state.dashboard.entries);
+
+    useEffect(() => {
+        setcart((allEntries && allEntries.length > 0));
+    });
+
     const onAddToCart = () => {
         console.log("Added To Cart")
         setcart (true)
@@ -47,13 +54,13 @@ const Nav = () => {
     const dispatch = useDispatch();
 
     const filterOptionsUrl = "https://spacia.page/booking/api/v1/listings/filter/options";
-    // useEffect(() => {
-    //     axios.get(filterOptionsUrl).then(res => {
-    //         const resData = (res.data) ? res.data.data : {};
-    //         dispatch(saveFilterOptions(resData));
-    //         console.log(res.data.data)
-    //     });
-    // }, []);
+    useEffect(() => {
+        axios.get(filterOptionsUrl).then(res => {
+            const resData = (res.data) ? res.data.data : {};
+            dispatch(saveFilterOptions(resData));
+            console.log(res.data.data)
+        });
+    }, []);
 
     let history = useHistory();
 
@@ -73,7 +80,7 @@ const Nav = () => {
 {/* <MainPage /> */}
 <div style={{backgroundColor:'#F9F9F9', display:'flex'}}>
         <SideNav/>
-<div  style={{ marginLeft:'20%',width:"90%",justifyContent:"space-between", padding:0, minHeight:'100vh'}}>
+<div  style={{ marginLeft:'13%',width:"90%",justifyContent:"space-between", padding:0, minHeight:'100vh'}}>
 <div style={{display:"flex", flexDirection:'row-reverse', padding:20, backgroundColor:"#F3F3F3", color:'black' }}>
     {/* <img src={userPicture}  /> */}
     {/* <FaCaretDown style={{marginTop:'auto', marginBottom:'auto'}} /> */}
