@@ -20,6 +20,7 @@ const Signup = () => {
     const [firstName, setfirstName] = useState('') 
     const [firstNameError, setfirstNameError] = useState('')
 
+    const [terms, setterms] = useState(false)
 
     const [lastName, setlastName] = useState('') 
     const [lastNameError, setlastNameError] = useState('') 
@@ -240,15 +241,23 @@ const Signup = () => {
                           <input type="password" class="form-control" value={confirmpassword} onChange={(e) => setconfirmpassword(e.target.value)} name="" id="" aria-describedby="emailHelpId" placeholder="" />
                         </div>
                         <br/>
+                        <div class="form-group">
+
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="" id="" value="checkedValue"/><h6 style={{fontSize:'smaller'}}> I agree to the Terms of Conditions and Privacy Policy</h6>
+                                <input style={{marginTop:0}} class="form-check-input" type="checkbox" name="" id="" onChange={() => setterms(!terms)} value={terms}/><h6 style={{fontSize:'smaller'}}> I agree to the <a href="#">Terms of Conditions</a> and <a href="#">Privacy Policy</a></h6>
                             </label>
                         </div>
+                        </div>
+
                         {/* <Link to="/signin"> */}
 
                         <div style={{margin:'auto', textAlign:'center'}}>
+                           { terms ? (
                         <button onClick={submitSignup} className="button" style={{width:'100%'}}>Activate Account</button>
+                            ):(
+                        <button className="button" style={{width:'100%', backgroundColor:'#f8594786'}}>Activate Account</button>
+                            )}
                         </div>
                         <br/>
                         <h6 className="text-muted">Already have an account? <span><Link to="/signin" style={{color:'blue',fontSize:'smaller'}}>Sign In</Link></span></h6>
