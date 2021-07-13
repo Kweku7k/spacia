@@ -173,7 +173,7 @@ const SignIn = () => {
                             </div>
                         {/* </Link> */}
                         <br/>
-                        <h6 className="text-muted">Do no have an account? <span><Link to="/signup" style={{color:'blue',fontSize:'smaller'}}>Sign Up</Link></span></h6>
+                        <h6 className="text-muted">Do not have an account? <span><Link to="/signup" style={{color:'blue',fontSize:'smaller'}}>Sign Up</Link></span></h6>
                         
                         
                     </Container>
