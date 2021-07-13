@@ -1,7 +1,9 @@
 import React from 'react'
 import {Table, Dropdown, DropdownButton} from 'react-bootstrap'
-import {FaEllipsisH, FaCaretDown} from 'react-icons/fa'
-const UserTableRow = ({profile, name, email, status, role, style, statusStyle, onDelete, onDisable, onReset, onEdit}) => {
+import {FaEllipsisH, FaCaretDown} from 'react-icons/fa';
+import default_avatar from '../img/avatar.png'
+
+const UserTableRow = ({profile, name, email, status, role, style, onDelete, onDisable, onReset, onEdit}) => {
 
 const admin = {
     backgroundColor:'#F3D5D1', 
@@ -36,15 +38,22 @@ const edit={
 
 }
 
+const avatar = {
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    marginRight: '10px'
+}
+
 
     return (
         <>
         <tr>
-            <td><div> <img src={profile} style={{marginRight:10}} alt="User"/>{name}</div></td>
-            <td>{email}</td>
+            <td><div> <img src={(profile) ? profile : default_avatar} style={avatar} alt="avatar"/>{name}</div></td>
+            <td style={{paddingTop: '20px'}}>{email}</td>
 
             <td>
-            <h6 style={{color:'#02BD04', fontWeight:'bold'}}>Active</h6>
+            <h6 style={{color: (status === 'Active') ? '#02BD04' : '#F99500', fontWeight:'bold'}}>{status}</h6>
 
                 {/* Tenary conditional statement */}
                 {/* <div className={`banner ${active ? "active" : ""}`}>{children}</div> */}

@@ -28,8 +28,7 @@ import SERVICES from '../services';
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {saveFilterOptions, saveSelectedFilters} from "../redux/actions/dashboard";
-import {useDispatch} from "react-redux";
-import { logoutUser, saveFilterOptions } from "../redux/actions/dashboard";
+import { logoutUser } from "../redux/actions/dashboard";
 import { Dropdown } from 'react-bootstrap'
 // src/img/Web/Spacia/calendar-2 4.png
 
