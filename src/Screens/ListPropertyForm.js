@@ -75,6 +75,7 @@ const ListPropertyForm = () => {
   const submitMedia = () =>{
     console.log(filesArray)
     console.log("To Heroku")
+    setKey('3.Location')
     axios.post('https://spacia.page/booking/api/v1/listings/media',{filesArray}).then((res) => (console.log(res)))
   }
 

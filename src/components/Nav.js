@@ -12,7 +12,7 @@ import Dashboard from '../Screens/Dashboard'
 import Properties from '../Screens/Properties'
 import UserManagement from '../Screens/UserManagement'
 import Settings from '../Screens/Settings'
-import { Switch,  Route} from "react-router-dom";
+import { Switch,  Route, useHistory} from "react-router-dom";
 import Billing from '../Screens/Billing'
 import Booking from '../Screens/Booking'
 import EditBooking from '../Screens/EditBooking'
@@ -55,10 +55,12 @@ const Nav = () => {
     //     });
     // }, []);
 
+    let history = useHistory();
+
     useEffect(() => {
         console.log('Inside Nav');
         console.log(SERVICES.getUser());
-
+        {SERVICES.getUser() ? console.log(SERVICES) : history.push("/signin")}
         setCurrentUser(SERVICES.getUser());
     }, []);
 
