@@ -7,6 +7,7 @@ import {Link, useLocation} from 'react-router-dom'
 import queryString from "query-string";
 import axios from 'axios';
 import SERVICES from '../services';
+import { useHistory } from 'react-router'
 import {useDispatch} from "react-redux";
 import {saveSelectedFilters} from "../redux/actions/dashboard";
 
@@ -98,7 +99,7 @@ const SignIn = () => {
 
     const loadurl = 'https://spacia.page/users/api/v1/login';
 
-
+    let history = useHistory();
     const signInfunc = () => {
         // const user = SERVICES.getUser();
         // console.log('user data:' + user);
@@ -110,6 +111,7 @@ const SignIn = () => {
             console.log(res.data);
             SERVICES.saveUser(res.data.data[0])
             loginlogic(res)
+            history.push('/')
         })
     }
 
