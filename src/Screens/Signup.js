@@ -188,7 +188,7 @@ const Signup = () => {
 
                         <div class="form-group">
                           <label for="">First Name</label>
-                          <input type="text" class="form-control"  value={firstName} onChange={(e) => setfirstName(e.target.value)}  placeholder="Full Name" name="" id="" aria-describedby="emailHelpId" />
+                          <input type="text" class="form-control"  value={firstName} onChange={(e) => setfirstName(e.target.value)}  placeholder="First Name" name="" id="" aria-describedby="emailHelpId" />
                             {firstNameError && 
                           <small id="emailHelpId" class="form-text" style={{color:'red'}}>{firstNameError}</small>
                             }
@@ -197,7 +197,7 @@ const Signup = () => {
                         <br/>
                         <div class="form-group">
                           <label for="">Last Name</label>
-                          <input type="text" class="form-control"  value={lastName} onChange={(e) => setlastName(e.target.value)}  placeholder="Full Name" name="" id="" aria-describedby="emailHelpId" />
+                          <input type="text" class="form-control"  value={lastName} onChange={(e) => setlastName(e.target.value)}  placeholder="Last Name" name="" id="" aria-describedby="emailHelpId" />
                           {lastNameError && 
                           <small id="emailHelpId" class="form-text" style={{color:'red'}}>{lastNameError}</small>
                             }
@@ -211,19 +211,21 @@ const Signup = () => {
                           <small id="emailHelpId" class="form-text" style={{color:'red'}}>{emailError}</small>
                             }
                         </div>
-                        <br/>
-                        <div class="form-group">
+                        {/* <br/> */}
+                        {/* <div class="form-group">
                           <label for="">Phone Number</label>
                           <input type="string" class="form-control" value={phone} max="999" onChange={(e) => setphone(e.target.value)} name="" id="" aria-describedby="emailHelpId" placeholder="+233" />
                           {phoneError && 
                           <small id="emailHelpId" class="form-text" style={{color:'red'}}>{phoneError}</small>
                             }
-                        </div>
-
-                            <PhoneInput
+                        </div> */}
+                        <br/>
+                            <div class="form-group">
+                            <PhoneInput style={{backgroundColor:"#ECECEC",border:'1px solid #ced4da', borderRadius:5}} className="form-group"
                             placeholder="Enter phone number"
                             value={phonevalue}
                             onChange={setphonevalue}/>
+                            </div>
                         <br/>
                         <div class="form-group">
                           <label for="">Password</label>

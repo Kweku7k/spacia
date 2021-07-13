@@ -157,7 +157,7 @@ const SignIn = () => {
                         </div>
                             
                             <a href={{}}>
-                                <h6  style={{fontSize:'smaller'}}>
+                                <h6  style={{fontSize:'smaller',paddingRight:10}}>
                                     Forgot Password
                                 </h6>
                             </a>

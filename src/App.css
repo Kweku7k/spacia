@@ -69,6 +69,13 @@ html {
 	color: white;
 }
 
+input.PhoneInputInput{
+	border: none;
+	padding: 10;
+	border-radius: 10;
+
+}
+
 .App-link {
 	color: #61dafb;
 }
