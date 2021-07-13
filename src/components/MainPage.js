@@ -11,7 +11,7 @@ import EditBooking from '../Screens/EditBooking'
 import StartBooking from '../Screens/StartBooking'
 import AddedProperties from '../Screens/AddedProperties'
 import Checkout from "../components/Settings/Checkout";
-import Cart from "../Screens/Cart"
+import Cart from "../Screens/cart"
 import FilterProperties from '../Screens/FilterProperties'
 
 

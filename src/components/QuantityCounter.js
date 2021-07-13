@@ -22,6 +22,7 @@ const QuantityCounter = () => {
         justifyContent:'space-evenly',
         borderRadius: 5,
         border: '1px solid #ECECEC',
+        width: '100px',
         // padding:5, 
         verticalAlign:'middle'
     }

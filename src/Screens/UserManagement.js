@@ -123,6 +123,8 @@ const UserManagement = () => {
     //set state to toggle confirm adding user 
     const [confirmUserAddition, setConfirmUserAddition] = useState(false);
     // const [loaded, setLoaded] = useState(false);
+
+    const [role, setRole] = useState('');
     
     const [state, setState] = useState([])
 
@@ -212,9 +214,10 @@ const UserManagement = () => {
         }).catch(err=>(console.log(err)))
     }
 
-    useEffect(() => {
+    const handleRoleChange = (e) => {
+        setRole(e.target.value);
+    }
 
-    });
 
     return (
     <div>
@@ -335,11 +338,11 @@ Launch demo modal
 
 
 <br/>
- <label style={{fontSize:14}} class="text-muted" for="">Role</label>
- <select class="form-control" name="" id="">
+ <label style={{fontSize:14}} className="text-muted" htmlFor="role">Role</label>
+ <select class="form-control" name="role" id="role" onChange={handleRoleChange}>
    {/*<option>Admin</option>*/}
-   {/*<option>Employee</option>*/}
-   <option>Approver</option>
+   <option value='ROLE_SUBSCRIBER_APPROVER'>Approver</option>
+     <option value='ROLE_SUBSCRIBER_REGULAR'>Regular</option>
  </select>
 
 <br/>
