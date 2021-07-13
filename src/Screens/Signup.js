@@ -5,13 +5,17 @@ import logo from '../img/spacia/web/logo.png'
 import googleLogo from '../img/Web/Spacia/spacia/web/google 1.png'
 import {Link, useHistory} from 'react-router-dom'
 import axios from 'axios'
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 const Signup = () => {
 
 
+    
     const history = useHistory();
 
     const [form, setForm] = useState(0)
 
+    const [phonevalue, setphonevalue] = useState('')
     // form
     const [firstName, setfirstName] = useState('') 
     const [firstNameError, setfirstNameError] = useState('')
@@ -202,7 +206,7 @@ const Signup = () => {
                         <br/>
                         <div class="form-group">
                           <label for="">Email</label>
-                            <input type="email" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Eg. lindaantwi@gmail.com" name="" id="" aria-describedby="emailHelpId" />
+                            <input type="email" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Eg. somebody@company.com" name="" id="" aria-describedby="emailHelpId" />
                             {emailError && 
                           <small id="emailHelpId" class="form-text" style={{color:'red'}}>{emailError}</small>
                             }
@@ -215,6 +219,11 @@ const Signup = () => {
                           <small id="emailHelpId" class="form-text" style={{color:'red'}}>{phoneError}</small>
                             }
                         </div>
+
+                            <PhoneInput
+                            placeholder="Enter phone number"
+                            value={phonevalue}
+                            onChange={setphonevalue}/>
                         <br/>
                         <div class="form-group">
                           <label for="">Password</label>
@@ -239,6 +248,9 @@ const Signup = () => {
                         <div style={{margin:'auto', textAlign:'center'}}>
                         <button onClick={submitSignup} className="button" style={{width:'100%'}}>Activate Account</button>
                         </div>
+                        <br/>
+                        <h6 className="text-muted">Already have an account? <span><Link to="/signin" style={{color:'blue',fontSize:'smaller'}}>Sign In</Link></span></h6>
+
                         {/* </Link> */}
                     </Container>
                 </div>
