@@ -51,6 +51,11 @@ const Nav = () => {
         setcart (true)
     }
 
+    const logout = () => {
+        localStorage.clear()
+        history.push('/signin')
+    }
+
     const dispatch = useDispatch();
 
     const filterOptionsUrl = "https://spacia.page/booking/api/v1/listings/filter/options";
@@ -90,7 +95,7 @@ const Nav = () => {
   </Dropdown.Toggle>
 
   <Dropdown.Menu>
-    <Dropdown.Item onClick={()=>{logoutUser()}}>Logout</Dropdown.Item>
+    <Dropdown.Item onClick={()=>{logout()}}>Logout</Dropdown.Item>
     
   </Dropdown.Menu>
 </Dropdown>

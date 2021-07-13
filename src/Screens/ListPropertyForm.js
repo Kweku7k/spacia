@@ -6,6 +6,9 @@ import imgplaceholder from '../img/Web/Spacia/imgplaceholder.png'
 import axios from 'axios'
 import {useHistory } from 'react-router-dom'
 
+import { InputTags } from 'react-bootstrap-tagsinput'
+import 'react-bootstrap-tagsinput/dist/index.css'
+
 const ListPropertyForm = () => {
   const [dropdown1, setdropdown1] = useState("Published")
   const [dropdown2, setdropdown2] = useState("Hourly")
@@ -19,7 +22,8 @@ const ListPropertyForm = () => {
     };
     reader.readAsDataURL(file.files[0]);
     })
-
+     
+    const [state, setState] = useState([])
   const [dataUri, setDataUri] = useState(imgplaceholder)
 
   const [filesArray, setfilesArray] = useState([])
@@ -355,7 +359,7 @@ const imgholderActive = {
             <h5><b>Property Description</b></h5>
 
             <div class="form-group">
-              <label style={label} for="                              ">Property Tile</label>
+              <label style={label} for="">Property Tile</label>
               <input type="text"
                 class="form-control" name="" id="" aria-describedby="helpId" value={propertyTitle} onChange={(e) => setpropertyTitle(e.target.value)} placeholder=""/>
                 
@@ -367,10 +371,14 @@ const imgholderActive = {
             </div>
             <div class="form-group">
               <label style={label} for="">Add Tags</label>
-              <input type="text"
-                class="form-control" name="" id="" aria-describedby="helpId" value={tags} onChange={(e) => settags(e.target.value)} placeholder=""/>
-                
+              <div style={{  background:'white' }}>
+              <div style={{margin:0, background:'#DDDDDD'}}>
+                <InputTags style={{backgroundColor:'white', fontSize:16}} values={state} onTags={(value) => setState(value.values)} />
+              </div>
             </div>
+            </div>
+
+            
 
             
             </Container>

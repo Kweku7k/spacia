@@ -386,16 +386,6 @@ Launch demo modal
 <div style={{  background:'white' }}>
       <div style={{margin:0, background:'#DDDDDD'}}>
         <InputTags style={{backgroundColor:'white', fontSize:16}} values={state} onTags={(value) => setState(value.values)} />
-        {/* <button
-          className='btn btn-outline-secondary'
-          type='button'
-          data-testid='button-clearAll'
-          onClick={() => {
-            setState([])
-          }}
-        >
-          Delete all
-        </button> */}
       </div>
     </div>
 

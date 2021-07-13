@@ -37,68 +37,68 @@ const Signup = () => {
 
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
-    const [emailError, setEmailError] = useState('');
-    const [signUpError, setSignUpError] = useState(false);
+    const [emailError, setEmailError] = useState('')
 
     const localurl = 'https://spacia.page/users/api/v1/users'
-    // useEffect(() => {
-    //     axios.post(localurl,
-    //         // {
-    //         //     "avatar": "https://www.google.com?avatar.jpg",
-    //         //     "companyId": 1,
-    //         //     "confirmPassword": {confirmpassword},
-    //         //     "contacts": [{
-    //         //         "isContactable": true,
-    //         //         "isPrimary": true,
-    //         //         "type": "mobile",
-    //         //         "value": "+233545917791"
-    //         //       }],
-    //         //     "firstName": {firstName},
-    //         //     "lastName": {lastName},
-    //         //     "password": {password},
-    //         //     "role": "admin",
-    //         //     "username": {username}
-    //         //   }
-    //         {
-    //             "companyId": 1,
-    //             "confirmPassword": confirmpassword,
-    //             "contacts": [{
-    //                 "isContactable": true,
-    //                 "isPrimary": true,
-    //                 "type": "mobile",
-    //                 "value": phone
-    //               }],
-    //             "firstName": firstName,
-    //             "lastName": lastName,
-    //             "password": password,
-    //             "username": email,
-    //             "role": "ROLE_SUBSCRIBER_OWNER"
-    //           }
-    //
-    //
-    //     )
-    //     .then(res=> {
-    //
-    //         console.log(res);
-    //         // submitSignup(res)
-    //         // Tenary
-    //         (res.status = 201 ? (
-    //                 history.push("/confirm"),
-    //                     console.log("201 dey work"),
-    //                     localStorage.setItem('currentUser', res.data.data[0].username)
-    //             ) :
-    //             (
-    //                 console.log("Didnt Work")
-    //             ))
-    //
-    //
-    // }).catch(err=>(console.log(err),
-    //         localStorage.setItem('currentUser','No User')
-    //     )
-    //     )
-    //     console.log(localurl)
-    //
-    // }, [form])
+    useEffect(() => {
+        axios.post(localurl,
+            // {
+            //     "avatar": "https://www.google.com?avatar.jpg",
+            //     "companyId": 1,
+            //     "confirmPassword": {confirmpassword},
+            //     "contacts": [{
+            //         "isContactable": true,
+            //         "isPrimary": true,
+            //         "type": "mobile",
+            //         "value": "+233545917791"
+            //       }],
+            //     "firstName": {firstName},
+            //     "lastName": {lastName},
+            //     "password": {password},
+            //     "role": "admin",
+            //     "username": {username}
+            //   }
+            {
+                "avatar": "https://www.google.com?avatar.jpg",
+                "companyId": 1,
+                "confirmPassword": confirmpassword,
+                "contacts": [{
+                    "isContactable": true,
+                    "isPrimary": true,
+                    "type": "mobile",
+                    "value": phone
+                  }],
+                "firstName": firstName,
+                "lastName": lastName,
+                "password": password,
+                "username": email,
+                "role": "ROLE_SUBSCRIBER_OWNER"
+              } 
+
+        )
+        .then(res=>(
+
+            console.log(res),
+            // submitSignup(res)
+            // Tenary
+            (res.status = 201 ? (
+                history.push("/confirm"),
+                console.log("201 dey work"),
+                localStorage.setItem('currentUser',res.data.data[0].username)
+            ):
+            (
+                console.log("Didnt Work")
+            ))
+            
+        
+            ))
+        .catch(err=>(console.log(err),
+            localStorage.setItem('currentUser','No User')
+        )
+        )
+        console.log(localurl)
+        
+    }, [form])
 
 
     const bgImage = {
@@ -140,74 +140,32 @@ const Signup = () => {
     }
 
     const submitSignup = (e) =>{
-        e.preventDefault();
-
+        e.preventDefault()
+        setForm(1)
         if(!firstName){
-            setfirstNameError("This field cant be empty");
-            setSignUpError(true);
+            setfirstNameError("This field cant be empty") 
         }
         if(!lastName){
-            setlastNameError("This field cant be empty");
-            setSignUpError(true);
+            setlastNameError("This field cant be empty") 
         }
         if(!phone ){
-            setphoneError("This field must have 10 characters");
-            // setSignUpError(true);
+            setphoneError("This field must have 10 characters") 
         }
 
         if(!email ){
-            setEmailError("This field cant be empty");
-            setSignUpError(true);
+            setEmailError("This field cant be empty") 
         }
 
         if (confirmpassword !== password){
             setPasswordError("The fields dont match")
             setPassword('')
             setconfirmpassword('')
-            setSignUpError(true);
         }
-
-        if (signUpError) {
-            console.log('there is a sign up error');
-            return;
-        }
-
-        axios.post(localurl,
-                {
-                    "companyId": 1,
-                    "confirmPassword": confirmpassword,
-                    "contacts": [{
-                        "isContactable": true,
-                        "isPrimary": true,
-                        "type": "mobile",
-                        "value": phone
-                      }],
-                    "firstName": firstName,
-                    "lastName": lastName,
-                    "password": password,
-                    "username": email,
-                    "role": "ROLE_SUBSCRIBER_OWNER"
-                  }).then(res=> {
-
-                console.log(res);
-                (res.status = 201 ? (
-                        history.push("/confirm"),
-                            console.log("201 dey work"),
-                            localStorage.setItem('currentUser', res.data.data[0].username)
-                    ) :
-                    (
-                        console.log("Didnt Work")
-                    ))
+        // history.push("/home");
 
 
-        }).catch(err=>(console.log(err),
-                localStorage.setItem('currentUser','No User')
-            )
-            )
-            console.log(localurl)
 
     }
-
     return (
         <Row style={bgImage}>
             {/* <div > */}
