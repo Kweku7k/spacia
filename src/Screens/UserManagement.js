@@ -397,7 +397,7 @@ Launch demo modal
  <label style={{fontSize:14}} className="text-muted" htmlFor="role">Role</label>
  <select className="form-control" name="role" id="role" onChange={handleRoleChange}>
    {/*<option>Admin</option>*/}
-   <option value='ROLE_SUBSCRIBER_APPROVER'>Approver</option>
+   <option selected value='ROLE_SUBSCRIBER_APPROVER'>Approver</option>
      <option value='ROLE_SUBSCRIBER_INDIVIDUAL'>Regular</option>
  </select>
 
