@@ -53,7 +53,7 @@ const avatar = {
             <td style={{paddingTop: '20px'}}>{email}</td>
 
             <td>
-            <h6 style={{color: (status === 'Active') ? '#02BD04' : '#F99500', fontWeight:'bold'}}>{status}</h6>
+            <h6 style={{color: (status === 'Active') ? '#02BD04' : '#F99500', fontWeight:'bold', paddingTop: '7px'}}>{status}</h6>
 
                 {/* Tenary conditional statement */}
                 {/* <div className={`banner ${active ? "active" : ""}`}>{children}</div> */}

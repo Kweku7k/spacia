@@ -106,7 +106,7 @@ const UserManagement = () => {
     const [confirmUserAddition, setConfirmUserAddition] = useState(false);
     // const [loaded, setLoaded] = useState(false);
 
-    const [role, setRole] = useState('');
+    const [role, setRole] = useState('ROLE_SUBSCRIBER_APPROVER');
     
     const [state, setState] = useState([])
 
