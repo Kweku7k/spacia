@@ -8,7 +8,7 @@ import peter from '../img/Web/Spacia/Peter.png'
 import profile from '../img/Web/Spacia/profile.png'
 import profile3 from '../img/Web/Spacia/profile3.png'
 import SERVICES from '../services'
-
+import {useHistory} from 'react-router-dom'
 
 import LoadingPage from '../components/LoadingPage'
 import NoData from '../components/NoData'
@@ -177,6 +177,9 @@ const UserManagement = () => {
         setConfirmResetPasswordModal(true)
     }
 
+    let history = useHistory();
+
+
     let localUrl = 'https://spacia.page/users/api/v1/users/invite';
     const inviteUser = () => {
         const user = SERVICES.getUser();
@@ -193,7 +196,11 @@ const UserManagement = () => {
                 "role": role
             }).then(res => {
             console.log(res);
-        }).catch(err=>(console.log(err)))
+            // setShow()
+            // history.push('/users')
+            setShow(false)
+            
+        }).catch(err=>(console.log(err),setShow(false)))
     }
 
     const handleRoleChange = (e) => {

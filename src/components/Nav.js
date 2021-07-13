@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { FaCaretDown, FaBell } from 'react-icons/fa'
-import profile from '../img/Web/Spacia/navbar/Mask.png'
+import profile from '../img/profileplace.png'
 import bkn from '../img/Web/Spacia/calendar-2 4.png'
 import bellIcon from '../img/Web/Spacia/settings/navbar/bell 1.png'
 import cartIcon from '../img/Web/Spacia/cart 3.png'
@@ -90,7 +90,7 @@ const Nav = () => {
   </Dropdown.Toggle>
 
   <Dropdown.Menu>
-    <Dropdown.Item onClick={()=>{logoutUser()}} href="#/action-1">Logout</Dropdown.Item>
+    <Dropdown.Item onClick={()=>{logoutUser()}}>Logout</Dropdown.Item>
     
   </Dropdown.Menu>
 </Dropdown>
