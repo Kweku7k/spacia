@@ -24,6 +24,8 @@ import FeedbackModall from '../components/FeedbackModall'
 import { InputTags } from 'react-bootstrap-tagsinput'
 import 'react-bootstrap-tagsinput/dist/index.css'
 import axios from "axios";
+import PendingUserTableRow from '../components/PendingUserTableRow'
+import VerifiedUserTableRow from '../components/VerifiedUserTableRow'
  
 
 const UserManagement = () => {
@@ -110,6 +112,8 @@ const UserManagement = () => {
     
     const [state, setState] = useState([])
 
+
+    const [UnableToConfirmUserAddition, setUnableToConfirmUserAddition] = useState(false)
     // Functions to toggle Invite User Modal
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -199,14 +203,29 @@ const UserManagement = () => {
             // setShow()
             // history.push('/users')
             setShow(false)
+            setConfirmUserAddition(true)
+
             
-        }).catch(err=>(console.log(err),setShow(false)))
+        }).catch(err=>(console.log(err),setShow(false), setUnableToConfirmUserAddition(true)))
     }
 
     const handleRoleChange = (e) => {
         setRole(e.target.value);
     }
+    // const deleteTask = async (id) =>{
+    //     await fetch(`http://localhost:5000/tasks/${id}`,{
+    //       method:'DELETE'
+    //     })
+    //     setTasks(tasks.filter((task) => task.id !== id))
+    //     console.log('deleted', id)
+    //   }
 
+    const deleteuser = (id) => {
+        axios.delete(`https://spacia.page/users/api/v1/users/delete-by-id/${id}`).then(res => {
+            console.log(res);
+        }).catch(err=>(console.log(err)))
+    }
+    
     useEffect(() => {
         const currentUser = SERVICES.getUser();
         const ownerId = currentUser ? currentUser.id : 0;
@@ -246,7 +265,7 @@ const UserManagement = () => {
     }
 
     const inviteUserButton = {
-        backgroundColor: '#f85a47',
+    backgroundColor: '#f85a47',
     borderRadius: '5px',
     padding: '10px 20px',
     border: 'none',
@@ -290,10 +309,12 @@ const UserManagement = () => {
                 invitedUsers.length > 0 &&
                     invitedUsers.map(user => {
                         return user.verified &&
-                            <UserTableRow
+                            // <UserTableRow
+                            <VerifiedUserTableRow
                                 profile={user.avatar}
                                 name={`${user.firstName} ${user.lastName}`}
                                 email={user.username}
+                                onDelete = {()=>(deleteuser(user.id))}
                                 statusStyle={inactive}
                                 status={convertFromVerifiedStatus(user.verified)}
                                 role={convertRole(user.role)} style={approver}/>
@@ -350,12 +371,14 @@ const UserManagement = () => {
                 invitedUsers.length > 0 &&
                 invitedUsers.map(user => {
                     return !user.verified &&
-                        <UserTableRow
+                        // <UserTableRow
+                        <PendingUserTableRow
                             profile={user.avatar}
                             name={(user.firstName && user.lastName) ? `${user.firstName} ${user.lastName}` : 'N/A'}
                             email={user.username}
                             statusStyle={inactive}
                             status={convertFromVerifiedStatus(user.verified)}
+                            onDelete = {() => deleteuser(user.id)}
                             role={convertRole(user.role)} style={approver}/>
                 })
             }
@@ -426,9 +449,9 @@ Launch demo modal
 <FormModal title="Edit User" isOpen={editShow} isClose={handleEditClose} onSubmit={confirmUserOpen} acceptButton="Update User" declineButton="Cancel" name={name} phone={phone} email={email} setName={setName} />
 
 
-<FeedbackModall title="Confirm User Addition" isOpen={confirmUserAddition} isClose={confirmUserClose} doneButton="Done">
+<FeedbackModall title="User Addition" isOpen={confirmUserAddition} isClose={confirmUserClose} doneButton="Done">
     <img src={check} alt="check"/>
-        <h6 style={{paddingTop:10}}>This user has been added</h6>
+        <h6 style={{paddingTop:10}}>This user has been invited</h6>
 </FeedbackModall>
 
 

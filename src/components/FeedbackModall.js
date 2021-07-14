@@ -10,7 +10,7 @@ function FeedbackModal({ declineButton, doneButton,acceptButton,body,title, isOp
        
        <div style={{display:'flex', flexDirection:'row-reverse', padding:30}}>
         <FaTimes />
-        <h6 style={{margin:'auto'}}><b>Deleted</b></h6>
+        <h6 style={{margin:'auto'}}><b>{title}</b></h6>
        </div>
         {/* <Modal.Body> */}
         <div style={{textAlign:'center', padding:30}}>

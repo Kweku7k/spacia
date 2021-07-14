@@ -117,9 +117,8 @@ const SignIn = () => {
 
     const loginlogic = (res) =>{
             const role = res.data.data[0].role
-            {
-            role == 'ROLE_ADMINISTRATOR' ? (history.push('/')) : (history.push('/startBooking'))
-            }
+            // this should be a switch statement
+            { role == 'ROLE_ADMINISTRATOR' ? (history.push('/')) : (history.push("/newstartBooking"))}
     }
     return (
         <Row style={bgImage}>

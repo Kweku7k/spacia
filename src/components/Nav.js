@@ -21,6 +21,7 @@ import AddedProperties from '../Screens/AddedProperties'
 import Checkout from "../components/Settings/Checkout";
 import Cart from '../Screens/cart'
 import FilterProperties from '../Screens/FilterProperties'
+import NewStartBooking from '../Screens/NewStartBooking'
 import ListProperty from '../Screens/ListProperty'
 import Confirm from '../Screens/confirm'
 import ListPropertyForm from '../Screens/ListPropertyForm';
@@ -158,6 +159,9 @@ const Nav = () => {
                     </Route>
                     <Route path="/listpropertyform">
                         <ListPropertyForm />
+                    </Route>
+                    <Route path="/newstartBooking">
+                        <NewStartBooking />
                     </Route>
                 </Switch>
 </div>

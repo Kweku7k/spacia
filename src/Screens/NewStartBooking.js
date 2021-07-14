@@ -34,12 +34,15 @@ import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
 import {StartBookingStyles} from "./StartBookingStyles";
 
-const StartBooking = ({location}) => {
+// location.from as logic
+
+const NewStartBooking = ({location}) => {
     const [filterOptions, setFilterOptions] = useState({});
     const filters = useSelector(state => state.dashboard.filterOptions);
 
     useEffect(() => {
         setFilterOptions(filters);
+        console.log(location)
         // console.log("You are from"+location.state)
         // setNewUserModal(true)
     }, []);
@@ -51,7 +54,7 @@ const StartBooking = ({location}) => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
-    const [newUserModal, setNewUserModal] = useState(false)
+    const [newUserModal, setNewUserModal] = useState(true)
     // history.path()
     const link = {
         textDecoration:'none', 
@@ -349,7 +352,7 @@ const StartBooking = ({location}) => {
         {/* <Link to="/startbooking" style={link}> */}
             <div style={modalBar} onClick={() => setNewUserModal(false)} >
                 <FaCalendarAlt size={28} color='red' style={{marginTop:'auto', marginBottom:'auto'}}/>
-                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Want to find a space on SPACIA?</b></h5>
+                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Find a space on SPACIA</b></h5>
                 <div style={{padding:10, borderRadius:5, backgroundColor:'red'}}>
                     <FaArrowRight color="white"/>
                 </div>
@@ -359,7 +362,7 @@ const StartBooking = ({location}) => {
         <Link to="/listproperty" style={link}>
             <div style={modalBar}>
                 <FaHome size={28} color='red' style={{marginTop:'auto', marginBottom:'auto'}}/>
-                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Want to add a listing on SPACIA?</b></h5>
+                <h5 style={{textAlign:'center', marginTop:'auto', marginBottom:'auto'}}><b>Find a listing on SPACIA</b></h5>
                 <div style={{padding:10, borderRadius:5, backgroundColor:'red'}}>
                     <FaArrowRight color="white"/>
                 </div>
@@ -373,4 +376,4 @@ const StartBooking = ({location}) => {
     )
 }
 
-export default StartBooking
+export default NewStartBooking

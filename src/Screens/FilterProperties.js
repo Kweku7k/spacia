@@ -562,11 +562,11 @@ const FilterProperties = (onAddToCart) => {
 
 {/* View Property Modal  */}
             {/* <button className="button" style={{width:200}} onClick={closeViewModal}>Add To Cart</button> */}
-            {/*<Link to='/cart'>*/}
-            {/*    <button className="button" style={{width:200}} onClick={closeViewModal}>Add To Cart</button>*/}
-            {/*</Link>*/}
-{/*<Modal show={true} handleHide={true} size="lg" >*/}
-{/*       <div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>*/}
+            {/* <Link to='/cart'> */}
+               {/* <button className="button" style={{width:200}} onClick={closeViewModal}>Add To Cart</button> */}
+            {/* </Link> */}
+{/* <Modal show={true} handleHide={true} size="lg" > */}
+      {/* <div style={{display:'flex', flexDirection:'row-reverse', padding:10}}>*/}
 {/*        <FaTimes onClick={closeViewModal} />*/}
 {/*       </div>*/}
 {/*        <div style={{textAlign:'center', padding:30}}>*/}
@@ -578,7 +578,7 @@ const FilterProperties = (onAddToCart) => {
 {/*                    <img onClick={changeImage} src={home1} style={imgholder} alt="placeholder" />*/}
 {/*                </div>*/}
 {/*                <div>*/}
-{/*                    <img onClick={changeImage} src={home2} style={imgholder} alt="placeholder" />*/}
+{/*                    <img onClick={changeImage} src={home2} style={imgholder} alt="placeholder" /> */}
 {/*                </div>*/}
 {/*                <div>*/}
 {/*                    <img onClick={changeImage} src={home3} style={imgholder} alt="placeholder" />*/}
@@ -631,8 +631,8 @@ const FilterProperties = (onAddToCart) => {
 {/*        </Modal>*/}
 
 {/*    <Modal show={true}>*/}
-{/*<h4>Show Modal</h4>*/}
-{/*    </Modal>*/}
+{/*<h4>Show Modal</h4> */}
+   {/* </Modal> */}
 
 
 {/* doneButton={() => deleteProperty()} */}
