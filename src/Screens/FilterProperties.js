@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Container, Dropdown, Row, Table, Toast} from 'react-bootstrap'
 import demo from '../img/Web/Spacia/Rectangle 66.png'
 import FilterTableRow from '../components/FilterTableRow'
+import TableRow from '../components/TableRow'
 import FormModal from '../components/NewPropertyModal'
 import FeedbackModal from '../components/FeedbackModall'
 import Slide from 'rc-slider';
@@ -539,7 +540,7 @@ const FilterProperties = (onAddToCart) => {
                             overall = 'N/A';
                         }
 
-                        return <FilterTableRow
+                        return <TableRow
                             key={listing.id}
                             image={demo}
                             info={listing['description'].toUpperCase()}
@@ -551,7 +552,7 @@ const FilterProperties = (onAddToCart) => {
                             onClick={showViewModal} onView={showViewModal} onAddToCart={onAddToCart}/>
 
                     }) }
-                          <FilterTableRow image={home1} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onClick={showViewModal} onView={showViewModal} onAddToCart={onAddToCart}></FilterTableRow>
+                          <TableRow image={home1} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600" onClick={showViewModal} onView={showViewModal} onAddToCart={onAddToCart}></TableRow>
                         {/*<FilterTableRow image={prop3} info="COMMERCIAL SPACE FOR RENT AT ACCRA OPPOSITE NIMA POLICE STATION" added="13-Feb-2021" beds="3" showers='2' status='FOR RENT' price="600"></FilterTableRow>*/}
 
             </Table>
@@ -560,7 +561,7 @@ const FilterProperties = (onAddToCart) => {
 
 
 {/* View Property Modal  */}
-            <button className="button" style={{width:200}} onClick={closeViewModal}>Add To Cart</button>
+            {/* <button className="button" style={{width:200}} onClick={closeViewModal}>Add To Cart</button> */}
             {/*<Link to='/cart'>*/}
             {/*    <button className="button" style={{width:200}} onClick={closeViewModal}>Add To Cart</button>*/}
             {/*</Link>*/}

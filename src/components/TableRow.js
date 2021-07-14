@@ -8,9 +8,6 @@ import {Row} from 'react-bootstrap'
 import Moment from 'moment'
 import '../css/Table.css'
 
-
-{/* <TableRow info="Some Text" Added='February 20th' Status='Availble' Price='Ghc30'></TableRow> */}
-
 const TableRow = ({image, info, added, status, price, beds, showers, onDelete, onEditProperty, onView}) => {
 
     const available = {
@@ -35,8 +32,7 @@ const TableRow = ({image, info, added, status, price, beds, showers, onDelete, o
                     <td style={{tableCell}}><img src={image} width={100} alt="demo"/></td>
                     <td style={{width:200,verticalAlign:'top',paddingTop:10, color:'#737373'}}>
                         <div>
-                            <h6 style={{fontSize:'small', width:250, whiteSpace:250, overflow:'hidden',textOverflow:'ellipsis'}}>
-                           
+                            <h6 style={{fontSize:'small', width:200, whiteSpace:'wrap', overflow:'hidden',textOverflow:'ellipsis'}}>
                         {info} 
                             </h6>
                             <br/>

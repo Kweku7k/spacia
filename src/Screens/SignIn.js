@@ -111,12 +111,15 @@ const SignIn = () => {
             console.log(res.data);
             SERVICES.saveUser(res.data.data[0])
             loginlogic(res)
-            history.push('/')
+            // history.push('/')
         })
     }
 
     const loginlogic = (res) =>{
-            // if res.data.role ==  
+            const role = res.data.data[0].role
+            {
+            role == 'ROLE_ADMINISTRATOR' ? (history.push('/')) : (history.push('/startBooking'))
+            }
     }
     return (
         <Row style={bgImage}>

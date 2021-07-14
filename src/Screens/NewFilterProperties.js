@@ -31,6 +31,7 @@ import moment from 'moment';
 import {useDispatch, useSelector} from "react-redux";
 import {saveFilterOptions} from "../redux/actions/dashboard";
 import SERVICES from '../services';
+import { PropertyModal } from '../components/PropertyModal'
 
 
 const NewFilterProperties = (onAddToCart) => {
@@ -484,6 +485,7 @@ const NewFilterProperties = (onAddToCart) => {
 
 </Container>
 
+{/* <PropertyModal viewModal={true} closeViewModal={()=>setViewModal()/> */}
 
 {/* View Property Modal  */}
 

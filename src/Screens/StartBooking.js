@@ -50,7 +50,7 @@ const StartBooking = () => {
     const [endDate, setEndDate] = useState(new Date());
 
     const [newUserModal, setNewUserModal] = useState(true)
-
+    // history.path()
     const link = {
         textDecoration:'none', 
         color:'black'
