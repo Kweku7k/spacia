@@ -265,9 +265,13 @@ const UserManagement = () => {
     }
 
     const convertFromVerifiedStatus = (verified) => {
-        if (verified) {
-            return 'Active';
-        } else {
+        if (verified.verified) {
+            if (verified.enabled){
+                return 'Active';
+            }
+            return 'Inactive'
+        }
+        else {
             return 'Pending';
         }
     }
@@ -325,7 +329,7 @@ const UserManagement = () => {
                                 onDelete = {()=>(deleteuser(user.id))}
                                 statusStyle={inactive}
                                 onDisable={() => (disableUser(user.id))}
-                                status={convertFromVerifiedStatus(user.verified)}
+                                status={convertFromVerifiedStatus(user)}
                                 role={convertRole(user.role)} style={approver}/>
                     })
             }
