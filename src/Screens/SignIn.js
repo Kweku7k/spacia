@@ -118,6 +118,8 @@ const SignIn = () => {
     const loginlogic = (res) =>{
             const role = res.data.data[0].role
             // this should be a switch statement
+            // Regular and approver => Find a space
+            // Owner Subscriber => Modal
             { role == 'ROLE_ADMINISTRATOR' ? (history.push('/')) : (history.push("/newstartBooking"))}
     }
     return (
@@ -138,7 +140,7 @@ const SignIn = () => {
                             </div>
                         </button>
 
-                        <hr/>
+                        <hr/>   
 
                         <div className="form-group">
                           <label htmlFor="">Email</label>
