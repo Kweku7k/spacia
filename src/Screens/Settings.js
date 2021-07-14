@@ -33,12 +33,12 @@ const Settings = () => {
                         </div>
                     </Link>
 
-                    <Link className="link" style={link} to="/settings/notification">
+                    {/* <Link className="link" style={link} to="/settings/notification">
                         <div className="settingsNavItem" style={{justifyContent:"normal"}}>
                             <FaBell style={{marginRight:10}}/>
                             <h6>Notification</h6>    
                         </div>
-                    </Link>
+                    </Link> */}
 
                     <Link className="link" style={link} to="/settings/payment">
                         <div className="settingsNavItem" style={{justifyContent:"normal"}}>

@@ -44,6 +44,14 @@ const UserManagement = () => {
     const [email, setEmail] = useState('mr.adumatta@gmail.com')
     const [phone, setPhone] = useState('0545977791')
 
+    const disableUser = (id) => {
+        console.log(id)
+        axios.patch(`https://spacia.page/users/api/v1/users/${id}/status`, 
+        {params:{active:false}})
+        .then((res)=>(console.log(res))
+        )
+        
+    }
     // STYLES
     const admin = {
         backgroundColor:'#F3D5D1', 
@@ -200,11 +208,11 @@ const UserManagement = () => {
                 "role": role
             }).then(res => {
             console.log(res);
+            setState('')
             // setShow()
             // history.push('/users')
             setShow(false)
             setConfirmUserAddition(true)
-
             
         }).catch(err=>(console.log(err),setShow(false), setUnableToConfirmUserAddition(true)))
     }
@@ -316,6 +324,7 @@ const UserManagement = () => {
                                 email={user.username}
                                 onDelete = {()=>(deleteuser(user.id))}
                                 statusStyle={inactive}
+                                onDisable={() => (disableUser(user.id))}
                                 status={convertFromVerifiedStatus(user.verified)}
                                 role={convertRole(user.role)} style={approver}/>
                     })
