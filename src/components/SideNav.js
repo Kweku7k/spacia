@@ -63,13 +63,14 @@ const SideNav = () => {
     
     let currentuser = SERVICES.getUser()
     useEffect(() => {
+        console.log("The Current User is " + currentuser.role)
         // console.log(localStorage)
         // Change to switch statement
-        (currentuser.role === "ROLE_SUBSCRIBER_OWNER" &&
+        // (currentuser.role === "ROLE_SUBSCRIBER_OWNER" &&
             // (console.log("Current user role is owner"),
             // console.log(currentuser.role)
             setcurrentUser('owner')
-        )
+        // )
 
         // currentuser.role === 'ROLE_SUBSCRIBER_APPROVER' && 
         //     console.log("Current user role is approver")
@@ -85,6 +86,7 @@ const SideNav = () => {
 
 
     
+
     return (
 
 
